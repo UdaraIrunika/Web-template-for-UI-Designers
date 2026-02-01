@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Inventory - LuxeAuto</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">⚡</span>
+                    <span class="logo-text">LuxeAuto</span>
+                </a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="inventory.html" class="nav-link active">Inventory</a></li>
+                <li class="nav-item"><a href="compare.html" class="nav-link">Compare</a></li>
+                <li class="nav-item"><a href="finance.html" class="nav-link">Finance</a></li>
+                <li class="nav-item"><a href="news.html" class="nav-link">News</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+
+            <div class="nav-controls">
+                <button id="search-toggle" class="search-btn" title="Search bookings" onclick="openSearchModal()">🔍</button>
+                <a href="login.html" id="login-btn" class="login-btn" title="Login">👤 Login</a>
+                <div id="user-menu" class="user-menu" style="display: none;">
+                    <span class="user-name" id="user-name">User</span>
+                    <div class="user-dropdown">
+                        <a href="user-dashboard.html">📊 Dashboard</a>
+                        <a href="#" onclick="logoutUser()">🚪 Logout</a>
+                    </div>
+                </div>
+                <button id="theme-toggle" class="theme-toggle" title="Toggle theme">☀️</button>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Inventory Section -->
+    <section class="inventory-section">
+        <div class="container">
+            <h1 class="section-title mt-4" style="margin-top: 80px;">Our Inventory</h1>
+            <p class="section-subtitle">Browse our collection of premium vehicles</p>
+
+            <!-- Filter Section -->
+            <div class="filter-container">
+                <div class="filter-header">
+                    <h2>Filters</h2>
+                    <button id="reset-filters" class="reset-btn">Reset All</button>
+                </div>
+
+                <div class="filter-grid">
+                    <!-- Search Bar -->
+                    <div class="filter-group">
+                        <label>🔍 Search Cars</label>
+                        <input type="text" id="search-input" placeholder="Search by name or brand..." class="filter-input">
+                    </div>
+
+                    <!-- Brand Filter -->
+                    <div class="filter-group">
+                        <label>🏢 Brand</label>
+                        <select id="brand-filter" class="filter-select">
+                            <option value="">All Brands</option>
+                        </select>
+                    </div>
+
+                    <!-- Fuel Type Filter -->
+                    <div class="filter-group">
+                        <label>⛽ Fuel Type</label>
+                        <select id="fuel-filter" class="filter-select">
+                            <option value="">All Types</option>
+                            <option value="Gasoline">Gasoline</option>
+                            <option value="Electric">Electric</option>
+                            <option value="Hybrid">Hybrid</option>
+                        </select>
+                    </div>
+
+                    <!-- AC Filter -->
+                    <div class="filter-group">
+                        <label>❄️ Air Conditioning</label>
+                        <select id="ac-filter" class="filter-select">
+                            <option value="">All</option>
+                            <option value="AC">AC (Yes)</option>
+                            <option value="NON-AC">NON-AC (No)</option>
+                        </select>
+                    </div>
+
+                    <!-- Transmission Filter -->
+                    <div class="filter-group">
+                        <label>⚙️ Transmission</label>
+                        <select id="transmission-filter" class="filter-select">
+                            <option value="">All Types</option>
+                            <option value="Automatic">Automatic</option>
+                            <option value="Manual">Manual</option>
+                        </select>
+                    </div>
+
+                    <!-- Drive Type Filter -->
+                    <div class="filter-group">
+                        <label>🚗 Drive Type</label>
+                        <select id="drivetype-filter" class="filter-select">
+                            <option value="">All Types</option>
+                            <option value="AWD">AWD (All-Wheel Drive)</option>
+                            <option value="RWD">RWD (Rear-Wheel Drive)</option>
+                            <option value="FWD">FWD (Front-Wheel Drive)</option>
+                            <option value="4WD">4WD (Four-Wheel Drive)</option>
+                        </select>
+                    </div>
+
+                    <!-- Condition Filter -->
+                    <div class="filter-group">
+                        <label>⭐ Condition</label>
+                        <select id="condition-filter" class="filter-select">
+                            <option value="">All</option>
+                            <option value="New">New</option>
+                            <option value="Used">Used</option>
+                            <option value="Certified">Certified Pre-Owned</option>
+                        </select>
+                    </div>
+
+                    <!-- Color Filter -->
+                    <div class="filter-group">
+                        <label>🎨 Color</label>
+                        <select id="color-filter" class="filter-select">
+                            <option value="">All Colors</option>
+                            <option value="Black">Black</option>
+                            <option value="White">White</option>
+                            <option value="Silver">Silver</option>
+                            <option value="Red">Red</option>
+                            <option value="Blue">Blue</option>
+                            <option value="Gray">Gray</option>
+                            <option value="Green">Green</option>
+                            <option value="Yellow">Yellow</option>
+                            <option value="Orange">Orange</option>
+                        </select>
+                    </div>
+
+                    <!-- Price Range Slider -->
+                    <div class="filter-group price-group">
+                        <label>💰 Price Range</label>
+                        <div class="price-slider-container">
+                            <div class="price-values">
+                                <span class="price-value">$<span id="min-price-display">30000</span></span>
+                                <span class="price-dash">—</span>
+                                <span class="price-value">$<span id="max-price-display">300000</span></span>
+                            </div>
+                            <div class="slider-wrapper">
+                                <input type="range" id="price-min" min="30000" max="300000" value="30000" class="slider slider-min">
+                                <input type="range" id="price-max" min="30000" max="300000" value="300000" class="slider slider-max">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Apply Button -->
+                <div class="filter-footer">
+                    <button id="apply-filters" class="btn btn-primary">Apply Filters</button>
+                </div>
+            </div>
+
+            <!-- Results Info -->
+            <div class="results-info">
+                Showing all cars
+            </div>
+
+            <!-- Cars Grid -->
+            <div class="cars-grid">
+                <!-- Cars will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeBookingModal()">&times;</button>
+            
+            <div class="modal-header">
+                <h2>Book Your Car</h2>
+            </div>
+
+            <div class="booking-container">
+                <!-- Car Details Preview -->
+                <div class="car-preview">
+                    <img id="booking-car-image" src="" alt="Car">
+                    <div class="car-preview-info">
+                        <h3 id="booking-car-name">Car Name</h3>
+                        <p id="booking-car-price">Price</p>
+                        <div id="booking-availability" style="margin-top: 10px; padding: 8px; border-radius: 8px; background: rgba(0,0,0,0.1); font-size: 0.9rem;"></div>
+                    </div>
+                </div>
+
+                <!-- Booking Form -->
+                <form id="booking-form" onsubmit="submitBooking(event)">
+                    <div class="form-group">
+                        <label for="booking-customer-name">Full Name</label>
+                        <input type="text" id="booking-customer-name" name="customer_name" required placeholder="Enter your full name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="booking-email">Email Address</label>
+                        <input type="email" id="booking-email" name="email" required placeholder="your@email.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="booking-phone">Phone Number</label>
+                        <input type="tel" id="booking-phone" name="phone" required placeholder="(555) 123-4567">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="booking-date">Preferred Date</label>
+                        <input type="date" id="booking-date" name="preferred_date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="booking-time">Preferred Time</label>
+                        <select id="booking-time" name="preferred_time" required>
+                            <option value="">Select a time</option>
+                            <option value="09:00">9:00 AM</option>
+                            <option value="10:00">10:00 AM</option>
+                            <option value="11:00">11:00 AM</option>
+                            <option value="12:00">12:00 PM</option>
+                            <option value="14:00">2:00 PM</option>
+                            <option value="15:00">3:00 PM</option>
+                            <option value="16:00">4:00 PM</option>
+                            <option value="17:00">5:00 PM</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="booking-message">Message (Optional)</label>
+                        <textarea id="booking-message" name="message" placeholder="Any special requests or questions?" rows="4"></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button id="booking-submit-btn" type="submit" class="btn btn-primary">Confirm Booking</button>
+                        <button type="button" class="btn btn-secondary" onclick="closeBookingModal()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Success Message -->
+    <div id="booking-success-modal" class="modal">
+        <div class="modal-content success-modal">
+            <button class="modal-close" onclick="closeSuccessModal()">&times;</button>
+            
+            <div class="success-icon">✓</div>
+            <h2>Booking Confirmed!</h2>
+            <p id="success-message">Your booking has been submitted successfully.</p>
+            <p class="success-details">We'll contact you shortly to confirm the details.</p>
+            
+            <button class="btn btn-primary" onclick="closeSuccessModal()">Done</button>
+        </div>
+    </div>
+
+    <!-- Search Booking Modal -->
+    <div id="search-modal" class="modal">
+        <div class="modal-content search-modal-content">
+            <button class="modal-close" onclick="closeSearchModal()">&times;</button>
+            
+            <div class="modal-header">
+                <h2>Search Your Booking</h2>
+            </div>
+
+            <div class="search-modal-body">
+                <div class="search-input-container">
+                    <input 
+                        type="text" 
+                        id="search-input-field" 
+                        class="search-input" 
+                        placeholder="Enter Booking ID, Name, Email, or Phone..."
+                        onkeyup="handleSearchInput(event)"
+                    >
+                    <button class="search-submit-btn" onclick="searchBooking()">Search</button>
+                </div>
+
+                <div id="search-results-container" class="search-results-container" style="display: none;">
+                    <!-- Search results will be displayed here -->
+                </div>
+
+                <div id="search-no-results" class="search-no-results" style="display: none;">
+                    <div class="no-results-icon">🔍</div>
+                    <h3>No Bookings Found</h3>
+                    <p>We couldn't find any bookings matching your search. Please try again with:</p>
+                    <ul>
+                        <li>Booking ID (e.g., BK-823451ABC)</li>
+                        <li>Customer Name</li>
+                        <li>Email Address</li>
+                        <li>Phone Number</li>
+                    </ul>
+                </div>
+
+                <div id="search-initial-state" class="search-initial-state">
+                    <div class="initial-icon">📋</div>
+                    <h3>Find Your Booking</h3>
+                    <p>Search by any of the following:</p>
+                    <div class="search-tips">
+                        <div class="tip">
+                            <span class="tip-icon">🆔</span>
+                            <div>
+                                <strong>Booking ID</strong>
+                                <p>e.g., BK-823451ABC</p>
+                            </div>
+                        </div>
+                        <div class="tip">
+                            <span class="tip-icon">👤</span>
+                            <div>
+                                <strong>Customer Name</strong>
+                                <p>Your full name</p>
+                            </div>
+                        </div>
+                        <div class="tip">
+                            <span class="tip-icon">📧</span>
+                            <div>
+                                <strong>Email Address</strong>
+                                <p>Your email</p>
+                            </div>
+                        </div>
+                        <div class="tip">
+                            <span class="tip-icon">📞</span>
+                            <div>
+                                <strong>Phone Number</strong>
+                                <p>Your phone</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Color Theme Switcher -->
+    <div class="color-theme-switcher">
+        <button class="theme-toggle-btn" onclick="toggleThemeOptions()" aria-label="Color theme options">
+            🎨
+        </button>
+        <div class="theme-options" id="theme-options">
+            <h4>Choose Theme</h4>
+            <div class="theme-colors">
+                <div class="theme-color active" data-theme="red" onclick="changeColorTheme('red')" title="Red"></div>
+                <div class="theme-color" data-theme="blue" onclick="changeColorTheme('blue')" title="Blue"></div>
+                <div class="theme-color" data-theme="green" onclick="changeColorTheme('green')" title="Green"></div>
+                <div class="theme-color" data-theme="purple" onclick="changeColorTheme('purple')" title="Purple"></div>
+                <div class="theme-color" data-theme="orange" onclick="changeColorTheme('orange')" title="Orange"></div>
+                <div class="theme-color" data-theme="pink" onclick="changeColorTheme('pink')" title="Pink"></div>
+                <div class="theme-color" data-theme="cyan" onclick="changeColorTheme('cyan')" title="Cyan"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <!-- Newsletter Section -->
+        <div class="newsletter-section">
+            <div class="container">
+                <div class="newsletter-content">
+                    <div class="newsletter-text">
+                        <h3>📧 Subscribe to Our Newsletter</h3>
+                        <p>Get exclusive deals, latest models, and special offers delivered to your inbox</p>
+                    </div>
+                    <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                        <div class="newsletter-input-group">
+                            <input 
+                                type="email" 
+                                id="newsletter-email" 
+                                placeholder="Enter your email address" 
+                                required
+                                aria-label="Email for newsletter">
+                            <button type="submit" class="btn btn-primary newsletter-btn">Subscribe</button>
+                        </div>
+                        <div id="newsletter-message" class="newsletter-message" style="display: none;"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>⚡ LuxeAuto</h4>
+                    <p>Premium luxury car dealership offering the finest selection of vehicles for discerning customers worldwide.</p>
+                    <div class="social-links">
+                        <a href="#" title="Facebook" aria-label="Facebook">f</a>
+                        <a href="#" title="Twitter" aria-label="Twitter">𝕏</a>
+                        <a href="#" title="Instagram" aria-label="Instagram">📷</a>
+                        <a href="#" title="LinkedIn" aria-label="LinkedIn">in</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>🔗 Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">↗ Home</a></li>
+                        <li><a href="inventory.html">↗ Inventory</a></li>
+                        <li><a href="about.html">↗ About Us</a></li>
+                        <li><a href="contact.html">↗ Contact</a></li>
+                        <li><a href="booking-dashboard.html">↗ My Bookings</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>📞 Contact Info</h4>
+                    <p>📍 123 Luxury Lane, Auto City, AC 12345</p>
+                    <p>📱 <a href="tel:+15551234567">(555) 123-4567</a></p>
+                    <p>💬 <a href="https://wa.me/15551234567">WhatsApp</a></p>
+                    <p>📧 <a href="mailto:info@luxeauto.com">info@luxeauto.com</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>⏰ Hours of Operation</h4>
+                    <p><strong>Monday - Friday:</strong><br>9:00 AM - 8:00 PM</p>
+                    <p><strong>Saturday:</strong><br>10:00 AM - 6:00 PM</p>
+                    <p><strong>Sunday:</strong><br>12:00 PM - 5:00 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 LuxeAuto. All rights reserved.</p>
+                <div class="footer-links-bottom">
+                    <a href="#" title="Privacy Policy">Privacy Policy</a>
+                    <span style="color: rgba(255,255,255,0.3);">•</span>
+                    <a href="#" title="Terms of Service">Terms & Conditions</a>
+                    <span style="color: rgba(255,255,255,0.3);">•</span>
+                    <a href="#" title="Cookie Policy">Cookie Policy</a>
+                </div>
+            </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

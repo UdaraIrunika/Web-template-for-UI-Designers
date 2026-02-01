@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact LuxeAuto - Get in Touch</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">⚡</span>
+                    <span class="logo-text">LuxeAuto</span>
+                </a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="inventory.html" class="nav-link">Inventory</a></li>
+                <li class="nav-item"><a href="compare.html" class="nav-link">Compare</a></li>
+                <li class="nav-item"><a href="finance.html" class="nav-link">Finance</a></li>
+                <li class="nav-item"><a href="news.html" class="nav-link">News</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link active">Contact</a></li>
+            </ul>
+
+            <div class="nav-controls">
+                <a href="login.html" id="login-btn" class="login-btn" title="Login">👤 Login</a>
+                <div id="user-menu" class="user-menu" style="display: none;">
+                    <span class="user-name" id="user-name">User</span>
+                    <div class="user-dropdown">
+                        <a href="user-dashboard.html">📊 Dashboard</a>
+                        <a href="#" onclick="logoutUser()">🚪 Logout</a>
+                    </div>
+                </div>
+                <button id="theme-toggle" class="theme-toggle" title="Toggle theme">☀️</button>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Hero -->
+    <section class="contact-hero">
+        <div class="container">
+            <h1>Get In Touch</h1>
+            <p>We'd love to hear from you. Contact us with any questions or to schedule a test drive.</p>
+        </div>
+    </section>
+
+    <!-- Contact Content -->
+    <section style="background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);">
+        <div class="container">
+            <div class="contact-content">
+                <!-- Contact Form -->
+                <div class="contact-form-wrapper">
+                    <h2>Send us a Message</h2>
+                    <form>
+                        <div class="form-group">
+                            <label for="contact-name">Full Name *</label>
+                            <input type="text" id="contact-name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-email">Email Address *</label>
+                            <input type="email" id="contact-email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-phone">Phone Number *</label>
+                            <input type="tel" id="contact-phone" name="phone" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-subject">Subject *</label>
+                            <input type="text" id="contact-subject" name="subject" placeholder="How can we help?" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-message">Message *</label>
+                            <textarea id="contact-message" name="message" placeholder="Tell us more..." required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-interested">Interested In *</label>
+                            <select id="contact-interested" name="interested" required style="width: 100%; padding: 10px 15px; background: var(--bg-dark); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-light); font-size: 1rem;">
+                                <option value="">Select an option</option>
+                                <option value="inquiry">General Inquiry</option>
+                                <option value="test-drive">Test Drive</option>
+                                <option value="financing">Financing Information</option>
+                                <option value="trade-in">Trade-In Appraisal</option>
+                                <option value="service">Service & Maintenance</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary form-submit">Send Message</button>
+                    </form>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="contact-info">
+                    <!-- Location -->
+                    <div class="info-box">
+                        <h3>📍 Location</h3>
+                        <p>123 Luxury Lane</p>
+                        <p>Auto City, AC 12345</p>
+                        <p>United States</p>
+                    </div>
+
+                    <!-- Phone & Email -->
+                    <div class="info-box">
+                        <h3>📞 Contact</h3>
+                        <p>
+                            <strong>Phone:</strong><br>
+                            <a href="tel:+15551234567">(555) 123-4567</a>
+                        </p>
+                        <p>
+                            <strong>Email:</strong><br>
+                            <a href="mailto:info@luxeauto.com">info@luxeauto.com</a>
+                        </p>
+                        <p>
+                            <strong>WhatsApp:</strong><br>
+                            <a href="https://wa.me/5551234567">+1 (555) 123-4567</a>
+                        </p>
+                    </div>
+
+                    <!-- Hours of Operation -->
+                    <div class="info-box">
+                        <h3>🕐 Business Hours</h3>
+                        <p>
+                            <strong>Monday - Friday</strong><br>
+                            9:00 AM - 8:00 PM
+                        </p>
+                        <p>
+                            <strong>Saturday</strong><br>
+                            10:00 AM - 6:00 PM
+                        </p>
+                        <p>
+                            <strong>Sunday</strong><br>
+                            12:00 PM - 5:00 PM
+                        </p>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="info-box">
+                        <h3>🔗 Quick Links</h3>
+                        <p>
+                            <a href="inventory.html">Browse Inventory</a>
+                        </p>
+                        <p>
+                            <a href="car.html">View Featured Cars</a>
+                        </p>
+                        <p>
+                            <a href="about.html">Learn About Us</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section style="background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%); padding-bottom: 80px;">
+        <div class="container">
+            <h2 class="section-title" style="margin-bottom: 40px;">Find Us Here</h2>
+            <div class="map-container">
+                <p style="font-size: 4rem;">🗺️</p>
+            </div>
+            <p style="text-align: center; margin-top: 20px; color: var(--text-light); opacity: 0.7;">
+                Google Maps integration available. Click the map to get directions.
+            </p>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section style="background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%); padding-bottom: 80px;">
+        <div class="container">
+            <h2 class="section-title" style="margin-bottom: 40px;">Frequently Asked Questions</h2>
+            <div class="faq-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                <div class="faq-card" style="background: var(--bg-secondary); padding: 30px; border-radius: 15px; border: 1px solid var(--border-color);">
+                    <h3 style="margin-bottom: 15px; color: var(--primary-color);">How do I schedule a test drive?</h3>
+                    <p>You can schedule a test drive using our online form, calling us directly, or visiting our showroom. We'll arrange a time that's convenient for you.</p>
+                </div>
+
+                <div class="faq-card" style="background: var(--bg-secondary); padding: 30px; border-radius: 15px; border: 1px solid var(--border-color);">
+                    <h3 style="margin-bottom: 15px; color: var(--primary-color);">Do you offer financing options?</h3>
+                    <p>Yes! We work with top financial institutions to provide flexible financing solutions with competitive rates tailored to your needs.</p>
+                </div>
+
+                <div class="faq-card" style="background: var(--bg-secondary); padding: 30px; border-radius: 15px; border: 1px solid var(--border-color);">
+                    <h3 style="margin-bottom: 15px; color: var(--primary-color);">What's your warranty coverage?</h3>
+                    <p>All our vehicles come with extended warranty options. We offer comprehensive coverage to protect your investment and ensure peace of mind.</p>
+                </div>
+
+                <div class="faq-card" style="background: var(--bg-secondary); padding: 30px; border-radius: 15px; border: 1px solid var(--border-color);">
+                    <h3 style="margin-bottom: 15px; color: var(--primary-color);">Do you accept trade-ins?</h3>
+                    <p>Absolutely! We welcome trade-ins and offer fair market value appraisals. Contact us for a free evaluation of your current vehicle.</p>
+                </div>
+
+                <div class="faq-card" style="background: var(--bg-secondary); padding: 30px; border-radius: 15px; border: 1px solid var(--border-color);">
+                    <h3 style="margin-bottom: 15px; color: var(--primary-color);">How do you inspect vehicles?</h3>
+                    <p>Every vehicle undergoes a rigorous multi-point inspection by certified technicians. We also provide detailed inspection reports upon request.</p>
+                </div>
+
+                <div class="faq-card" style="background: var(--bg-secondary); padding: 30px; border-radius: 15px; border: 1px solid var(--border-color);">
+                    <h3 style="margin-bottom: 15px; color: var(--primary-color);">What documents are needed to buy?</h3>
+                    <p>You'll need valid ID, proof of insurance, and proof of income. Our team will guide you through all documentation requirements.</p>
+                </div>
+
+                <div class="faq-card" style="background: var(--bg-secondary); padding: 30px; border-radius: 15px; border: 1px solid var(--border-color);">
+                    <h3 style="margin-bottom: 15px; color: var(--primary-color);">Do you offer delivery service?</h3>
+                    <p>Yes! We offer delivery services within a certain radius. Contact our team to check if delivery is available for your location.</p>
+                </div>
+
+                <div class="faq-card" style="background: var(--bg-secondary); padding: 30px; border-radius: 15px; border: 1px solid var(--border-color);">
+                    <h3 style="margin-bottom: 15px; color: var(--primary-color);">Can I return a purchased vehicle?</h3>
+                    <p>We offer a limited return period on select vehicles. Please contact us for details about our return policy and eligibility.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <div class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <h3>📧 Subscribe to Our Newsletter</h3>
+                    <p>Get exclusive deals, latest models, and special offers delivered to your inbox</p>
+                </div>
+                <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                    <div class="newsletter-input-group">
+                        <input type="email" id="newsletter-email" placeholder="Enter your email address" required>
+                        <button type="submit" class="btn btn-primary newsletter-btn">Subscribe</button>
+                    </div>
+                    <div id="newsletter-message" class="newsletter-message" style="display: none;"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Color Theme Switcher -->
+    <div class="color-theme-switcher">
+        <button class="theme-toggle-btn" onclick="toggleThemeOptions()" aria-label="Color theme options">
+            🎨
+        </button>
+        <div class="theme-options" id="theme-options">
+            <h4>Choose Theme</h4>
+            <div class="theme-colors">
+                <div class="theme-color active" data-theme="red" onclick="changeColorTheme('red')" title="Red"></div>
+                <div class="theme-color" data-theme="blue" onclick="changeColorTheme('blue')" title="Blue"></div>
+                <div class="theme-color" data-theme="green" onclick="changeColorTheme('green')" title="Green"></div>
+                <div class="theme-color" data-theme="purple" onclick="changeColorTheme('purple')" title="Purple"></div>
+                <div class="theme-color" data-theme="orange" onclick="changeColorTheme('orange')" title="Orange"></div>
+                <div class="theme-color" data-theme="pink" onclick="changeColorTheme('pink')" title="Pink"></div>
+                <div class="theme-color" data-theme="cyan" onclick="changeColorTheme('cyan')" title="Cyan"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>⚡ LuxeAuto</h4>
+                    <p>Premium luxury car dealership offering the finest selection of vehicles for discerning customers worldwide.</p>
+                    <div class="social-links">
+                        <a href="#" title="Facebook" aria-label="Facebook">f</a>
+                        <a href="#" title="Twitter" aria-label="Twitter">𝕏</a>
+                        <a href="#" title="Instagram" aria-label="Instagram">📷</a>
+                        <a href="#" title="LinkedIn" aria-label="LinkedIn">in</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>🔗 Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">↗ Home</a></li>
+                        <li><a href="inventory.html">↗ Inventory</a></li>
+                        <li><a href="about.html">↗ About Us</a></li>
+                        <li><a href="contact.html">↗ Contact</a></li>
+                        <li><a href="booking-dashboard.html">↗ My Bookings</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>📞 Contact Info</h4>
+                    <p>📍 123 Luxury Lane, Auto City, AC 12345</p>
+                    <p>📱 <a href="tel:+15551234567">(555) 123-4567</a></p>
+                    <p>💬 <a href="https://wa.me/15551234567">WhatsApp</a></p>
+                    <p>📧 <a href="mailto:info@luxeauto.com">info@luxeauto.com</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>⏰ Hours of Operation</h4>
+                    <p><strong>Monday - Friday:</strong><br>9:00 AM - 8:00 PM</p>
+                    <p><strong>Saturday:</strong><br>10:00 AM - 6:00 PM</p>
+                    <p><strong>Sunday:</strong><br>12:00 PM - 5:00 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 LuxeAuto. All rights reserved.</p>
+                <div class="footer-links-bottom">
+                    <a href="#" title="Privacy Policy">Privacy Policy</a>
+                    <span style="color: rgba(255,255,255,0.3);">•</span>
+                    <a href="#" title="Terms of Service">Terms & Conditions</a>
+                    <span style="color: rgba(255,255,255,0.3);">•</span>
+                    <a href="#" title="Cookie Policy">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

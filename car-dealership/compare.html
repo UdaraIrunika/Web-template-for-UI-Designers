@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare Cars - LuxeAuto</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">⚡</span>
+                    <span class="logo-text">LuxeAuto</span>
+                </a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="inventory.html" class="nav-link">Inventory</a></li>
+                <li class="nav-item"><a href="compare.html" class="nav-link active">Compare</a></li>
+                <li class="nav-item"><a href="finance.html" class="nav-link">Finance</a></li>
+                <li class="nav-item"><a href="news.html" class="nav-link">News</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+
+            <div class="nav-controls">
+                <button id="search-toggle" class="search-btn" title="Search bookings" onclick="openSearchModal()">🔍</button>
+                <a href="login.html" id="login-btn" class="login-btn" title="Login">👤 Login</a>
+                <div id="user-menu" class="user-menu" style="display: none;">
+                    <span class="user-name" id="user-name">User</span>
+                    <div class="user-dropdown">
+                        <a href="user-dashboard.html">📊 Dashboard</a>
+                        <a href="#" onclick="logoutUser()">🚪 Logout</a>
+                    </div>
+                </div>
+                <button id="theme-toggle" class="theme-toggle" title="Toggle theme">☀️</button>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Compare Section -->
+    <section class="compare-section">
+        <div class="container">
+            <h1 class="section-title" style="margin-top: 80px;">Compare Cars</h1>
+            <p class="section-subtitle">Select up to 3 cars to compare side by side</p>
+
+            <!-- Car Selection -->
+            <div class="compare-selection">
+                <h3>Select Cars to Compare</h3>
+                <div class="compare-selector-grid">
+                    <select id="compare-car-1" class="compare-select" onchange="addCarToCompare(1)">
+                        <option value="">Select First Car</option>
+                    </select>
+                    <select id="compare-car-2" class="compare-select" onchange="addCarToCompare(2)">
+                        <option value="">Select Second Car</option>
+                    </select>
+                    <select id="compare-car-3" class="compare-select" onchange="addCarToCompare(3)">
+                        <option value="">Select Third Car (Optional)</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" onclick="clearComparison()" style="margin-top: 20px;">Clear All</button>
+            </div>
+
+            <!-- Comparison Table -->
+            <div id="comparison-container" class="comparison-container" style="display: none;">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th class="feature-column">Feature</th>
+                            <th id="car-1-header" class="car-column"></th>
+                            <th id="car-2-header" class="car-column"></th>
+                            <th id="car-3-header" class="car-column" style="display: none;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="feature-label">Image</td>
+                            <td id="car-1-image" class="car-data"></td>
+                            <td id="car-2-image" class="car-data"></td>
+                            <td id="car-3-image" class="car-data" style="display: none;"></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-label">Name</td>
+                            <td id="car-1-name" class="car-data"></td>
+                            <td id="car-2-name" class="car-data"></td>
+                            <td id="car-3-name" class="car-data" style="display: none;"></td>
+                        </tr>
+                        <tr class="highlight-row">
+                            <td class="feature-label">💰 Price</td>
+                            <td id="car-1-price" class="car-data"></td>
+                            <td id="car-2-price" class="car-data"></td>
+                            <td id="car-3-price" class="car-data" style="display: none;"></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-label">🏢 Brand</td>
+                            <td id="car-1-brand" class="car-data"></td>
+                            <td id="car-2-brand" class="car-data"></td>
+                            <td id="car-3-brand" class="car-data" style="display: none;"></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-label">⛽ Fuel Type</td>
+                            <td id="car-1-fuel" class="car-data"></td>
+                            <td id="car-2-fuel" class="car-data"></td>
+                            <td id="car-3-fuel" class="car-data" style="display: none;"></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-label">⚙️ Transmission</td>
+                            <td id="car-1-transmission" class="car-data"></td>
+                            <td id="car-2-transmission" class="car-data"></td>
+                            <td id="car-3-transmission" class="car-data" style="display: none;"></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-label">🚗 Drive Type</td>
+                            <td id="car-1-drive" class="car-data"></td>
+                            <td id="car-2-drive" class="car-data"></td>
+                            <td id="car-3-drive" class="car-data" style="display: none;"></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-label">🎨 Color</td>
+                            <td id="car-1-color" class="car-data"></td>
+                            <td id="car-2-color" class="car-data"></td>
+                            <td id="car-3-color" class="car-data" style="display: none;"></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-label">⭐ Condition</td>
+                            <td id="car-1-condition" class="car-data"></td>
+                            <td id="car-2-condition" class="car-data"></td>
+                            <td id="car-3-condition" class="car-data" style="display: none;"></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-label">📅 Year</td>
+                            <td id="car-1-year" class="car-data"></td>
+                            <td id="car-2-year" class="car-data"></td>
+                            <td id="car-3-year" class="car-data" style="display: none;"></td>
+                        </tr>
+                        <tr class="highlight-row">
+                            <td class="feature-label">⚡ Horsepower</td>
+                            <td id="car-1-hp" class="car-data"></td>
+                            <td id="car-2-hp" class="car-data"></td>
+                            <td id="car-3-hp" class="car-data" style="display: none;"></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-label">🏁 0-60 mph</td>
+                            <td id="car-1-accel" class="car-data"></td>
+                            <td id="car-2-accel" class="car-data"></td>
+                            <td id="car-3-accel" class="car-data" style="display: none;"></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-label">🚀 Top Speed</td>
+                            <td id="car-1-speed" class="car-data"></td>
+                            <td id="car-2-speed" class="car-data"></td>
+                            <td id="car-3-speed" class="car-data" style="display: none;"></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-label">📦 Stock</td>
+                            <td id="car-1-stock" class="car-data"></td>
+                            <td id="car-2-stock" class="car-data"></td>
+                            <td id="car-3-stock" class="car-data" style="display: none;"></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-label">Actions</td>
+                            <td id="car-1-actions" class="car-data"></td>
+                            <td id="car-2-actions" class="car-data"></td>
+                            <td id="car-3-actions" class="car-data" style="display: none;"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Color Theme Switcher -->
+    <div class="color-theme-switcher">
+        <button class="theme-toggle-btn" onclick="toggleThemeOptions()" aria-label="Color theme options">
+            🎨
+        </button>
+        <div class="theme-options" id="theme-options">
+            <h4>Choose Theme</h4>
+            <div class="theme-colors">
+                <div class="theme-color active" data-theme="red" onclick="changeColorTheme('red')" title="Red"></div>
+                <div class="theme-color" data-theme="blue" onclick="changeColorTheme('blue')" title="Blue"></div>
+                <div class="theme-color" data-theme="green" onclick="changeColorTheme('green')" title="Green"></div>
+                <div class="theme-color" data-theme="purple" onclick="changeColorTheme('purple')" title="Purple"></div>
+                <div class="theme-color" data-theme="orange" onclick="changeColorTheme('orange')" title="Orange"></div>
+                <div class="theme-color" data-theme="pink" onclick="changeColorTheme('pink')" title="Pink"></div>
+                <div class="theme-color" data-theme="cyan" onclick="changeColorTheme('cyan')" title="Cyan"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>⚡ LuxeAuto</h4>
+                    <p>Premium luxury car dealership offering the finest selection of vehicles for discerning customers worldwide.</p>
+                    <div class="social-links">
+                        <a href="#" title="Facebook" aria-label="Facebook">f</a>
+                        <a href="#" title="Twitter" aria-label="Twitter">𝕏</a>
+                        <a href="#" title="Instagram" aria-label="Instagram">📷</a>
+                        <a href="#" title="LinkedIn" aria-label="LinkedIn">in</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>🔗 Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">↗ Home</a></li>
+                        <li><a href="inventory.html">↗ Inventory</a></li>
+                        <li><a href="about.html">↗ About Us</a></li>
+                        <li><a href="contact.html">↗ Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>📞 Contact Info</h4>
+                    <p>📍 123 Luxury Lane, Auto City, AC 12345</p>
+                    <p>📱 <a href="tel:+15551234567">(555) 123-4567</a></p>
+                    <p>📧 <a href="mailto:info@luxeauto.com">info@luxeauto.com</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>⏰ Hours of Operation</h4>
+                    <p><strong>Monday - Friday:</strong><br>9:00 AM - 8:00 PM</p>
+                    <p><strong>Saturday:</strong><br>10:00 AM - 6:00 PM</p>
+                    <p><strong>Sunday:</strong><br>12:00 PM - 5:00 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 LuxeAuto. All rights reserved.</p>
+                <div class="footer-links-bottom">
+                    <a href="#" title="Privacy Policy">Privacy Policy</a>
+                    <span style="color: rgba(255,255,255,0.3);">•</span>
+                    <a href="#" title="Terms of Service">Terms & Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/compare.js"></script>
+</body>
+</html>

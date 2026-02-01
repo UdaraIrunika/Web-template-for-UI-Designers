@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Calculator - LuxeAuto</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">⚡</span>
+                    <span class="logo-text">LuxeAuto</span>
+                </a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="inventory.html" class="nav-link">Inventory</a></li>
+                <li class="nav-item"><a href="compare.html" class="nav-link">Compare</a></li>
+                <li class="nav-item"><a href="finance.html" class="nav-link active">Finance</a></li>
+                <li class="nav-item"><a href="news.html" class="nav-link">News</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+
+            <div class="nav-controls">
+                <button id="search-toggle" class="search-btn" title="Search bookings" onclick="openSearchModal()">🔍</button>
+                <a href="login.html" id="login-btn" class="login-btn" title="Login">👤 Login</a>
+                <div id="user-menu" class="user-menu" style="display: none;">
+                    <span class="user-name" id="user-name">User</span>
+                    <div class="user-dropdown">
+                        <a href="user-dashboard.html">📊 Dashboard</a>
+                        <a href="#" onclick="logoutUser()">🚪 Logout</a>
+                    </div>
+                </div>
+                <button id="theme-toggle" class="theme-toggle" title="Toggle theme">☀️</button>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Finance Calculator Section -->
+    <section class="finance-section">
+        <div class="container">
+            <h1 class="section-title" style="margin-top: 80px;">💰 Auto Loan Calculator</h1>
+            <p class="section-subtitle">Calculate your monthly car payment and see a detailed breakdown</p>
+
+            <div class="finance-calculator-container">
+                <!-- Calculator Form -->
+                <div class="calculator-form-section">
+                    <h3>🧮 Loan Details</h3>
+                    
+                    <div class="calc-form-group">
+                        <label for="vehicle-price">🚗 Vehicle Price</label>
+                        <div class="input-with-prefix">
+                            <span class="prefix">$</span>
+                            <input type="number" id="vehicle-price" value="50000" min="1000" step="1000" onchange="calculateLoan()">
+                        </div>
+                    </div>
+
+                    <div class="calc-form-group">
+                        <label for="down-payment">💵 Down Payment</label>
+                        <div class="input-with-prefix">
+                            <span class="prefix">$</span>
+                            <input type="number" id="down-payment" value="10000" min="0" step="500" onchange="calculateLoan()">
+                        </div>
+                        <div class="calc-helper-text">
+                            <span id="down-payment-percent">20%</span> of vehicle price
+                        </div>
+                    </div>
+
+                    <div class="calc-form-group">
+                        <label for="interest-rate">📊 Annual Interest Rate (%)</label>
+                        <input type="number" id="interest-rate" value="5.5" min="0" max="30" step="0.1" onchange="calculateLoan()">
+                    </div>
+
+                    <div class="calc-form-group">
+                        <label for="loan-term">📅 Loan Term (Months)</label>
+                        <select id="loan-term" onchange="calculateLoan()">
+                            <option value="12">12 months (1 year)</option>
+                            <option value="24">24 months (2 years)</option>
+                            <option value="36">36 months (3 years)</option>
+                            <option value="48">48 months (4 years)</option>
+                            <option value="60" selected>60 months (5 years)</option>
+                            <option value="72">72 months (6 years)</option>
+                            <option value="84">84 months (7 years)</option>
+                        </select>
+                    </div>
+
+                    <div class="calc-form-group">
+                        <label for="trade-in">🔄 Trade-In Value (Optional)</label>
+                        <div class="input-with-prefix">
+                            <span class="prefix">$</span>
+                            <input type="number" id="trade-in" value="0" min="0" step="500" onchange="calculateLoan()">
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" onclick="calculateLoan()" style="width: 100%; margin-top: 20px;">
+                        Calculate Payment
+                    </button>
+                </div>
+
+                <!-- Results Section -->
+                <div class="calculator-results-section">
+                    <h3>📈 Payment Breakdown</h3>
+                    
+                    <div class="monthly-payment-display">
+                        <div class="payment-label">Monthly Payment</div>
+                        <div class="payment-amount" id="monthly-payment">$0</div>
+                    </div>
+
+                    <div class="finance-breakdown">
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">🚗 Vehicle Price:</span>
+                            <span class="breakdown-value" id="display-vehicle-price">$0</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">💵 Down Payment:</span>
+                            <span class="breakdown-value" id="display-down-payment">$0</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">🔄 Trade-In Value:</span>
+                            <span class="breakdown-value" id="display-trade-in">$0</span>
+                        </div>
+                        <div class="breakdown-item highlight">
+                            <span class="breakdown-label">💰 Loan Amount:</span>
+                            <span class="breakdown-value" id="display-loan-amount">$0</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">📊 Interest Rate:</span>
+                            <span class="breakdown-value" id="display-interest">0%</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">📅 Loan Term:</span>
+                            <span class="breakdown-value" id="display-term">0 months</span>
+                        </div>
+                        <div class="breakdown-item highlight">
+                            <span class="breakdown-label">💸 Total Interest:</span>
+                            <span class="breakdown-value" id="display-total-interest">$0</span>
+                        </div>
+                        <div class="breakdown-item highlight">
+                            <span class="breakdown-label">💳 Total Amount:</span>
+                            <span class="breakdown-value" id="display-total-amount">$0</span>
+                        </div>
+                    </div>
+
+                    <div class="finance-note">
+                        <strong>📝 Note:</strong> This calculator provides estimates only. Actual rates and terms may vary based on credit score, lender requirements, and other factors. Contact us for personalized financing options.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Select Cars -->
+            <div class="quick-select-cars">
+                <h3>🚙 Calculate for Our Inventory</h3>
+                <div class="quick-car-grid" id="quick-car-grid">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Color Theme Switcher -->
+    <div class="color-theme-switcher">
+        <button class="theme-toggle-btn" onclick="toggleThemeOptions()" aria-label="Color theme options">
+            🎨
+        </button>
+        <div class="theme-options" id="theme-options">
+            <h4>Choose Theme</h4>
+            <div class="theme-colors">
+                <div class="theme-color active" data-theme="red" onclick="changeColorTheme('red')" title="Red"></div>
+                <div class="theme-color" data-theme="blue" onclick="changeColorTheme('blue')" title="Blue"></div>
+                <div class="theme-color" data-theme="green" onclick="changeColorTheme('green')" title="Green"></div>
+                <div class="theme-color" data-theme="purple" onclick="changeColorTheme('purple')" title="Purple"></div>
+                <div class="theme-color" data-theme="orange" onclick="changeColorTheme('orange')" title="Orange"></div>
+                <div class="theme-color" data-theme="pink" onclick="changeColorTheme('pink')" title="Pink"></div>
+                <div class="theme-color" data-theme="cyan" onclick="changeColorTheme('cyan')" title="Cyan"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>⚡ LuxeAuto</h4>
+                    <p>Premium luxury car dealership offering the finest selection of vehicles for discerning customers worldwide.</p>
+                    <div class="social-links">
+                        <a href="#" title="Facebook" aria-label="Facebook">f</a>
+                        <a href="#" title="Twitter" aria-label="Twitter">𝕏</a>
+                        <a href="#" title="Instagram" aria-label="Instagram">📷</a>
+                        <a href="#" title="LinkedIn" aria-label="LinkedIn">in</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>🔗 Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">↗ Home</a></li>
+                        <li><a href="inventory.html">↗ Inventory</a></li>
+                        <li><a href="compare.html">↗ Compare Cars</a></li>
+                        <li><a href="finance.html">↗ Finance Calculator</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>📞 Contact Info</h4>
+                    <p>📍 123 Luxury Lane, Auto City, AC 12345</p>
+                    <p>📱 <a href="tel:+15551234567">(555) 123-4567</a></p>
+                    <p>📧 <a href="mailto:info@luxeauto.com">info@luxeauto.com</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>⏰ Hours of Operation</h4>
+                    <p><strong>Monday - Friday:</strong><br>9:00 AM - 8:00 PM</p>
+                    <p><strong>Saturday:</strong><br>10:00 AM - 6:00 PM</p>
+                    <p><strong>Sunday:</strong><br>12:00 PM - 5:00 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 LuxeAuto. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/finance.js"></script>
+</body>
+</html>

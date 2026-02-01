@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News & Blog - LuxeAuto</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">⚡</span>
+                    <span class="logo-text">LuxeAuto</span>
+                </a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="inventory.html" class="nav-link">Inventory</a></li>
+                <li class="nav-item"><a href="compare.html" class="nav-link">Compare</a></li>
+                <li class="nav-item"><a href="finance.html" class="nav-link">Finance</a></li>
+                <li class="nav-item"><a href="news.html" class="nav-link active">News</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+
+            <div class="nav-controls">
+                <button id="search-toggle" class="search-btn" title="Search bookings" onclick="openSearchModal()">🔍</button>
+                <a href="login.html" id="login-btn" class="login-btn" title="Login">👤 Login</a>
+                <div id="user-menu" class="user-menu" style="display: none;">
+                    <span class="user-name" id="user-name">User</span>
+                    <div class="user-dropdown">
+                        <a href="user-dashboard.html">📊 Dashboard</a>
+                        <a href="#" onclick="logoutUser()">🚪 Logout</a>
+                    </div>
+                </div>
+                <button id="theme-toggle" class="theme-toggle" title="Toggle theme">☀️</button>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- News Hero Section -->
+    <section class="news-hero">
+        <div class="container">
+            <h1 class="section-title" style="margin-top: 80px;">📰 News & Blog</h1>
+            <p class="section-subtitle">Latest automotive news, reviews, and expert insights</p>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="news-filter-section">
+        <div class="container">
+            <div class="news-filter-container">
+                <button class="news-filter-btn active" onclick="filterNews('all')">All Posts</button>
+                <button class="news-filter-btn" onclick="filterNews('reviews')">Reviews</button>
+                <button class="news-filter-btn" onclick="filterNews('tips')">Buying Tips</button>
+                <button class="news-filter-btn" onclick="filterNews('news')">Industry News</button>
+                <button class="news-filter-btn" onclick="filterNews('maintenance')">Maintenance</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Article -->
+    <section class="featured-article-section">
+        <div class="container">
+            <div class="featured-article">
+                <div class="featured-article-image">
+                    <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&h=500&fit=crop" alt="Featured Article">
+                    <span class="article-badge">Featured</span>
+                </div>
+                <div class="featured-article-content">
+                    <div class="article-meta">
+                        <span class="article-category">Reviews</span>
+                        <span class="article-date">January 28, 2026</span>
+                    </div>
+                    <h2>2026 Electric Vehicle Revolution: What You Need to Know</h2>
+                    <p>The automotive industry is experiencing its biggest transformation in decades. Electric vehicles are no longer just an alternative—they're becoming the standard. Discover the latest innovations, government incentives, and why 2026 is the perfect year to make the switch to electric.</p>
+                    <a href="#article-1" class="btn btn-primary">Read More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Grid Section -->
+    <section class="news-grid-section">
+        <div class="container">
+            <div class="news-grid" id="news-grid">
+                <!-- Article 1 -->
+                <article class="news-card" data-category="tips">
+                    <div class="news-card-image">
+                        <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&h=400&fit=crop" alt="Car Buying Tips">
+                        <span class="news-badge">Buying Tips</span>
+                    </div>
+                    <div class="news-card-content">
+                        <div class="news-meta">
+                            <span class="news-date">📅 January 25, 2026</span>
+                            <span class="news-read-time">⏱️ 5 min read</span>
+                        </div>
+                        <h3>10 Essential Tips for First-Time Luxury Car Buyers</h3>
+                        <p>Buying your first luxury vehicle? Our comprehensive guide covers everything from financing options to negotiation strategies, helping you make an informed decision.</p>
+                        <a href="#article-2" class="read-more">Read Article →</a>
+                    </div>
+                </article>
+
+                <!-- Article 2 -->
+                <article class="news-card" data-category="reviews">
+                    <div class="news-card-image">
+                        <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=600&h=400&fit=crop" alt="BMW Review">
+                        <span class="news-badge">Reviews</span>
+                    </div>
+                    <div class="news-card-content">
+                        <div class="news-meta">
+                            <span class="news-date">📅 January 22, 2026</span>
+                            <span class="news-read-time">⏱️ 8 min read</span>
+                        </div>
+                        <h3>2026 BMW M440i Review: Performance Meets Luxury</h3>
+                        <p>We test drive the latest BMW M440i to see if it lives up to the hype. Spoiler alert: it's an incredible combination of power, comfort, and cutting-edge technology.</p>
+                        <a href="#article-3" class="read-more">Read Article →</a>
+                    </div>
+                </article>
+
+                <!-- Article 3 -->
+                <article class="news-card" data-category="news">
+                    <div class="news-card-image">
+                        <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?w=600&h=400&fit=crop" alt="Tesla News">
+                        <span class="news-badge">Industry News</span>
+                    </div>
+                    <div class="news-card-content">
+                        <div class="news-meta">
+                            <span class="news-date">📅 January 20, 2026</span>
+                            <span class="news-read-time">⏱️ 4 min read</span>
+                        </div>
+                        <h3>Tesla Announces Major Price Drops Across Model Lineup</h3>
+                        <p>In a surprising move, Tesla has reduced prices on several popular models. Find out what this means for buyers and the electric vehicle market as a whole.</p>
+                        <a href="#article-4" class="read-more">Read Article →</a>
+                    </div>
+                </article>
+
+                <!-- Article 4 -->
+                <article class="news-card" data-category="maintenance">
+                    <div class="news-card-image">
+                        <img src="https://images.unsplash.com/photo-1625047509168-a7026f36de04?w=600&h=400&fit=crop" alt="Car Maintenance">
+                        <span class="news-badge">Maintenance</span>
+                    </div>
+                    <div class="news-card-content">
+                        <div class="news-meta">
+                            <span class="news-date">📅 January 18, 2026</span>
+                            <span class="news-read-time">⏱️ 6 min read</span>
+                        </div>
+                        <h3>Winter Car Care: Essential Maintenance Tips</h3>
+                        <p>Protect your luxury vehicle this winter with our expert maintenance guide. Learn about battery care, tire pressure, fluid checks, and more.</p>
+                        <a href="#article-5" class="read-more">Read Article →</a>
+                    </div>
+                </article>
+
+                <!-- Article 5 -->
+                <article class="news-card" data-category="reviews">
+                    <div class="news-card-image">
+                        <img src="https://images.unsplash.com/photo-1614200187524-dc4b892acf16?w=600&h=400&fit=crop" alt="Porsche 911">
+                        <span class="news-badge">Reviews</span>
+                    </div>
+                    <div class="news-card-content">
+                        <div class="news-meta">
+                            <span class="news-date">📅 January 15, 2026</span>
+                            <span class="news-read-time">⏱️ 10 min read</span>
+                        </div>
+                        <h3>Porsche 911 GT3: The Ultimate Driver's Car?</h3>
+                        <p>We take the legendary Porsche 911 GT3 to the track to find out if it still deserves its reputation as one of the greatest sports cars ever made.</p>
+                        <a href="#article-6" class="read-more">Read Article →</a>
+                    </div>
+                </article>
+
+                <!-- Article 6 -->
+                <article class="news-card" data-category="tips">
+                    <div class="news-card-image">
+                        <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=600&h=400&fit=crop" alt="Financing Tips">
+                        <span class="news-badge">Buying Tips</span>
+                    </div>
+                    <div class="news-card-content">
+                        <div class="news-meta">
+                            <span class="news-date">📅 January 12, 2026</span>
+                            <span class="news-read-time">⏱️ 7 min read</span>
+                        </div>
+                        <h3>Understanding Auto Financing: Lease vs. Buy</h3>
+                        <p>Should you lease or buy your next luxury car? We break down the pros and cons of each option to help you make the best financial decision.</p>
+                        <a href="#article-7" class="read-more">Read Article →</a>
+                    </div>
+                </article>
+
+                <!-- Article 7 -->
+                <article class="news-card" data-category="news">
+                    <div class="news-card-image">
+                        <img src="https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=600&h=400&fit=crop" alt="Audi Electric">
+                        <span class="news-badge">Industry News</span>
+                    </div>
+                    <div class="news-card-content">
+                        <div class="news-meta">
+                            <span class="news-date">📅 January 10, 2026</span>
+                            <span class="news-read-time">⏱️ 5 min read</span>
+                        </div>
+                        <h3>Audi Unveils New All-Electric SUV Lineup</h3>
+                        <p>Audi continues its electric vehicle push with three new SUV models. Here's everything you need to know about the latest additions to the e-tron family.</p>
+                        <a href="#article-8" class="read-more">Read Article →</a>
+                    </div>
+                </article>
+
+                <!-- Article 8 -->
+                <article class="news-card" data-category="maintenance">
+                    <div class="news-card-image">
+                        <img src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=600&h=400&fit=crop" alt="EV Maintenance">
+                        <span class="news-badge">Maintenance</span>
+                    </div>
+                    <div class="news-card-content">
+                        <div class="news-meta">
+                            <span class="news-date">📅 January 8, 2026</span>
+                            <span class="news-read-time">⏱️ 6 min read</span>
+                        </div>
+                        <h3>Electric Vehicle Maintenance: What's Different?</h3>
+                        <p>EVs require less maintenance than traditional cars, but there are still important tasks to keep your electric vehicle running smoothly. Learn what you need to know.</p>
+                        <a href="#article-9" class="read-more">Read Article →</a>
+                    </div>
+                </article>
+
+                <!-- Article 9 -->
+                <article class="news-card" data-category="reviews">
+                    <div class="news-card-image">
+                        <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=600&h=400&fit=crop" alt="Mercedes Review">
+                        <span class="news-badge">Reviews</span>
+                    </div>
+                    <div class="news-card-content">
+                        <div class="news-meta">
+                            <span class="news-date">📅 January 5, 2026</span>
+                            <span class="news-read-time">⏱️ 9 min read</span>
+                        </div>
+                        <h3>Mercedes AMG C63: A V8 Masterpiece</h3>
+                        <p>The AMG C63 represents everything we love about performance sedans. Powerful engine, luxurious interior, and incredible handling make this a true standout.</p>
+                        <a href="#article-10" class="read-more">Read Article →</a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="load-more-container">
+                <button class="btn btn-primary" onclick="loadMoreArticles()">Load More Articles</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Color Theme Switcher -->
+    <div class="color-theme-switcher">
+        <button class="theme-toggle-btn" onclick="toggleThemeOptions()" aria-label="Color theme options">
+            🎨
+        </button>
+        <div class="theme-options" id="theme-options">
+            <h4>Choose Theme</h4>
+            <div class="theme-colors">
+                <div class="theme-color active" data-theme="red" onclick="changeColorTheme('red')" title="Red"></div>
+                <div class="theme-color" data-theme="blue" onclick="changeColorTheme('blue')" title="Blue"></div>
+                <div class="theme-color" data-theme="green" onclick="changeColorTheme('green')" title="Green"></div>
+                <div class="theme-color" data-theme="purple" onclick="changeColorTheme('purple')" title="Purple"></div>
+                <div class="theme-color" data-theme="orange" onclick="changeColorTheme('orange')" title="Orange"></div>
+                <div class="theme-color" data-theme="pink" onclick="changeColorTheme('pink')" title="Pink"></div>
+                <div class="theme-color" data-theme="cyan" onclick="changeColorTheme('cyan')" title="Cyan"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>⚡ LuxeAuto</h4>
+                    <p>Premium luxury car dealership offering the finest selection of vehicles for discerning customers worldwide.</p>
+                    <div class="social-links">
+                        <a href="#" title="Facebook" aria-label="Facebook">f</a>
+                        <a href="#" title="Twitter" aria-label="Twitter">𝕏</a>
+                        <a href="#" title="Instagram" aria-label="Instagram">📷</a>
+                        <a href="#" title="LinkedIn" aria-label="LinkedIn">in</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>🔗 Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">↗ Home</a></li>
+                        <li><a href="inventory.html">↗ Inventory</a></li>
+                        <li><a href="compare.html">↗ Compare Cars</a></li>
+                        <li><a href="finance.html">↗ Finance Calculator</a></li>
+                        <li><a href="news.html">↗ News & Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>📞 Contact Info</h4>
+                    <p>📍 123 Luxury Lane, Auto City, AC 12345</p>
+                    <p>📱 <a href="tel:+15551234567">(555) 123-4567</a></p>
+                    <p>📧 <a href="mailto:info@luxeauto.com">info@luxeauto.com</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>⏰ Hours of Operation</h4>
+                    <p><strong>Monday - Friday:</strong><br>9:00 AM - 8:00 PM</p>
+                    <p><strong>Saturday:</strong><br>10:00 AM - 6:00 PM</p>
+                    <p><strong>Sunday:</strong><br>12:00 PM - 5:00 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 LuxeAuto. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/news.js"></script>
+</body>
+</html>

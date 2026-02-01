@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - LuxeAuto</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">⚡</span>
+                    <span class="logo-text">LuxeAuto</span>
+                </a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="inventory.html" class="nav-link">Inventory</a></li>
+                <li class="nav-item"><a href="compare.html" class="nav-link">Compare</a></li>
+                <li class="nav-item"><a href="finance.html" class="nav-link">Finance</a></li>
+                <li class="nav-item"><a href="news.html" class="nav-link">News</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+
+            <div class="nav-controls">
+                <a href="login.html" id="login-btn" class="login-btn active" title="Login">👤 Login</a>
+                <button id="theme-toggle" class="theme-toggle" title="Toggle theme">☀️</button>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Section -->
+    <section class="login-section">
+        <div class="container">
+            <div class="login-container">
+                <div class="login-card">
+                    <div class="login-header">
+                        <div class="login-icon">🔐</div>
+                        <h1>Welcome Back</h1>
+                        <p>Login to access your account</p>
+                    </div>
+
+                    <form id="login-form" class="login-form" onsubmit="loginUser(event)">
+                        <div class="form-group">
+                            <label for="login-email">Email Address</label>
+                            <input 
+                                type="email" 
+                                id="login-email" 
+                                placeholder="Enter your email" 
+                                required
+                                autocomplete="email">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="login-password">Password</label>
+                            <input 
+                                type="password" 
+                                id="login-password" 
+                                placeholder="Enter your password" 
+                                required
+                                autocomplete="current-password">
+                        </div>
+
+                        <div class="form-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="remember-me">
+                                <span>Remember me</span>
+                            </label>
+                            <a href="#" class="forgot-password" onclick="showForgotPasswordForm()">Forgot password?</a>
+                        </div>
+
+                        <div id="login-error" class="login-message error" style="display: none;"></div>
+
+                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    </form>
+
+                    <div class="login-footer">
+                        <p>Don't have an account? <a href="#" onclick="showRegisterForm()">Register here</a></p>
+                    </div>
+
+                    <div class="demo-credentials">
+                        <p><strong>Demo Account:</strong></p>
+                        <p>Email: demo@luxeauto.com</p>
+                        <p>Password: demo123</p>
+                    </div>
+                </div>
+
+                <!-- Register Card (Initially Hidden) -->
+                <div class="login-card" id="register-card" style="display: none;">
+                    <div class="login-header">
+                        <div class="login-icon">✨</div>
+                        <h1>Create Account</h1>
+                        <p>Join LuxeAuto today</p>
+                    </div>
+
+                    <form id="register-form" class="login-form" onsubmit="registerUser(event)">
+                        <div class="form-group">
+                            <label for="register-name">Full Name</label>
+                            <input 
+                                type="text" 
+                                id="register-name" 
+                                placeholder="Enter your full name" 
+                                required
+                                autocomplete="name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="register-email">Email Address</label>
+                            <input 
+                                type="email" 
+                                id="register-email" 
+                                placeholder="Enter your email" 
+                                required
+                                autocomplete="email">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="register-password">Password</label>
+                            <input 
+                                type="password" 
+                                id="register-password" 
+                                placeholder="Create a password (min 6 characters)" 
+                                required
+                                autocomplete="new-password"
+                                minlength="6">
+                            <small style="color: rgba(255,255,255,0.5); font-size: 0.8rem; margin-top: 5px; display: block;">Must be at least 6 characters</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="register-confirm-password">Confirm Password</label>
+                            <input 
+                                type="password" 
+                                id="register-confirm-password" 
+                                placeholder="Confirm your password" 
+                                required
+                                autocomplete="new-password"
+                                minlength="6">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="register-phone">Phone Number</label>
+                            <input 
+                                type="tel" 
+                                id="register-phone" 
+                                placeholder="Enter your phone number" 
+                                required
+                                autocomplete="tel"
+                                pattern="[0-9+\-\s()]*">
+                            <small style="color: rgba(255,255,255,0.5); font-size: 0.8rem; margin-top: 5px; display: block;">Format: +1 (555) 123-4567</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="terms-agree" required>
+                                <span>I agree to the <a href="#" style="color: var(--primary-color);">Terms & Conditions</a></span>
+                            </label>
+                        </div>
+
+                        <div id="register-message" class="login-message" style="display: none;"></div>
+
+                        <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+                    </form>
+
+                    <div class="login-footer">
+                        <p>Already have an account? <a href="#" onclick="showLoginForm()">Login here</a></p>
+                    </div>
+                </div>
+
+                <!-- Forgot Password Card (Initially Hidden) -->
+                <div class="login-card" id="forgot-password-card" style="display: none;">
+                    <div class="login-header">
+                        <div class="login-icon">🔑</div>
+                        <h1>Reset Password</h1>
+                        <p>Enter your email to receive reset instructions</p>
+                    </div>
+
+                    <form id="forgot-password-form" class="login-form" onsubmit="forgotPassword(event)">
+                        <div class="form-group">
+                            <label for="forgot-email">Email Address</label>
+                            <input 
+                                type="email" 
+                                id="forgot-email" 
+                                placeholder="Enter your registered email" 
+                                required
+                                autocomplete="email">
+                        </div>
+
+                        <div id="forgot-message" class="login-message" style="display: none;"></div>
+
+                        <button type="submit" class="btn btn-primary btn-block">Send Reset Link</button>
+                    </form>
+
+                    <div class="login-footer">
+                        <p>Remember your password? <a href="#" onclick="showLoginForm()">Login here</a></p>
+                    </div>
+                </div>
+
+                <!-- Reset Password Card (Initially Hidden) -->
+                <div class="login-card" id="reset-password-card" style="display: none;">
+                    <div class="login-header">
+                        <div class="login-icon">✅</div>
+                        <h1>Create New Password</h1>
+                        <p>Enter your new password below</p>
+                    </div>
+
+                    <form id="reset-password-form" class="login-form" onsubmit="resetPassword(event)">
+                        <div class="form-group">
+                            <label for="reset-email-display">Email</label>
+                            <input 
+                                type="email" 
+                                id="reset-email-display" 
+                                readonly
+                                disabled
+                                style="background: rgba(255,255,255,0.02); cursor: not-allowed;">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="reset-new-password">New Password</label>
+                            <input 
+                                type="password" 
+                                id="reset-new-password" 
+                                placeholder="Enter new password" 
+                                required
+                                autocomplete="new-password"
+                                minlength="6">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="reset-confirm-password">Confirm Password</label>
+                            <input 
+                                type="password" 
+                                id="reset-confirm-password" 
+                                placeholder="Confirm new password" 
+                                required
+                                autocomplete="new-password"
+                                minlength="6">
+                        </div>
+
+                        <div id="reset-message" class="login-message" style="display: none;"></div>
+
+                        <button type="submit" class="btn btn-primary btn-block">Reset Password</button>
+                    </form>
+
+                    <div class="login-footer">
+                        <p><a href="#" onclick="showLoginForm()">Back to Login</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Color Theme Switcher -->
+    <div class="color-theme-switcher">
+        <button class="theme-toggle-btn" onclick="toggleThemeOptions()" aria-label="Color theme options">
+            🎨
+        </button>
+        <div class="theme-options" id="theme-options">
+            <h4>Choose Theme</h4>
+            <div class="theme-colors">
+                <div class="theme-color active" data-theme="red" onclick="changeColorTheme('red')" title="Red"></div>
+                <div class="theme-color" data-theme="blue" onclick="changeColorTheme('blue')" title="Blue"></div>
+                <div class="theme-color" data-theme="green" onclick="changeColorTheme('green')" title="Green"></div>
+                <div class="theme-color" data-theme="purple" onclick="changeColorTheme('purple')" title="Purple"></div>
+                <div class="theme-color" data-theme="orange" onclick="changeColorTheme('orange')" title="Orange"></div>
+                <div class="theme-color" data-theme="pink" onclick="changeColorTheme('pink')" title="Pink"></div>
+                <div class="theme-color" data-theme="cyan" onclick="changeColorTheme('cyan')" title="Cyan"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

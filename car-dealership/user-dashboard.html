@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - LuxeAuto</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">⚡</span>
+                    <span class="logo-text">LuxeAuto</span>
+                </a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="inventory.html" class="nav-link">Inventory</a></li>
+                <li class="nav-item"><a href="compare.html" class="nav-link">Compare</a></li>
+                <li class="nav-item"><a href="finance.html" class="nav-link">Finance</a></li>
+                <li class="nav-item"><a href="news.html" class="nav-link">News</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+
+            <div class="nav-controls">
+                <div id="user-menu" class="user-menu">
+                    <span class="user-name" id="user-name-display">User</span>
+                    <div class="user-dropdown">
+                        <a href="user-dashboard.html" class="active">📊 Dashboard</a>
+                        <a href="#" onclick="logoutUser()">🚪 Logout</a>
+                    </div>
+                </div>
+                <button id="theme-toggle" class="theme-toggle" title="Toggle theme">☀️</button>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- User Dashboard Section -->
+    <section class="user-dashboard-section">
+        <div class="container">
+            <!-- Dashboard Header -->
+            <div class="dashboard-header">
+                <div class="welcome-message">
+                    <h1>Welcome, <span id="user-welcome-name">User</span>! 👋</h1>
+                    <p>Manage your profile, bookings, and preferences</p>
+                </div>
+                <div class="dashboard-actions">
+                    <a href="inventory.html" class="btn btn-primary">🚗 Browse Cars</a>
+                    <a href="booking-dashboard.html" class="btn btn-secondary">📋 My Bookings</a>
+                </div>
+            </div>
+
+            <!-- Dashboard Stats -->
+            <div class="dashboard-stats">
+                <div class="stat-box">
+                    <div class="stat-icon">🚗</div>
+                    <div class="stat-info">
+                        <h3 id="total-bookings">0</h3>
+                        <p>Total Bookings</p>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-info">
+                        <h3 id="favorite-cars">0</h3>
+                        <p>Favorite Cars</p>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-icon">📅</div>
+                    <div class="stat-info">
+                        <h3 id="upcoming-bookings">0</h3>
+                        <p>Upcoming Visits</p>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-icon">📧</div>
+                    <div class="stat-info">
+                        <h3 id="newsletter-status">Yes</h3>
+                        <p>Newsletter</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Profile Section -->
+            <div class="dashboard-content">
+                <div class="profile-section">
+                    <div class="section-header">
+                        <h2>👤 Profile Information</h2>
+                        <button class="btn btn-secondary btn-sm" onclick="editProfile()">Edit Profile</button>
+                    </div>
+                    <div class="profile-details">
+                        <div class="profile-item">
+                            <span class="profile-label">Full Name:</span>
+                            <span class="profile-value" id="profile-name">-</span>
+                        </div>
+                        <div class="profile-item">
+                            <span class="profile-label">Email:</span>
+                            <span class="profile-value" id="profile-email">-</span>
+                        </div>
+                        <div class="profile-item">
+                            <span class="profile-label">Phone:</span>
+                            <span class="profile-value" id="profile-phone">-</span>
+                        </div>
+                        <div class="profile-item">
+                            <span class="profile-label">Member Since:</span>
+                            <span class="profile-value" id="profile-joined">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Bookings Section -->
+                <div class="recent-bookings-section">
+                    <div class="section-header">
+                        <h2>📋 Recent Bookings</h2>
+                        <a href="booking-dashboard.html" class="btn btn-secondary btn-sm">View All</a>
+                    </div>
+                    <div id="recent-bookings-container" class="recent-bookings-list">
+                        <p class="no-data">No recent bookings found</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <h2>⚡ Quick Actions</h2>
+                <div class="actions-grid">
+                    <a href="inventory.html" class="action-card">
+                        <div class="action-icon">🔍</div>
+                        <h3>Browse Inventory</h3>
+                        <p>Explore our luxury car collection</p>
+                    </a>
+                    <a href="booking-dashboard.html" class="action-card">
+                        <div class="action-icon">📅</div>
+                        <h3>My Bookings</h3>
+                        <p>View and manage your bookings</p>
+                    </a>
+                    <a href="contact.html" class="action-card">
+                        <div class="action-icon">💬</div>
+                        <h3>Contact Us</h3>
+                        <p>Get in touch with our team</p>
+                    </a>
+                    <a href="#" onclick="editProfile()" class="action-card">
+                        <div class="action-icon">⚙️</div>
+                        <h3>Settings</h3>
+                        <p>Update your preferences</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Color Theme Switcher -->
+    <div class="color-theme-switcher">
+        <button class="theme-toggle-btn" onclick="toggleThemeOptions()" aria-label="Color theme options">
+            🎨
+        </button>
+        <div class="theme-options" id="theme-options">
+            <h4>Choose Theme</h4>
+            <div class="theme-colors">
+                <div class="theme-color active" data-theme="red" onclick="changeColorTheme('red')" title="Red"></div>
+                <div class="theme-color" data-theme="blue" onclick="changeColorTheme('blue')" title="Blue"></div>
+                <div class="theme-color" data-theme="green" onclick="changeColorTheme('green')" title="Green"></div>
+                <div class="theme-color" data-theme="purple" onclick="changeColorTheme('purple')" title="Purple"></div>
+                <div class="theme-color" data-theme="orange" onclick="changeColorTheme('orange')" title="Orange"></div>
+                <div class="theme-color" data-theme="pink" onclick="changeColorTheme('pink')" title="Pink"></div>
+                <div class="theme-color" data-theme="cyan" onclick="changeColorTheme('cyan')" title="Cyan"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="newsletter-section">
+            <div class="container">
+                <div class="newsletter-content">
+                    <div class="newsletter-text">
+                        <h3>📧 Subscribe to Our Newsletter</h3>
+                        <p>Get exclusive deals, latest models, and special offers delivered to your inbox</p>
+                    </div>
+                    <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                        <div class="newsletter-input-group">
+                            <input type="email" id="newsletter-email" placeholder="Enter your email address" required>
+                            <button type="submit" class="btn btn-primary newsletter-btn">Subscribe</button>
+                        </div>
+                        <div id="newsletter-message" class="newsletter-message" style="display: none;"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>⚡ LuxeAuto</h4>
+                    <p>Premium luxury car dealership offering the finest selection of vehicles for discerning customers worldwide.</p>
+                    <div class="social-links">
+                        <a href="#" title="Facebook">f</a>
+                        <a href="#" title="Twitter">𝕏</a>
+                        <a href="#" title="Instagram">📷</a>
+                        <a href="#" title="LinkedIn">in</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>🔗 Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">↗ Home</a></li>
+                        <li><a href="inventory.html">↗ Inventory</a></li>
+                        <li><a href="about.html">↗ About Us</a></li>
+                        <li><a href="contact.html">↗ Contact</a></li>
+                        <li><a href="booking-dashboard.html">↗ My Bookings</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>📞 Contact Info</h4>
+                    <p>📍 123 Luxury Lane, Auto City, AC 12345</p>
+                    <p>📱 <a href="tel:+15551234567">(555) 123-4567</a></p>
+                    <p>💬 <a href="https://wa.me/15551234567">WhatsApp</a></p>
+                    <p>📧 <a href="mailto:info@luxeauto.com">info@luxeauto.com</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>⏰ Hours of Operation</h4>
+                    <p><strong>Monday - Friday:</strong><br>9:00 AM - 8:00 PM</p>
+                    <p><strong>Saturday:</strong><br>10:00 AM - 6:00 PM</p>
+                    <p><strong>Sunday:</strong><br>12:00 PM - 5:00 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 LuxeAuto. All rights reserved.</p>
+                <div class="footer-links-bottom">
+                    <a href="#">Privacy Policy</a>
+                    <span style="color: rgba(255,255,255,0.3);">•</span>
+                    <a href="#">Terms & Conditions</a>
+                    <span style="color: rgba(255,255,255,0.3);">•</span>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/user-dashboard.js"></script>
+</body>
+</html>

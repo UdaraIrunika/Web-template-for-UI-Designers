@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About LuxeAuto - Premium Car Dealership</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">⚡</span>
+                    <span class="logo-text">LuxeAuto</span>
+                </a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="inventory.html" class="nav-link">Inventory</a></li>
+                <li class="nav-item"><a href="compare.html" class="nav-link">Compare</a></li>
+                <li class="nav-item"><a href="finance.html" class="nav-link">Finance</a></li>
+                <li class="nav-item"><a href="news.html" class="nav-link">News</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link active">About</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+
+            <div class="nav-controls">
+                <a href="login.html" id="login-btn" class="login-btn" title="Login">👤 Login</a>
+                <div id="user-menu" class="user-menu" style="display: none;">
+                    <span class="user-name" id="user-name">User</span>
+                    <div class="user-dropdown">
+                        <a href="user-dashboard.html">📊 Dashboard</a>
+                        <a href="#" onclick="logoutUser()">🚪 Logout</a>
+                    </div>
+                </div>
+                <button id="theme-toggle" class="theme-toggle" title="Toggle theme">☀️</button>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Hero -->
+    <section class="about-hero">
+        <div class="container">
+            <h1>About LuxeAuto</h1>
+            <p>Your premier destination for luxury vehicles and exceptional service</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section style="background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);">
+        <div class="container">
+            <!-- Our Story -->
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Our Story</h2>
+                    <p>LuxeAuto was founded in 2000 with a simple vision: to provide customers with access to the world's finest luxury vehicles while delivering unparalleled service and expertise. Over the past two decades, we've grown from a small dealership to become a trusted name in the automotive industry.</p>
+                    <p>Our passion for excellence drives everything we do. From curating our inventory to ensuring customer satisfaction, we maintain the highest standards of quality and professionalism.</p>
+                    <p>We believe that purchasing a luxury car should be an exciting and stress-free experience. That's why our team of experts is dedicated to helping you find the perfect vehicle that matches your lifestyle and aspirations.</p>
+                </div>
+                <div class="about-image">
+                    🏢
+                </div>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" data-target="25">25+</div>
+                    <div class="stat-label">Years of Excellence</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="10000">10,000+</div>
+                    <div class="stat-label">Happy Customers</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="500">500+</div>
+                    <div class="stat-label">Cars Sold</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="50">50+</div>
+                    <div class="stat-label">Luxury Brands</div>
+                </div>
+            </div>
+
+            <!-- Why Choose Us -->
+            <div style="margin: 80px 0;">
+                <h2 class="section-title">Why Choose LuxeAuto?</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>Premium Selection</h3>
+                        <p>We handpick every vehicle in our inventory to ensure it meets our exacting standards for quality, performance, and luxury. Each car is thoroughly inspected and comes with comprehensive documentation.</p>
+                        <h3>Expert Team</h3>
+                        <p>Our knowledgeable sales team has extensive experience with luxury vehicles and can help you make an informed decision. We're not just salespeople; we're automotive enthusiasts passionate about helping you find your dream car.</p>
+                        <h3>Competitive Pricing</h3>
+                        <p>We offer some of the most competitive prices on luxury vehicles without compromising on quality. Our transparent pricing policy means no hidden fees or surprise charges.</p>
+                    </div>
+                    <div class="about-text">
+                        <h3>Flexible Financing</h3>
+                        <p>We work with top financial institutions to provide flexible financing options tailored to your needs. Our team can help arrange the perfect payment plan for your situation.</p>
+                        <h3>Complete Service</h3>
+                        <p>From pre-purchase inspections to post-sale support, we provide comprehensive service at every stage of your ownership journey. Your satisfaction is our top priority.</p>
+                        <h3>Warranty Protection</h3>
+                        <p>All our vehicles come with extended warranty options to give you peace of mind. We stand behind every car we sell with our commitment to quality and reliability.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Our Values -->
+            <h2 class="section-title" style="margin: 60px 0 40px 0;">Our Core Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">🎯</div>
+                    <h3>Integrity</h3>
+                    <p>We operate with complete transparency and honesty in all our dealings. Your trust is our most valuable asset.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">✨</div>
+                    <h3>Excellence</h3>
+                    <p>We strive for perfection in everything we do, from vehicle selection to customer service. Mediocrity is never an option.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h3>Customer First</h3>
+                    <p>Your needs and satisfaction come first. We're committed to exceeding expectations at every touchpoint of your experience.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🚀</div>
+                    <h3>Innovation</h3>
+                    <p>We stay at the forefront of automotive trends and technology, ensuring you have access to the latest innovations.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">♻️</div>
+                    <h3>Sustainability</h3>
+                    <p>We're committed to environmental responsibility and actively promote sustainable transportation solutions.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🏆</div>
+                    <h3>Quality</h3>
+                    <p>Quality is non-negotiable. Every vehicle must meet our rigorous standards before it reaches your hands.</p>
+                </div>
+            </div>
+
+            <!-- Team Section -->
+            <div style="margin-top: 80px;">
+                <h2 class="section-title">Meet Our Team</h2>
+                <p class="section-subtitle">Experienced professionals dedicated to your satisfaction</p>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">👨‍💼</div>
+                        <h3>John Martinez</h3>
+                        <p>CEO & Founder</p>
+                        <p style="font-size: 0.9rem; opacity: 0.7; margin-top: 10px;">25+ years of automotive experience</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">👩‍💼</div>
+                        <h3>Sarah Johnson</h3>
+                        <p>Sales Manager</p>
+                        <p style="font-size: 0.9rem; opacity: 0.7; margin-top: 10px;">Expert in luxury vehicle market</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">👨‍🔧</div>
+                        <h3>Mike Chen</h3>
+                        <p>Service Director</p>
+                        <p style="font-size: 0.9rem; opacity: 0.7; margin-top: 10px;">Certified technician specialist</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">👩‍💻</div>
+                        <h3>Emma Davis</h3>
+                        <p>Customer Relations</p>
+                        <p style="font-size: 0.9rem; opacity: 0.7; margin-top: 10px;">Dedicated to your happiness</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">👨‍📊</div>
+                        <h3>David Lee</h3>
+                        <p>Finance Manager</p>
+                        <p style="font-size: 0.9rem; opacity: 0.7; margin-top: 10px;">Best financing solutions available</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">👩‍⚕️</div>
+                        <h3>Lisa Anderson</h3>
+                        <p>Client Success</p>
+                        <p style="font-size: 0.9rem; opacity: 0.7; margin-top: 10px;">Post-purchase support expert</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Find Your Dream Car?</h2>
+                <p>Visit our inventory or contact our team today for personalized assistance</p>
+                <a href="inventory.html" class="btn btn-primary">Browse Inventory</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <div class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <h3>📧 Subscribe to Our Newsletter</h3>
+                    <p>Get exclusive deals, latest models, and special offers delivered to your inbox</p>
+                </div>
+                <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                    <div class="newsletter-input-group">
+                        <input type="email" id="newsletter-email" placeholder="Enter your email address" required>
+                        <button type="submit" class="btn btn-primary newsletter-btn">Subscribe</button>
+                    </div>
+                    <div id="newsletter-message" class="newsletter-message" style="display: none;"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Color Theme Switcher -->
+    <div class="color-theme-switcher">
+        <button class="theme-toggle-btn" onclick="toggleThemeOptions()" aria-label="Color theme options">
+            🎨
+        </button>
+        <div class="theme-options" id="theme-options">
+            <h4>Choose Theme</h4>
+            <div class="theme-colors">
+                <div class="theme-color active" data-theme="red" onclick="changeColorTheme('red')" title="Red"></div>
+                <div class="theme-color" data-theme="blue" onclick="changeColorTheme('blue')" title="Blue"></div>
+                <div class="theme-color" data-theme="green" onclick="changeColorTheme('green')" title="Green"></div>
+                <div class="theme-color" data-theme="purple" onclick="changeColorTheme('purple')" title="Purple"></div>
+                <div class="theme-color" data-theme="orange" onclick="changeColorTheme('orange')" title="Orange"></div>
+                <div class="theme-color" data-theme="pink" onclick="changeColorTheme('pink')" title="Pink"></div>
+                <div class="theme-color" data-theme="cyan" onclick="changeColorTheme('cyan')" title="Cyan"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>⚡ LuxeAuto</h4>
+                    <p>Premium luxury car dealership offering the finest selection of vehicles for discerning customers worldwide.</p>
+                    <div class="social-links">
+                        <a href="#" title="Facebook" aria-label="Facebook">f</a>
+                        <a href="#" title="Twitter" aria-label="Twitter">𝕏</a>
+                        <a href="#" title="Instagram" aria-label="Instagram">📷</a>
+                        <a href="#" title="LinkedIn" aria-label="LinkedIn">in</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>🔗 Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">↗ Home</a></li>
+                        <li><a href="inventory.html">↗ Inventory</a></li>
+                        <li><a href="about.html">↗ About Us</a></li>
+                        <li><a href="contact.html">↗ Contact</a></li>
+                        <li><a href="booking-dashboard.html">↗ My Bookings</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>📞 Contact Info</h4>
+                    <p>📍 123 Luxury Lane, Auto City, AC 12345</p>
+                    <p>📱 <a href="tel:+15551234567">(555) 123-4567</a></p>
+                    <p>💬 <a href="https://wa.me/15551234567">WhatsApp</a></p>
+                    <p>📧 <a href="mailto:info@luxeauto.com">info@luxeauto.com</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>⏰ Hours of Operation</h4>
+                    <p><strong>Monday - Friday:</strong><br>9:00 AM - 8:00 PM</p>
+                    <p><strong>Saturday:</strong><br>10:00 AM - 6:00 PM</p>
+                    <p><strong>Sunday:</strong><br>12:00 PM - 5:00 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 LuxeAuto. All rights reserved.</p>
+                <div class="footer-links-bottom">
+                    <a href="#" title="Privacy Policy">Privacy Policy</a>
+                    <span style="color: rgba(255,255,255,0.3);">•</span>
+                    <a href="#" title="Terms of Service">Terms & Conditions</a>
+                    <span style="color: rgba(255,255,255,0.3);">•</span>
+                    <a href="#" title="Cookie Policy">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

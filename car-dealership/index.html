@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuxeAuto - Premium Car Dealership</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">⚡</span>
+                    <span class="logo-text">LuxeAuto</span>
+                </a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+                <li class="nav-item"><a href="inventory.html" class="nav-link">Inventory</a></li>
+                <li class="nav-item"><a href="compare.html" class="nav-link">Compare</a></li>
+                <li class="nav-item"><a href="finance.html" class="nav-link">Finance</a></li>
+                <li class="nav-item"><a href="news.html" class="nav-link">News</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+
+            <div class="nav-controls">
+                <a href="login.html" id="login-btn" class="login-btn" title="Login">👤 Login</a>
+                <div id="user-menu" class="user-menu" style="display: none;">
+                    <span class="user-name" id="user-name">User</span>
+                    <div class="user-dropdown">
+                        <a href="user-dashboard.html">📊 Dashboard</a>
+                        <a href="#" onclick="logoutUser()">🚪 Logout</a>
+                    </div>
+                </div>
+                <button id="theme-toggle" class="theme-toggle" title="Toggle theme">☀️</button>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-left">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="title-word">Premium</span>
+                    <span class="title-word">Luxury</span>
+                    <span class="title-word">Cars</span>
+                </h1>
+                <p class="hero-subtitle">Discover your dream car at unbeatable prices</p>
+                <div class="hero-buttons">
+                    <a href="inventory.html" class="btn btn-primary">View Cars</a>
+                    <a href="contact.html" class="btn btn-secondary">Contact Dealer</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero-right">
+            <div class="cinematic-showcase">
+                <!-- Ambient glow layers -->
+                <div class="glow-layer glow-primary"></div>
+                <div class="glow-layer glow-secondary"></div>
+                <div class="glow-layer glow-accent"></div>
+                
+                <!-- Car carousel -->
+                <div class="car-carousel">
+                    <div class="carousel-container">
+                        <!-- Slide 1: Tesla Model S -->
+                        <div class="car-slide active" data-color="#ff6b6b">
+                            <div class="car-display">
+                                <div class="car-glow"></div>
+                                <img class="car-image-hero" src="https://images.unsplash.com/photo-1560958089-b8a63dd89c94?w=500&h=450&fit=crop" alt="Tesla Model S">
+                            </div>
+                            <div class="slide-info">
+                                <h3 class="slide-car-name">Tesla Model S</h3>
+                                <p class="slide-car-price">$89,990</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 2: BMW M440i -->
+                        <div class="car-slide" data-color="#4a90e2">
+                            <div class="car-display">
+                                <div class="car-glow"></div>
+                                <img class="car-image-hero" src="https://images.unsplash.com/photo-1552519507-da3effff991c?w=500&h=450&fit=crop" alt="BMW M440i">
+                            </div>
+                            <div class="slide-info">
+                                <h3 class="slide-car-name">BMW M440i</h3>
+                                <p class="slide-car-price">$65,500</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 3: Porsche 911 GT3 -->
+                        <div class="car-slide" data-color="#f5a623">
+                            <div class="car-display">
+                                <div class="car-glow"></div>
+                                <img class="car-image-hero" src="https://images.unsplash.com/photo-1578674360105-937379187a51?w=500&h=450&fit=crop" alt="Porsche 911 GT3">
+                            </div>
+                            <div class="slide-info">
+                                <h3 class="slide-car-name">Porsche 911 GT3</h3>
+                                <p class="slide-car-price">$120,000</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 4: Mercedes AMG C63 -->
+                        <div class="car-slide" data-color="#2ecc71">
+                            <div class="car-display">
+                                <div class="car-glow"></div>
+                                <img class="car-image-hero" src="https://images.unsplash.com/photo-1567818735868-e71b99932e29?w=500&h=450&fit=crop" alt="Mercedes AMG C63">
+                            </div>
+                            <div class="slide-info">
+                                <h3 class="slide-car-name">Mercedes AMG C63</h3>
+                                <p class="slide-car-price">$75,000</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 5: Audi RS6 Avant -->
+                        <div class="car-slide" data-color="#e74c3c">
+                            <div class="car-display">
+                                <div class="car-glow"></div>
+                                <img class="car-image-hero" src="https://images.unsplash.com/photo-1606611013016-969c19d4a42f?w=500&h=450&fit=crop" alt="Audi RS6 Avant">
+                            </div>
+                            <div class="slide-info">
+                                <h3 class="slide-car-name">Audi RS6 Avant</h3>
+                                <p class="slide-car-price">$110,000</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 6: Lamborghini Huracán -->
+                        <div class="car-slide" data-color="#9b59b6">
+                            <div class="car-display">
+                                <div class="car-glow"></div>
+                                <img class="car-image-hero" src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=500&h=450&fit=crop" alt="Lamborghini Huracán">
+                            </div>
+                            <div class="slide-info">
+                                <h3 class="slide-car-name">Lamborghini Huracán</h3>
+                                <p class="slide-car-price">$250,000</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation Arrows -->
+                    <button class="nav-arrow prev" onclick="prevCar()" aria-label="Previous car">
+                        <span>❮</span>
+                    </button>
+                    <button class="nav-arrow next" onclick="nextCar()" aria-label="Next car">
+                        <span>❯</span>
+                    </button>
+                    
+                    <!-- Carousel Indicators -->
+                    <div class="carousel-indicators">
+                        <span class="indicator active" onclick="goToSlide(0)"></span>
+                        <span class="indicator" onclick="goToSlide(1)"></span>
+                        <span class="indicator" onclick="goToSlide(2)"></span>
+                        <span class="indicator" onclick="goToSlide(3)"></span>
+                        <span class="indicator" onclick="goToSlide(4)"></span>
+                        <span class="indicator" onclick="goToSlide(5)"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Cars Section -->
+    <section class="featured-section">
+        <div class="container">
+            <h2 class="section-title">Featured Cars</h2>
+            <p class="section-subtitle">Handpicked luxury vehicles for you</p>
+            
+            <div class="cars-grid">
+                <!-- Car Card 1 -->
+                <div class="car-card">
+                    <div class="car-image-wrapper">
+                        <div class="car-image">
+                            <img src="https://images.unsplash.com/photo-1560958089-b8a63dd89c94?w=400&h=300&fit=crop" alt="Tesla Model S">
+                        </div>
+                        <span class="car-badge">Featured</span>
+                    </div>
+                    <div class="car-card-content">
+                        <h3 class="car-name">Tesla Model S</h3>
+                        <p class="car-price">$89,990</p>
+                        <div class="car-specs">
+                            <span class="spec">⚡ Electric</span>
+                            <span class="spec">🔧 Auto</span>
+                        </div>
+                        <div class="car-links">
+                            <a href="car.html?id=1" class="btn-view">View Details →</a>
+                            <a href="inventory.html" class="btn-view">Inventory →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Car Card 2 -->
+                <div class="car-card">
+                    <div class="car-image-wrapper">
+                        <div class="car-image">
+                            <img src="https://images.unsplash.com/photo-1552519507-da3effff991c?w=400&h=300&fit=crop" alt="BMW M440i">
+                        </div>
+                        <span class="car-badge">Hot Deal</span>
+                    </div>
+                    <div class="car-card-content">
+                        <h3 class="car-name">BMW M440i</h3>
+                        <p class="car-price">$65,500</p>
+                        <div class="car-specs">
+                            <span class="spec">⛽ Gasoline</span>
+                            <span class="spec">🔧 Auto</span>
+                        </div>
+                        <div class="car-links">
+                            <a href="car.html?id=2" class="btn-view">View Details →</a>
+                            <a href="inventory.html" class="btn-view">Inventory →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Car Card 3 -->
+                <div class="car-card">
+                    <div class="car-image-wrapper">
+                        <div class="car-image">
+                            <img src="https://images.unsplash.com/photo-1578674360105-937379187a51?w=400&h=300&fit=crop" alt="Porsche 911 GT3">
+                        </div>
+                        <span class="car-badge">New</span>
+                    </div>
+                    <div class="car-card-content">
+                        <h3 class="car-name">Porsche 911 GT3</h3>
+                        <p class="car-price">$120,000</p>
+                        <div class="car-specs">
+                            <span class="spec">⛽ Gasoline</span>
+                            <span class="spec">🔧 Manual</span>
+                        </div>
+                        <div class="car-links">
+                            <a href="car.html?id=3" class="btn-view">View Details →</a>
+                            <a href="inventory.html" class="btn-view">Inventory →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Car Card 4 -->
+                <div class="car-card">
+                    <div class="car-image-wrapper">
+                        <div class="car-image">
+                            <img src="https://images.unsplash.com/photo-1567818735868-e71b99932e29?w=400&h=300&fit=crop" alt="Mercedes AMG C63">
+                        </div>
+                        <span class="car-badge">Exclusive</span>
+                    </div>
+                    <div class="car-card-content">
+                        <h3 class="car-name">Mercedes AMG C63</h3>
+                        <p class="car-price">$75,000</p>
+                        <div class="car-specs">
+                            <span class="spec">⛽ Gasoline</span>
+                            <span class="spec">🔧 Auto</span>
+                        </div>
+                        <div class="car-links">
+                            <a href="car.html?id=4" class="btn-view">View Details →</a>
+                            <a href="inventory.html" class="btn-view">Inventory →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Car Card 5 -->
+                <div class="car-card">
+                    <div class="car-image-wrapper">
+                        <div class="car-image">
+                            <img src="https://images.unsplash.com/photo-1606611013016-969c19d4a42f?w=400&h=300&fit=crop" alt="Audi RS6 Avant">
+                        </div>
+                    </div>
+                    <div class="car-card-content">
+                        <h3 class="car-name">Audi RS6 Avant</h3>
+                        <p class="car-price">$110,000</p>
+                        <div class="car-specs">
+                            <span class="spec">⛽ Gasoline</span>
+                            <span class="spec">🔧 Auto</span>
+                        </div>
+                        <div class="car-links">
+                            <a href="car.html?id=5" class="btn-view">View Details →</a>
+                            <a href="inventory.html" class="btn-view">Inventory →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Car Card 6 -->
+                <div class="car-card">
+                    <div class="car-image-wrapper">
+                        <div class="car-image">
+                            <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=400&h=300&fit=crop" alt="Lamborghini Huracán">
+                        </div>
+                    </div>
+                    <div class="car-card-content">
+                        <h3 class="car-name">Lamborghini Huracán</h3>
+                        <p class="car-price">$250,000</p>
+                        <div class="car-specs">
+                            <span class="spec">⛽ Gasoline</span>
+                            <span class="spec">🔧 Auto</span>
+                        </div>
+                        <div class="car-links">
+                            <a href="car.html?id=6" class="btn-view">View Details →</a>
+                            <a href="inventory.html" class="btn-view">Inventory →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-center">
+                <a href="inventory.html" class="btn btn-primary">View Full Inventory</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Test Drive CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Schedule Your Test Drive Today</h2>
+                <p>Experience luxury and performance firsthand. No commitment required.</p>
+                <a href="contact.html" class="btn btn-primary">Book Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title">Why Choose LuxeAuto?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Best Selection</h3>
+                    <p>Curated collection of premium vehicles</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Competitive Prices</h3>
+                    <p>Best deals on luxury cars in the market</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure Transaction</h3>
+                    <p>Safe and transparent buying process</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛠️</div>
+                    <h3>Full Service</h3>
+                    <p>Complete support and maintenance included</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Fast Approval</h3>
+                    <p>Quick financing options available</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Warranty</h3>
+                    <p>Extended warranty on all vehicles</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Color Theme Switcher -->
+    <div class="color-theme-switcher">
+        <button class="theme-toggle-btn" onclick="toggleThemeOptions()" aria-label="Color theme options">
+            🎨
+        </button>
+        <div class="theme-options" id="theme-options">
+            <h4>Choose Theme</h4>
+            <div class="theme-colors">
+                <div class="theme-color active" data-theme="red" onclick="changeColorTheme('red')" title="Red"></div>
+                <div class="theme-color" data-theme="blue" onclick="changeColorTheme('blue')" title="Blue"></div>
+                <div class="theme-color" data-theme="green" onclick="changeColorTheme('green')" title="Green"></div>
+                <div class="theme-color" data-theme="purple" onclick="changeColorTheme('purple')" title="Purple"></div>
+                <div class="theme-color" data-theme="orange" onclick="changeColorTheme('orange')" title="Orange"></div>
+                <div class="theme-color" data-theme="pink" onclick="changeColorTheme('pink')" title="Pink"></div>
+                <div class="theme-color" data-theme="cyan" onclick="changeColorTheme('cyan')" title="Cyan"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <!-- Newsletter Section -->
+        <div class="newsletter-section">
+            <div class="container">
+                <div class="newsletter-content">
+                    <div class="newsletter-text">
+                        <h3>📧 Subscribe to Our Newsletter</h3>
+                        <p>Get exclusive deals, latest models, and special offers delivered to your inbox</p>
+                    </div>
+                    <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                        <div class="newsletter-input-group">
+                            <input 
+                                type="email" 
+                                id="newsletter-email" 
+                                placeholder="Enter your email address" 
+                                required
+                                aria-label="Email for newsletter">
+                            <button type="submit" class="btn btn-primary newsletter-btn">Subscribe</button>
+                        </div>
+                        <div id="newsletter-message" class="newsletter-message" style="display: none;"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>⚡ LuxeAuto</h4>
+                    <p>Premium luxury car dealership offering the finest selection of vehicles for discerning customers worldwide.</p>
+                    <div class="social-links">
+                        <a href="#" title="Facebook" aria-label="Facebook">f</a>
+                        <a href="#" title="Twitter" aria-label="Twitter">𝕏</a>
+                        <a href="#" title="Instagram" aria-label="Instagram">📷</a>
+                        <a href="#" title="LinkedIn" aria-label="LinkedIn">in</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>🔗 Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">↗ Home</a></li>
+                        <li><a href="inventory.html">↗ Inventory</a></li>
+                        <li><a href="about.html">↗ About Us</a></li>
+                        <li><a href="contact.html">↗ Contact</a></li>
+                        <li><a href="booking-dashboard.html">↗ My Bookings</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>📞 Contact Info</h4>
+                    <p>📍 123 Luxury Lane, Auto City, AC 12345</p>
+                    <p>📱 <a href="tel:+15551234567">(555) 123-4567</a></p>
+                    <p>💬 <a href="https://wa.me/15551234567">WhatsApp</a></p>
+                    <p>📧 <a href="mailto:info@luxeauto.com">info@luxeauto.com</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>⏰ Hours of Operation</h4>
+                    <p><strong>Monday - Friday:</strong><br>9:00 AM - 8:00 PM</p>
+                    <p><strong>Saturday:</strong><br>10:00 AM - 6:00 PM</p>
+                    <p><strong>Sunday:</strong><br>12:00 PM - 5:00 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 LuxeAuto. All rights reserved.</p>
+                <div class="footer-links-bottom">
+                    <a href="#" title="Privacy Policy">Privacy Policy</a>
+                    <span style="color: rgba(255,255,255,0.3);">•</span>
+                    <a href="#" title="Terms of Service">Terms & Conditions</a>
+                    <span style="color: rgba(255,255,255,0.3);">•</span>
+                    <a href="#" title="Cookie Policy">Cookie Policy</a>
+                </div>
+            </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>
