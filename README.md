@@ -1,84 +1,94 @@
-# 🎨 Web Template Collection for UI Designers & Developers
+# 🎨 Web Templates Collection for UI Designers & Developers
 
-Welcome to the **Web Template for UI Designers** repository!  
-This project is a growing collection of **modern, responsive, and reusable UI design website templates** created to help **developers and designers** quickly kick-start their projects.
+Welcome to the **Web Templates Collection** repository!  
+This repository is dedicated to storing and sharing a **collection of modern, responsive, and reusable web UI templates** for **developers and UI/UX designers**.
 
-Currently, the repository contains **one UI template**, but more designs and features will be added over time 🚀.
+Each template is designed to be easy to use, customize, and integrate into real-world projects.
 
----
-
-## 📌 Purpose of This Repository
-
-This repository is designed to:
-
-- Store **different UI design website templates** in one place
-- Help **developers** quickly grab ready-made UI layouts
-- Help **UI/UX designers** showcase and reuse design ideas
-- Act as a **template library** for future projects
+> 📦 This is a **template collection repository**, and new web templates will be added continuously.
 
 ---
 
-## 🧩 Current Features
+## 📌 Repository Goal
 
-- ✅ Clean and modern UI design  
-- ✅ Responsive layout (Desktop / Tablet / Mobile friendly)
-- ✅ Built using **HTML, CSS, and JavaScript**
-- ✅ Easy to customize and extend
-- ✅ Beginner-friendly structure
+The main goals of this repository are to:
 
-> ⚠️ Note: This repository currently contains **one UI template**, but it will be expanded with multiple designs and advanced features in future updates.
+- Maintain a **central collection of web UI templates**
+- Help developers quickly find **ready-made website layouts**
+- Help UI designers reuse and showcase **UI design concepts**
+- Provide **starter templates** for learning and production use
+
+---
+
+## 🧩 What This Repository Contains
+
+- ✅ Multiple **web UI templates** (currently starting with one)
+- ✅ Clean and modern design principles
+- ✅ Fully responsive layouts
+- ✅ Organized folder structure for each template
+- ✅ Easy customization for developers
 
 ---
 
 ## 🛠️ Technologies Used
 
+Depending on the template, technologies may include:
+
 - HTML5  
 - CSS3  
 - JavaScript  
+- Bootstrap / Tailwind CSS (future)
+- React / Other frameworks (future)
 
 ---
 
-## 📂 Project Structure (Example)
+## 📂 Folder Structure (Example)
 
 ```
 Web-template-for-UI-Designers/
 │
-├── index.html
-├── css/
-│   └── style.css
-├── js/
-│   └── script.js
-├── assets/
-│   └── images/
+├── templates/
+│   ├── template-01/
+│   │   ├── index.html
+│   │   ├── css/
+│   │   ├── js/
+│   │   └── assets/
+│   │
+│   └── template-02/
+│       ├── index.html
+│       └── ...
+│
 └── README.md
 ```
 
+*(Structure may evolve as more templates are added)*
+
 ---
 
-## 🚀 How to Use
+## 🚀 How to Use a Template
 
 1. Clone the repository:
    ```bash
    git clone https://github.com/UdaraIrunika/Web-template-for-UI-Designers.git
    ```
 
-2. Open the project folder:
+2. Navigate to a template folder:
    ```bash
-   cd Web-template-for-UI-Designers
+   cd Web-template-for-UI-Designers/templates/template-01
    ```
 
 3. Open `index.html` in your browser  
-   or use Live Server in VS Code.
+   or use **Live Server** in VS Code.
 
 ---
 
-## 🔮 Future Plans
+## 🔮 Future Enhancements
 
-- Add multiple UI website templates
-- Categorize templates (Portfolio, Business, Landing Pages, Dashboards)
-- Improve responsiveness and animations
-- Add framework-based templates (Bootstrap, Tailwind, React)
-- Provide demo previews
+- Add more website templates (Portfolio, Business, Landing Pages, Dashboards)
+- Improve UI animations and interactions
+- Add framework-based templates
+- Include preview screenshots for each template
+- Add documentation per template
 
 ---
 
@@ -86,6 +96,11 @@ Web-template-for-UI-Designers/
 
 Contributions are welcome!
 
+- Add new templates
+- Improve existing designs
+- Fix bugs or optimize code
+
+Steps:
 1. Fork the repository  
 2. Create a new branch  
 3. Commit your changes  
@@ -95,7 +110,8 @@ Contributions are welcome!
 
 ## 📄 License
 
-This project is open-source and available under the **MIT License**.
+This repository is open-source and available under the **MIT License**.  
+You are free to use, modify, and distribute the templates.
 
 ---
 
@@ -108,4 +124,4 @@ GitHub: https://github.com/UdaraIrunika
 
 ---
 
-⭐ If you find this repository useful, don’t forget to star it!
+⭐ If you find this template collection useful, please consider starring the repository!
