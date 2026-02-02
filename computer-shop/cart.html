@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart | NEXUS | Next-Gen Computing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .cart-container {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .cart-items {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 100px 1fr auto;
+            gap: 24px;
+            align-items: center;
+            padding: 24px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cart-item-details {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .cart-item-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .cart-item-category {
+            color: var(--primary);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .cart-item-price {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 8px;
+            padding: 8px 12px;
+        }
+
+        .quantity-control button {
+            background: transparent;
+            border: none;
+            color: var(--light);
+            cursor: pointer;
+            font-size: 1rem;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s;
+        }
+
+        .quantity-control button:hover {
+            color: var(--primary);
+        }
+
+        .quantity-control input {
+            width: 40px;
+            background: transparent;
+            border: none;
+            color: white;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .remove-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 59, 48, 0.3);
+            color: #ff3b30;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+
+        .remove-btn:hover {
+            background: rgba(255, 59, 48, 0.1);
+            border-color: rgba(255, 59, 48, 0.6);
+        }
+
+        .cart-summary {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 24px;
+            height: fit-content;
+            position: sticky;
+            top: 120px;
+        }
+
+        .summary-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .summary-row.total {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 16px;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 60px 40px;
+        }
+
+        .empty-cart i {
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .empty-cart h2 {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+        }
+
+        .empty-cart p {
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .cart-container {
+                grid-template-columns: 1fr;
+            }
+
+            .cart-summary {
+                position: static;
+            }
+
+            .cart-item {
+                grid-template-columns: 80px 1fr;
+            }
+
+            .cart-item-actions {
+                grid-column: 1 / -1;
+                justify-content: space-between;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-microchip logo-icon"></i>
+                NEXUS
+            </a>
+
+            <nav class="nav-links">
+                <a href="products.html">Products</a>
+                <a href="features.html">Services</a>
+                <a href="custom.html">Custom Builds</a>
+                <a href="support.html">Support</a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+                <div class="auth-buttons"></div>
+                <div class="cart-wrapper">
+                    <a href="cart.html" class="cart-btn" style="text-decoration: none; display: flex; align-items: center;"><i class="fas fa-shopping-bag"></i></a>
+                    <span class="cart-count">0</span>
+                </div>
+                <a href="build-your-pc.html" class="cta-btn" style="text-decoration: none; display: inline-block;">Build Your PC</a>
+                <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" style="padding: 140px 0 80px;">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div style="max-width: 800px;">
+                <h1 style="font-size: 3rem;">Shopping <span>Cart</span></h1>
+                <p style="font-size: 1.2rem; color: var(--gray); margin-top: 20px;">Review your items and proceed to checkout.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Section -->
+    <section style="padding: 60px 0 100px;">
+        <div class="container">
+            <div id="cart-content">
+                <!-- Cart content will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <a href="index.html" class="logo" style="font-size: 1.8rem; margin-bottom: 20px; display: inline-block;">NEXUS</a>
+                    <p style="color: var(--gray); margin-bottom: 24px;">Redefining computing excellence with cutting-edge technology and unparalleled service.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Products</h3>
+                    <ul class="footer-links">
+                        <li><a href="products.html">Gaming PCs</a></li>
+                        <li><a href="products.html">Workstations</a></li>
+                        <li><a href="products.html">Laptops</a></li>
+                        <li><a href="products.html">Components</a></li>
+                        <li><a href="products.html">Peripherals</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="custom.html">Custom Builds</a></li>
+                        <li><a href="features.html">PC Repair</a></li>
+                        <li><a href="features.html">Performance Tuning</a></li>
+                        <li><a href="features.html">Data Recovery</a></li>
+                        <li><a href="features.html">Consultation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="support.html">Support Center</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 NEXUS Computing. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/search.js"></script>
+    <script src="/js/currency.js"></script>
+    <script src="/js/cart.js"></script>
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.width = '100%';
+                navLinks.style.backgroundColor = 'rgba(15, 23, 42, 0.98)';
+                navLinks.style.backdropFilter = 'blur(10px)';
+                navLinks.style.padding = '30px';
+                navLinks.style.gap = '20px';
+                navLinks.style.borderTop = '1px solid rgba(255, 255, 255, 0.05)';
+            }
+        });
+
+        // Render cart
+        function renderCart() {
+            const cartContent = document.getElementById('cart-content');
+            const items = cart.getItems();
+            const total = cart.getTotal();
+            const formatMoney = window.nexusCurrency && window.nexusCurrency.format
+                ? window.nexusCurrency.format
+                : (usd) => `$${usd.toFixed(2)}`;
+
+            if (items.length === 0) {
+                cartContent.innerHTML = `
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-bag"></i>
+                        <h2>Your cart is empty</h2>
+                        <p>Start adding products to your cart to see them here.</p>
+                        <a href="products.html" class="cta-btn" style="display: inline-block; text-decoration: none;">Continue Shopping</a>
+                    </div>
+                `;
+                return;
+            }
+
+            let itemsHTML = '';
+            items.forEach(item => {
+                itemsHTML += `
+                    <div class="cart-item">
+                        <div class="cart-item-image">
+                            <img src="${item.image}" alt="${item.name}">
+                        </div>
+                        <div class="cart-item-details">
+                            <div class="cart-item-category">${item.category}</div>
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">${formatMoney(item.price)}</div>
+                        </div>
+                        <div class="cart-item-actions">
+                            <div class="quantity-control">
+                                <button onclick="updateItemQuantity('${item.id}', ${item.quantity - 1})">−</button>
+                                <input type="number" value="${item.quantity}" min="1" onchange="updateItemQuantity('${item.id}', this.value)">
+                                <button onclick="updateItemQuantity('${item.id}', ${item.quantity + 1})">+</button>
+                            </div>
+                            <button class="remove-btn" onclick="removeFromCart('${item.id}')">Remove</button>
+                            <div style="text-align: right; min-width: 100px;">
+                                <div style="font-weight: 700; font-size: 1.1rem;">${formatMoney(item.price * item.quantity)}</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            cartContent.innerHTML = `
+                <div class="cart-container">
+                    <div class="cart-items">
+                        ${itemsHTML}
+                    </div>
+                    <div class="cart-summary">
+                        <div class="summary-title">Order Summary</div>
+                        <div class="summary-row">
+                            <span>Subtotal:</span>
+                            <span>${formatMoney(total)}</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Shipping:</span>
+                            <span>Free</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Tax (10%):</span>
+                            <span>${formatMoney(total * 0.1)}</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Total:</span>
+                            <span>${formatMoney(total * 1.1)}</span>
+                        </div>
+                        <a href="checkout.html" class="cta-btn" style="width: 100%; text-align: center; text-decoration: none; display: block; margin-top: 24px;">Proceed to Checkout</a>
+                        <a href="products.html" class="filter-btn" style="width: 100%; text-align: center; text-decoration: none; display: block; margin-top: 12px; border: 1px solid var(--glass-border); padding: 12px 24px; border-radius: 50px; color: var(--light);">Continue Shopping</a>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Remove item from cart
+        function removeFromCart(productId) {
+            cart.removeItem(productId);
+            renderCart();
+        }
+
+        // Update item quantity
+        function updateItemQuantity(productId, quantity) {
+            quantity = parseInt(quantity);
+            if (quantity > 0) {
+                cart.updateQuantity(productId, quantity);
+                renderCart();
+            }
+        }
+
+        // Initial render
+        document.addEventListener('DOMContentLoaded', renderCart);
+        document.addEventListener('nexusCurrencyChanged', renderCart);
+    </script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Test Order</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #0f172a;
+            color: white;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            border-radius: 8px;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+        .info {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test Order Creator</h1>
+    <div class="info">
+        <p>Click a button below to create a test order with different payment methods.</p>
+    </div>
+    
+    <button onclick="createBankTransferOrder()">Create Bank Transfer Order</button>
+    <button onclick="createCardOrder()">Create Card Payment Order</button>
+    <button onclick="createCashOrder()">Create Cash on Delivery Order</button>
+    <br><br>
+    <button onclick="window.location.href='order-confirmation.html'" style="background: #10b981;">View Order Confirmation</button>
+    <button onclick="clearOrder()" style="background: #ef4444;">Clear Order</button>
+
+    <script>
+        function createBankTransferOrder() {
+            const order = {
+                firstName: "John",
+                lastName: "Doe",
+                email: "john.doe@example.com",
+                phone: "+1 (555) 123-4567",
+                address: "123 Main Street, Apt 4B",
+                city: "New York",
+                state: "NY",
+                zip: "10001",
+                country: "United States",
+                paymentMethod: "bank_transfer",
+                items: [
+                    {
+                        name: "Gaming PC - RTX 4070",
+                        price: 1499,
+                        quantity: 1
+                    },
+                    {
+                        name: "Gaming Monitor 27\"",
+                        price: 399,
+                        quantity: 2
+                    }
+                ],
+                subtotal: 2297,
+                tax: 229.70,
+                total: 2526.70,
+                orderDate: new Date().toISOString(),
+                orderNumber: 'ORD-' + Date.now()
+            };
+            
+            localStorage.setItem('nexus_last_order', JSON.stringify(order));
+            alert('Bank Transfer order created! Click "View Order Confirmation"');
+        }
+
+        function createCardOrder() {
+            const order = {
+                firstName: "Jane",
+                lastName: "Smith",
+                email: "jane.smith@example.com",
+                phone: "+1 (555) 987-6543",
+                address: "456 Oak Avenue",
+                city: "Los Angeles",
+                state: "CA",
+                zip: "90001",
+                country: "United States",
+                paymentMethod: "card_payment",
+                items: [
+                    {
+                        name: "Workstation PC - Ryzen 9",
+                        price: 2499,
+                        quantity: 1
+                    }
+                ],
+                subtotal: 2499,
+                tax: 249.90,
+                total: 2748.90,
+                orderDate: new Date().toISOString(),
+                orderNumber: 'ORD-' + Date.now(),
+                cardDetails: {
+                    name: "Jane Smith",
+                    number: "**** **** **** 4532",
+                    expiry: "12/25",
+                    lastFourDigits: "4532"
+                }
+            };
+            
+            localStorage.setItem('nexus_last_order', JSON.stringify(order));
+            alert('Card Payment order created! Click "View Order Confirmation"');
+        }
+
+        function createCashOrder() {
+            const order = {
+                firstName: "Bob",
+                lastName: "Johnson",
+                email: "bob.johnson@example.com",
+                phone: "+1 (555) 456-7890",
+                address: "789 Pine Road",
+                city: "Chicago",
+                state: "IL",
+                zip: "60601",
+                country: "United States",
+                paymentMethod: "cash_payment",
+                items: [
+                    {
+                        name: "Gaming Laptop - RTX 4060",
+                        price: 1299,
+                        quantity: 1
+                    },
+                    {
+                        name: "Wireless Mouse",
+                        price: 49,
+                        quantity: 1
+                    }
+                ],
+                subtotal: 1348,
+                tax: 134.80,
+                total: 1482.80,
+                orderDate: new Date().toISOString(),
+                orderNumber: 'ORD-' + Date.now()
+            };
+            
+            localStorage.setItem('nexus_last_order', JSON.stringify(order));
+            alert('Cash on Delivery order created! Click "View Order Confirmation"');
+        }
+
+        function clearOrder() {
+            localStorage.removeItem('nexus_last_order');
+            alert('Order cleared from localStorage');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS | Next-Gen Computing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <i class="fas fa-microchip logo-icon"></i>
+                NEXUS
+            </a>
+
+            <nav class="nav-links">
+                <a href="products.html">Products</a>
+                <a href="features.html">Services</a>
+                <a href="custom.html">Custom Builds</a>
+                <a href="support.html">Support</a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+                <div class="auth-buttons"></div>
+                <div class="cart-wrapper">
+                    <a href="cart.html" class="cart-btn" style="text-decoration: none; display: flex; align-items: center;"><i class="fas fa-shopping-bag"></i></a>
+                    <span class="cart-count">0</span>
+                </div>
+                <a href="build-your-pc.html" class="cta-btn" style="text-decoration: none; display: inline-block;">Build Your PC</a>
+                <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h1>Next-Gen <span>Computing</span> Experience</h1>
+                <p>Premium components, expert builds, and unparalleled performance. Elevate your digital world with cutting-edge technology tailored to your needs.</p>
+                <div style="display: flex; gap: 16px; margin-top: 40px;">
+                    <button class="cta-btn" style="padding: 16px 32px;">Explore Products</button>
+                    <button class="filter-btn">Custom Build</button>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <h3>2,500+</h3>
+                        <p>Systems Built</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>24h</h3>
+                        <p>Support Response</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>5.0</h3>
+                        <p>Customer Rating</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Premium Gaming PC">
+                </div>
+                
+                <div class="floating-card">
+                    <div class="card-title">RTX 4090 Series</div>
+                    <div class="card-value">In Stock</div>
+                </div>
+                
+                <div class="floating-card">
+                    <div class="card-title">Custom Build</div>
+                    <div class="card-value">5 Day Turnaround</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Systems</h2>
+                <p>Carefully crafted for performance, aesthetics, and reliability</p>
+            </div>
+            
+            <div class="products-filter">
+                <button class="filter-btn active">All Systems</button>
+                <button class="filter-btn">Gaming</button>
+                <button class="filter-btn">Workstation</button>
+                <button class="filter-btn">Compact</button>
+                <button class="filter-btn">Budget</button>
+            </div>
+            
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-badge">BEST SELLER</div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Apex Gaming PC">
+                    </div>
+                    <div class="product-content">
+                        <div class="product-category">Gaming</div>
+                        <h3 class="product-title">Apex RTX 4090</h3>
+                        <p class="product-description">Ultimate gaming performance with liquid cooling, 32GB DDR5, and 2TB NVMe storage.</p>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="old-price">$3,499</span>
+                                $2,999
+                            </div>
+                            <button class="add-to-cart">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-badge">NEW</div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Creator Pro Laptop">
+                    </div>
+                    <div class="product-content">
+                        <div class="product-category">Laptop</div>
+                        <h3 class="product-title">Creator Pro X</h3>
+                        <p class="product-description">16" OLED, RTX 4080, 64GB RAM - perfect for content creators and developers.</p>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="old-price">$3,199</span>
+                                $2,799
+                            </div>
+                            <button class="add-to-cart">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Silent Workstation">
+                    </div>
+                    <div class="product-content">
+                        <div class="product-category">Workstation</div>
+                        <h3 class="product-title">Silent Pro</h3>
+                        <p class="product-description">Whisper-quiet workstation with Threadripper PRO, ideal for 3D rendering and simulations.</p>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                $4,299
+                            </div>
+                            <button class="add-to-cart">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Nexus</h2>
+                <p>We redefine the computer buying experience with premium service and quality</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="feature-title">Custom Configurations</h3>
+                    <p class="feature-description">Every system is built to your exact specifications with hand-picked components.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Performance Optimized</h3>
+                    <p class="feature-description">Each build undergoes rigorous testing and optimization for peak performance.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">3-Year Warranty</h3>
+                    <p class="feature-description">Comprehensive warranty covering all components and labor for peace of mind.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="feature-title">24/7 Expert Support</h3>
+                    <p class="feature-description">Our technical team is available around the clock to assist with any issues.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-bg"></div>
+        <div class="container cta-container">
+            <h2>Build Your Dream Machine</h2>
+            <p>Start your custom PC build today with our intuitive configurator and expert guidance.</p>
+            
+            <div class="cta-form">
+                <input type="email" class="cta-input" placeholder="Enter your email to get started">
+                <button class="cta-btn">Begin Build</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <a href="#" class="logo" style="font-size: 1.8rem; margin-bottom: 20px; display: inline-block;">NEXUS</a>
+                    <p style="color: var(--gray); margin-bottom: 24px;">Redefining computing excellence with cutting-edge technology and unparalleled service.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Products</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Gaming PCs</a></li>
+                        <li><a href="#">Workstations</a></li>
+                        <li><a href="#">Laptops</a></li>
+                        <li><a href="#">Components</a></li>
+                        <li><a href="#">Peripherals</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Custom Builds</a></li>
+                        <li><a href="#">PC Repair</a></li>
+                        <li><a href="#">Performance Tuning</a></li>
+                        <li><a href="#">Data Recovery</a></li>
+                        <li><a href="#">Consultation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Support Center</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 NEXUS Computing. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/search.js"></script>
+    <script src="/js/currency.js"></script>
+    <script src="/js/cart.js"></script>
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Product filter
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                // In a real implementation, this would filter products
+                console.log(`Filtering by: ${this.textContent}`);
+            });
+        });
+
+        // Add to cart functionality
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        const cartCount = document.querySelector('.cart-count');
+        let cartItems = 3; // Starting count
+        
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const productCard = this.closest('.product-card');
+                const productTitle = productCard.querySelector('.product-title').textContent;
+                const productPrice = productCard.querySelector('.product-price').textContent;
+                
+                // Animation effect
+                this.style.background = 'linear-gradient(90deg, var(--primary), var(--secondary))';
+                this.style.borderColor = 'transparent';
+                
+                setTimeout(() => {
+                    this.style.background = '';
+                    this.style.borderColor = '';
+                }, 300);
+                
+                // Update cart count
+                cartItems++;
+                cartCount.textContent = cartItems;
+                cartCount.style.animation = 'none';
+                setTimeout(() => {
+                    cartCount.style.animation = 'float 0.5s ease';
+                }, 10);
+                
+                // Show notification (in a real app, this would be more sophisticated)
+                console.log(`Added ${productTitle} to cart - ${productPrice}`);
+            });
+        });
+
+        // CTA form submission
+        const ctaForm = document.querySelector('.cta-form');
+        const ctaInput = document.querySelector('.cta-input');
+        
+        ctaForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (ctaInput.value) {
+                alert(`Thank you! We'll contact you at ${ctaInput.value} to discuss your custom build.`);
+                ctaInput.value = '';
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.width = '100%';
+                navLinks.style.backgroundColor = 'rgba(15, 23, 42, 0.98)';
+                navLinks.style.backdropFilter = 'blur(10px)';
+                navLinks.style.padding = '30px';
+                navLinks.style.gap = '20px';
+                navLinks.style.borderTop = '1px solid rgba(255, 255, 255, 0.05)';
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (window.innerWidth <= 768) {
+                        navLinks.style.display = 'none';
+                    }
+                }
+            });
+        });
+    </script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

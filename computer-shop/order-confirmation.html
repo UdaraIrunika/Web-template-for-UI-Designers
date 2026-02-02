@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation | NEXUS | Next-Gen Computing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .confirmation-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .success-banner {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 20px;
+            padding: 60px 40px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 3rem;
+            animation: scaleIn 0.5s ease;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .success-banner h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .success-banner p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .info-section {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+        }
+
+        .section-title i {
+            color: var(--primary);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .info-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 16px;
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: var(--gray);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .info-value {
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .payment-method-card {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .payment-method-card.bank {
+            border-color: rgba(99, 102, 241, 0.5);
+            background: rgba(99, 102, 241, 0.15);
+        }
+
+        .payment-method-title {
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .payment-method-details {
+            font-size: 0.95rem;
+            color: var(--gray);
+        }
+
+        .bank-account-details {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 16px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .bank-account-details div {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+        }
+
+        .bank-account-details div:last-child {
+            margin-bottom: 0;
+        }
+
+        .order-items {
+            margin: 20px 0;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.95rem;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .order-totals {
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 20px;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .total-row:last-child {
+            margin-bottom: 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 12px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: white;
+        }
+
+        .next-steps {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 30px;
+        }
+
+        .next-steps h3 {
+            color: var(--success);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .next-steps ol {
+            margin: 0;
+            padding-left: 20px;
+            color: var(--gray);
+        }
+
+        .next-steps li {
+            margin-bottom: 12px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 16px;
+            margin-top: 30px;
+        }
+
+        .action-buttons a {
+            flex: 1;
+            text-align: center;
+            padding: 14px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .action-buttons button {
+            flex: 1;
+            text-align: center;
+            padding: 14px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .action-buttons .primary {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .action-buttons .primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .action-buttons .secondary {
+            background: transparent;
+            color: var(--light);
+            border: 1px solid var(--glass-border);
+        }
+
+        .action-buttons .secondary:hover {
+            background: rgba(99, 102, 241, 0.1);
+            border-color: var(--primary);
+        }
+
+        .action-buttons .download {
+            background: linear-gradient(90deg, var(--success), #06b6d4);
+            color: white;
+        }
+
+        .action-buttons .download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .contact-support {
+            text-align: center;
+            color: var(--gray);
+            padding: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .contact-support p {
+            margin-bottom: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .success-banner {
+                padding: 40px 24px;
+            }
+
+            .success-banner h1 {
+                font-size: 1.8rem;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-microchip logo-icon"></i>
+                NEXUS
+            </a>
+
+            <nav class="nav-links">
+                <a href="products.html">Products</a>
+                <a href="features.html">Services</a>
+                <a href="custom.html">Custom Builds</a>
+                <a href="support.html">Support</a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+                <div class="auth-buttons"></div>
+                <div class="cart-wrapper">
+                    <a href="cart.html" class="cart-btn" style="text-decoration: none; display: flex; align-items: center;"><i class="fas fa-shopping-bag"></i></a>
+                    <span class="cart-count">0</span>
+                </div>
+                <a href="build-your-pc.html" class="cta-btn" style="text-decoration: none; display: inline-block;">Build Your PC</a>
+                <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Confirmation Section -->
+    <section style="padding: 100px 0;">
+        <div class="container">
+            <div class="confirmation-container">
+                <!-- Success Banner -->
+                <div class="success-banner">
+                    <div class="success-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <h1>Order Confirmed!</h1>
+                    <p>Thank you for your purchase. Your order has been successfully placed.</p>
+                </div>
+
+                <!-- Order Details -->
+                <div class="info-section">
+                    <div class="section-title">
+                        <i class="fas fa-box"></i> Order Details
+                    </div>
+
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">Order Number</div>
+                            <div class="info-value" id="order-number"></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Order Date</div>
+                            <div class="info-value" id="order-date"></div>
+                        </div>
+                    </div>
+
+                    <div style="border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding-bottom: 24px;">
+                        <div class="section-title" style="margin-bottom: 16px;">
+                            <i class="fas fa-list"></i> Order Items
+                        </div>
+                        <div id="order-items" class="order-items"></div>
+                        <div class="order-totals">
+                            <div class="total-row">
+                                <span>Subtotal:</span>
+                                <span id="subtotal"></span>
+                            </div>
+                            <div class="total-row">
+                                <span>Tax (10%):</span>
+                                <span id="tax"></span>
+                            </div>
+                            <div class="total-row">
+                                <span>Total:</span>
+                                <span id="total"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shipping Address -->
+                <div class="info-section">
+                    <div class="section-title">
+                        <i class="fas fa-map-marker-alt"></i> Shipping Address
+                    </div>
+
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">Name</div>
+                            <div class="info-value" id="customer-name"></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Email</div>
+                            <div class="info-value" id="customer-email"></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Phone</div>
+                            <div class="info-value" id="customer-phone"></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Delivery Status</div>
+                            <div class="info-value" style="color: var(--success);">
+                                <i class="fas fa-truck"></i> In Preparation
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="info-label">Full Address</div>
+                        <div class="info-value" id="customer-address" style="font-weight: 400; line-height: 1.6;"></div>
+                    </div>
+                </div>
+
+                <!-- Payment Information -->
+                <div class="info-section">
+                    <div class="section-title">
+                        <i class="fas fa-credit-card"></i> Payment Information
+                    </div>
+
+                    <div id="payment-info"></div>
+                </div>
+
+                <!-- Next Steps -->
+                <div class="next-steps">
+                    <h3>
+                        <i class="fas fa-tasks"></i> What Happens Next?
+                    </h3>
+                    <ol>
+                        <li><strong>Confirmation Email:</strong> A detailed confirmation email has been sent to your email address.</li>
+                        <li><strong>Payment Processing:</strong> We will verify your payment and process your order within 2-4 hours.</li>
+                        <li><strong>Order Preparation:</strong> Our team will prepare and quality test your system (5-7 business days).</li>
+                        <li><strong>Shipping:</strong> Your order will be carefully packaged and shipped to your address.</li>
+                        <li><strong>Delivery:</strong> You'll receive a tracking number via email. Delivery typically takes 3-5 business days.</li>
+                    </ol>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="download" onclick="downloadReceipt()"><i class="fas fa-download"></i> Download Receipt</button>
+                    <a href="products.html" class="secondary">Continue Shopping</a>
+                    <a href="index.html" class="primary">Return to Home</a>
+                </div>
+
+                <!-- Support Contact -->
+                <div class="contact-support">
+                    <p>Questions? Contact our support team at <strong>support@nexuscomputing.com</strong> or call <strong>1-800-NEXUS-PC</strong></p>
+                    <p style="font-size: 0.85rem; margin-bottom: 0;">Available 24/7 for your assistance</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <a href="index.html" class="logo" style="font-size: 1.8rem; margin-bottom: 20px; display: inline-block;">NEXUS</a>
+                    <p style="color: var(--gray); margin-bottom: 24px;">Redefining computing excellence with cutting-edge technology and unparalleled service.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Products</h3>
+                    <ul class="footer-links">
+                        <li><a href="products.html">Gaming PCs</a></li>
+                        <li><a href="products.html">Workstations</a></li>
+                        <li><a href="products.html">Laptops</a></li>
+                        <li><a href="products.html">Components</a></li>
+                        <li><a href="products.html">Peripherals</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="custom.html">Custom Builds</a></li>
+                        <li><a href="features.html">PC Repair</a></li>
+                        <li><a href="features.html">Performance Tuning</a></li>
+                        <li><a href="features.html">Data Recovery</a></li>
+                        <li><a href="features.html">Consultation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="support.html">Support Center</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 NEXUS Computing. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/search.js"></script>
+    <script src="/js/currency.js"></script>
+    <script src="/js/cart.js"></script>
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.width = '100%';
+                navLinks.style.backgroundColor = 'rgba(15, 23, 42, 0.98)';
+                navLinks.style.backdropFilter = 'blur(10px)';
+                navLinks.style.padding = '30px';
+                navLinks.style.gap = '20px';
+                navLinks.style.borderTop = '1px solid rgba(255, 255, 255, 0.05)';
+            }
+        });
+
+        // Load and display order information
+        function loadOrderDetails() {
+            const order = JSON.parse(localStorage.getItem('nexus_last_order'));
+            
+            if (!order) {
+                window.location.href = 'products.html';
+                return;
+            }
+            const formatMoney = window.nexusCurrency && window.nexusCurrency.format
+                ? window.nexusCurrency.format
+                : (usd) => `$${usd.toFixed(2)}`;
+
+            // Order Details
+            document.getElementById('order-number').textContent = order.orderNumber;
+            document.getElementById('order-date').textContent = new Date(order.orderDate).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            // Customer Information
+            document.getElementById('customer-name').textContent = `${order.firstName} ${order.lastName}`;
+            document.getElementById('customer-email').textContent = order.email;
+            document.getElementById('customer-phone').textContent = order.phone;
+            document.getElementById('customer-address').textContent = 
+                `${order.address}\n${order.city}, ${order.state} ${order.zip}\n${order.country}`;
+
+            // Order Items
+            let itemsHTML = '';
+            order.items.forEach(item => {
+                itemsHTML += `
+                    <div class="order-item">
+                        <span>${item.name} x${item.quantity}</span>
+                        <span>${formatMoney(item.price * item.quantity)}</span>
+                    </div>
+                `;
+            });
+            document.getElementById('order-items').innerHTML = itemsHTML;
+
+            // Totals
+            document.getElementById('subtotal').textContent = formatMoney(order.subtotal);
+            document.getElementById('tax').textContent = formatMoney(order.tax);
+            document.getElementById('total').textContent = formatMoney(order.total);
+
+            // Payment Information
+            let paymentHTML = '';
+                if (order.paymentMethod === 'bank_transfer') {
+                paymentHTML = `
+                    <div class="payment-method-card bank">
+                        <div class="payment-method-title">
+                            <i class="fas fa-university"></i> Bank Transfer
+                        </div>
+                        <div class="payment-method-details">
+                            Please transfer the amount to the bank account details below. Include your order number as reference.
+                        </div>
+                        <div class="bank-account-details">
+                            <div>
+                                <span>Bank Name:</span>
+                                <strong>NEXUS Financial Bank</strong>
+                            </div>
+                            <div>
+                                <span>Account:</span>
+                                <strong>9876543210</strong>
+                            </div>
+                            <div>
+                                <span>Routing:</span>
+                                <strong>021000021</strong>
+                            </div>
+                            <div>
+                                <span>Reference:</span>
+                                <strong>${order.orderNumber}</strong>
+                            </div>
+                            <div>
+                                <span>Amount:</span>
+                                <strong>${formatMoney(order.total)}</strong>
+                            </div>
+                        </div>
+                        <p style="margin-top: 16px; color: var(--gray); font-size: 0.85rem;">
+                            <strong>Status:</strong> Pending payment confirmation. Your order will be processed within 2-4 hours after payment is received.
+                        </p>
+                    </div>
+                `;
+            } else if (order.paymentMethod === 'card_payment') {
+                paymentHTML = `
+                    <div class="payment-method-card bank">
+                        <div class="payment-method-title">
+                            <i class="fas fa-credit-card"></i> Credit/Debit Card
+                        </div>
+                        <div class="payment-method-details">
+                            Your payment has been processed securely using your card.
+                        </div>
+                        <div class="bank-account-details">
+                            <div>
+                                <span>Cardholder:</span>
+                                <strong>${order.cardDetails.name}</strong>
+                            </div>
+                            <div>
+                                <span>Card Number:</span>
+                                <strong>${order.cardDetails.number}</strong>
+                            </div>
+                            <div>
+                                <span>Amount Charged:</span>
+                                <strong>${formatMoney(order.total)}</strong>
+                            </div>
+                            <div>
+                                <span>Transaction Status:</span>
+                                <strong style="color: var(--success);">✓ Completed</strong>
+                            </div>
+                        </div>
+                        <p style="margin-top: 16px; color: var(--gray); font-size: 0.85rem;">
+                            <strong>Status:</strong> Payment confirmed. Your order is being prepared and will ship within 1-2 business days.
+                        </p>
+                    </div>
+                `;
+            } else {
+                paymentHTML = `
+                    <div class="payment-method-card">
+                        <div class="payment-method-title">
+                            <i class="fas fa-money-bill-wave"></i> Cash on Delivery
+                        </div>
+                        <div class="payment-method-details">
+                            You will pay with cash when your order is delivered. Our delivery partner will contact you 24 hours before arrival.
+                        </div>
+                        <p style="margin-top: 16px; color: var(--gray); font-size: 0.85rem;">
+                            <strong>Total Amount Due:</strong> ${formatMoney(order.total)}
+                        </p>
+                        <p style="margin-top: 12px; color: var(--gray); font-size: 0.85rem;">
+                            <strong>Estimated Delivery:</strong> 5-7 business days
+                        </p>
+                    </div>
+                `;
+            }
+            document.getElementById('payment-info').innerHTML = paymentHTML;
+        }
+
+        // Download Receipt Function
+        function downloadReceipt() {
+            const order = JSON.parse(localStorage.getItem('nexus_last_order'));
+            
+            if (!order) {
+                alert('No order found');
+                return;
+            }
+
+            // Create receipt content
+            const receiptHTML = generateReceiptHTML(order);
+            
+            // Create a new window for printing
+            const printWindow = window.open('', '', 'width=900,height=1000');
+            printWindow.document.write(receiptHTML);
+            printWindow.document.close();
+            
+            // Wait a moment for content to load, then trigger print dialog
+            setTimeout(() => {
+                printWindow.print();
+            }, 250);
+        }
+
+        // Generate Receipt HTML
+        function generateReceiptHTML(order) {
+            const formatMoney = window.nexusCurrency && window.nexusCurrency.format
+                ? window.nexusCurrency.format
+                : (usd) => `$${usd.toFixed(2)}`;
+            const itemsHTML = order.items.map(item => `
+                <tr>
+                    <td style="padding: 10px 0; border-bottom: 1px solid #ddd;">${item.name}</td>
+                    <td style="padding: 10px 0; border-bottom: 1px solid #ddd; text-align: center;">x${item.quantity}</td>
+                    <td style="padding: 10px 0; border-bottom: 1px solid #ddd; text-align: right;">${formatMoney(item.price * item.quantity)}</td>
+                </tr>
+            `).join('');
+
+            const paymentInfo = order.paymentMethod === 'card_payment' 
+                ? `Card ending in ${order.cardDetails?.lastFourDigits || '****'}`
+                : order.paymentMethod === 'bank_transfer'
+                ? 'Bank Transfer'
+                : 'Cash on Delivery';
+
+            return `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Order Receipt - ${order.orderNumber}</title>
+                    <style>
+                        body {
+                            font-family: 'Arial', sans-serif;
+                            color: #333;
+                            margin: 0;
+                            padding: 20px;
+                            background: #f5f5f5;
+                        }
+                        .receipt-container {
+                            background: white;
+                            max-width: 800px;
+                            margin: 0 auto;
+                            padding: 40px;
+                            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                        }
+                        .header {
+                            text-align: center;
+                            margin-bottom: 30px;
+                            border-bottom: 3px solid #6366f1;
+                            padding-bottom: 20px;
+                        }
+                        .logo {
+                            font-size: 32px;
+                            font-weight: bold;
+                            color: #6366f1;
+                            margin-bottom: 10px;
+                        }
+                        .company-info {
+                            font-size: 12px;
+                            color: #666;
+                            line-height: 1.6;
+                        }
+                        .order-details {
+                            display: grid;
+                            grid-template-columns: 1fr 1fr;
+                            gap: 30px;
+                            margin-bottom: 30px;
+                        }
+                        .detail-section {
+                            margin-bottom: 20px;
+                        }
+                        .detail-section h3 {
+                            margin: 0 0 10px 0;
+                            color: #333;
+                            font-size: 14px;
+                            text-transform: uppercase;
+                            letter-spacing: 1px;
+                            border-bottom: 2px solid #6366f1;
+                            padding-bottom: 5px;
+                        }
+                        .detail-section p {
+                            margin: 5px 0;
+                            font-size: 13px;
+                            line-height: 1.6;
+                        }
+                        .items-section {
+                            grid-column: 1 / -1;
+                        }
+                        table {
+                            width: 100%;
+                            border-collapse: collapse;
+                            margin-bottom: 20px;
+                        }
+                        table th {
+                            background: #f0f0f0;
+                            padding: 12px 0;
+                            text-align: left;
+                            font-weight: bold;
+                            border-bottom: 2px solid #6366f1;
+                            font-size: 12px;
+                        }
+                        .summary {
+                            grid-column: 1 / -1;
+                            display: flex;
+                            justify-content: flex-end;
+                            padding: 20px 0;
+                            border-top: 2px solid #ddd;
+                        }
+                        .summary-table {
+                            width: 300px;
+                        }
+                        .summary-row {
+                            display: flex;
+                            justify-content: space-between;
+                            padding: 8px 0;
+                            font-size: 13px;
+                        }
+                        .summary-row.total {
+                            border-top: 2px solid #333;
+                            padding-top: 12px;
+                            font-weight: bold;
+                            font-size: 16px;
+                            color: #6366f1;
+                        }
+                        .footer {
+                            text-align: center;
+                            margin-top: 40px;
+                            padding-top: 20px;
+                            border-top: 1px solid #ddd;
+                            font-size: 11px;
+                            color: #999;
+                        }
+                        .thank-you {
+                            text-align: center;
+                            font-size: 14px;
+                            color: #6366f1;
+                            margin: 20px 0;
+                            font-weight: bold;
+                        }
+                        @media print {
+                            body {
+                                background: white;
+                            }
+                            .receipt-container {
+                                box-shadow: none;
+                                max-width: 100%;
+                            }
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="receipt-container">
+                        <div class="header">
+                            <div class="logo">🖥️ NEXUS</div>
+                            <div class="company-info">
+                                NEXUS Computing Inc.<br>
+                                E-mail: support@nexuscomputing.com<br>
+                                Phone: 1-800-NEXUS-PC (1-800-639-8772)<br>
+                                Web: www.nexuscomputing.com
+                            </div>
+                        </div>
+
+                        <h2 style="text-align: center; color: #333; margin-bottom: 30px;">ORDER RECEIPT</h2>
+
+                        <div class="order-details">
+                            <div class="detail-section">
+                                <h3>Order Information</h3>
+                                <p><strong>Order Number:</strong> ${order.orderNumber}</p>
+                                <p><strong>Order Date:</strong> ${new Date(order.orderDate).toLocaleDateString('en-US', {
+                                    year: 'numeric',
+                                    month: 'long',
+                                    day: 'numeric'
+                                })}</p>
+                                <p><strong>Payment Method:</strong> ${paymentInfo}</p>
+                            </div>
+
+                            <div class="detail-section">
+                                <h3>Billing To</h3>
+                                <p>${order.firstName} ${order.lastName}</p>
+                                <p>${order.email}</p>
+                                <p>${order.phone}</p>
+                            </div>
+
+                            <div class="detail-section" style="grid-column: 1 / -1;">
+                                <h3>Shipping Address</h3>
+                                <p>${order.address}<br>
+                                ${order.city}, ${order.state} ${order.zip}<br>
+                                ${order.country}</p>
+                            </div>
+
+                            <div class="items-section">
+                                <h3>Order Items</h3>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th style="text-align: center;">Quantity</th>
+                                            <th style="text-align: right;">Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        ${itemsHTML}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="summary">
+                                <div class="summary-table">
+                                    <div class="summary-row">
+                                        <span>Subtotal:</span>
+                                        <span>${formatMoney(order.subtotal)}</span>
+                                    </div>
+                                    <div class="summary-row">
+                                        <span>Shipping:</span>
+                                        <span>Free</span>
+                                    </div>
+                                    <div class="summary-row">
+                                        <span>Tax (10%):</span>
+                                        <span>${formatMoney(order.tax)}</span>
+                                    </div>
+                                    <div class="summary-row total">
+                                        <span>Total:</span>
+                                        <span>${formatMoney(order.total)}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="thank-you">
+                            ✓ Thank you for your order!
+                        </div>
+
+                        <div class="footer">
+                            <p>This receipt confirms your order. Please keep it for your records.</p>
+                            <p>For any questions or concerns, please contact us at support@nexuscomputing.com</p>
+                            <p style="margin-top: 20px;">Document generated on ${new Date().toLocaleDateString()} at ${new Date().toLocaleTimeString()}</p>
+                        </div>
+                    </div>
+                </body>
+                </html>
+            `;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', loadOrderDetails);
+        document.addEventListener('nexusCurrencyChanged', loadOrderDetails);
+    </script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

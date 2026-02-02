@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build Your PC - NEXUS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .builder-container { max-width: 1400px; margin: 0 auto; padding: 40px 20px; }
+        .builder-header { text-align: center; margin-bottom: 50px; }
+        .builder-header h1 { font-size: 3rem; margin-bottom: 16px; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .builder-layout { display: grid; grid-template-columns: 1fr 400px; gap: 30px; align-items: start; }
+        .components-section { display: flex; flex-direction: column; gap: 20px; }
+        .component-card { background: var(--glass); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 24px; transition: all 0.3s ease; }
+        .component-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+        .component-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .component-title { display: flex; align-items: center; gap: 12px; font-size: 1.3rem; font-weight: 600; }
+        .component-icon { width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+        .component-status { padding: 6px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 500; }
+        .component-status.selected { background: var(--success); color: white; }
+        .component-status.required { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .component-options { display: grid; gap: 12px; }
+        .component-option { background: rgba(255, 255, 255, 0.03); border: 2px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 16px; cursor: pointer; transition: all 0.3s ease; display: flex; justify-content: space-between; align-items: center; color: var(--light); }
+        .component-option:hover { background: rgba(255, 255, 255, 0.05); border-color: var(--primary); }
+        .component-option.selected { background: rgba(99, 102, 241, 0.1); border-color: var(--primary); box-shadow: 0 0 20px rgba(99, 102, 241, 0.3); }
+        .option-info { flex: 1; color: var(--light); }
+        .option-info h4 { font-size: 1.1rem; margin-bottom: 6px; color: var(--light); }
+        .option-specs { color: var(--gray); font-size: 0.9rem; }
+        .option-price { font-size: 1.3rem; font-weight: 700; color: var(--primary); margin-left: 12px; white-space: nowrap; }
+        .summary-card { background: var(--glass); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 24px; position: sticky; top: 20px; }
+        .summary-header { font-size: 1.5rem; font-weight: 600; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .summary-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .summary-item-name { font-size: 0.9rem; color: var(--gray); }
+        .summary-item-value { font-weight: 600; font-size: 0.95rem; }
+        .summary-item.empty .summary-item-value { color: #ef4444; font-size: 0.85rem; }
+        .summary-total { margin-top: 20px; padding-top: 20px; border-top: 2px solid rgba(255, 255, 255, 0.1); }
+        .total-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .total-label { font-size: 1.1rem; font-weight: 600; }
+        .total-price { font-size: 2rem; font-weight: 700; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .wattage-info { background: rgba(255, 193, 7, 0.1); border: 1px solid rgba(255, 193, 7, 0.3); border-radius: 8px; padding: 12px; margin-top: 12px; font-size: 0.85rem; }
+        .wattage-info.warning { background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.3); }
+        .wattage-info.good { background: rgba(34, 197, 94, 0.1); border-color: rgba(34, 197, 94, 0.3); }
+        .action-buttons { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+        .add-to-cart-btn { padding: 16px; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); border: none; border-radius: 12px; color: white; font-weight: 600; font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease; }
+        .add-to-cart-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4); }
+        .add-to-cart-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        .save-build-btn { padding: 14px; background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 12px; color: #22c55e; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
+        .save-build-btn:hover { background: rgba(34, 197, 94, 0.2); transform: translateY(-2px); }
+        .save-build-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        .reset-btn { padding: 12px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 12px; color: #ef4444; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
+        .reset-btn:hover { background: rgba(239, 68, 68, 0.2); }
+        .compatibility-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 500; margin-top: 12px; }
+        .compatibility-badge.compatible { background: rgba(34, 197, 94, 0.1); color: #22c55e; }
+        @media (max-width: 1024px) { .builder-layout { grid-template-columns: 1fr; } .summary-card { position: static; } }
+        .notification { position: fixed; top: 20px; right: 20px; background: var(--success); color: white; padding: 16px 24px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); display: flex; align-items: center; gap: 12px; z-index: 1000; animation: slideIn 0.3s ease; }
+        @keyframes slideIn { from { transform: translateX(400px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="index.html" class="logo" style="text-decoration: none;">
+                    <i class="fas fa-desktop"></i> NEXUS
+                </a>
+                
+                <nav class="nav-links">
+                    <a href="products.html">Products</a>
+                    <a href="features.html">Services</a>
+                    <a href="custom.html">Custom Builds</a>
+                    <a href="support.html">Support</a>
+                </nav>
+
+                <div class="nav-actions">
+                    <button class="icon-btn"><i class="fas fa-search"></i></button>
+                    <button class="icon-btn"><i class="fas fa-user"></i></button>
+                    <div class="cart-wrapper">
+                        <a href="cart.html" class="cart-btn" style="text-decoration: none; display: flex; align-items: center;"><i class="fas fa-shopping-bag"></i></a>
+                        <span class="cart-count">0</span>
+                    </div>
+                    <a href="build-your-pc.html" class="cta-btn" style="text-decoration: none; display: inline-block;">Build Your PC</a>
+                    <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- PC Builder -->
+    <section style="padding-top: 100px;">
+        <div class="builder-container">
+            <div class="builder-header">
+                <h1><i class="fas fa-tools"></i> Build Your Dream PC</h1>
+                <p style="color: var(--gray); font-size: 1.1rem;">Select components to create your perfect custom PC</p>
+            </div>
+
+            <div class="builder-layout">
+                <!-- Components Selection -->
+                <div class="components-section">
+                    <!-- CPU -->
+                    <div class="component-card" data-component="cpu">
+                        <div class="component-header">
+                            <div class="component-title">
+                                <div class="component-icon"><i class="fas fa-microchip"></i></div>
+                                <span>Processor (CPU)</span>
+                            </div>
+                            <span class="component-status required">Required</span>
+                        </div>
+                        <div class="component-options">
+                            <div class="component-option" data-id="cpu1" data-usd-price="329" data-wattage="125" data-socket="LGA1700" data-specs="14 Cores (6P+8E), 20 Threads, 5.3 GHz Boost">
+                                <div class="option-info">
+                                    <h4>Intel Core i5-14600K</h4>
+                                    <p class="option-specs">14 Cores (6P+8E), 20 Threads, 5.3 GHz Boost</p>
+                                </div>
+                                <div class="option-price" data-usd-price="329">$329</div>
+                            </div>
+                            <div class="component-option" data-id="cpu2" data-usd-price="429" data-wattage="181" data-socket="LGA1700" data-specs="20 Cores (8P+12E), 28 Threads, 5.6 GHz Boost">
+                                <div class="option-info">
+                                    <h4>Intel Core i7-14700K</h4>
+                                    <p class="option-specs">20 Cores (8P+12E), 28 Threads, 5.6 GHz Boost</p>
+                                </div>
+                                <div class="option-price" data-usd-price="429">$429</div>
+                            </div>
+                            <div class="component-option" data-id="cpu3" data-usd-price="589" data-wattage="253" data-socket="LGA1700" data-specs="24 Cores (8P+16E), 32 Threads, 6.0 GHz Boost">
+                                <div class="option-info">
+                                    <h4>Intel Core i9-14900K</h4>
+                                    <p class="option-specs">24 Cores (8P+16E), 32 Threads, 6.0 GHz Boost</p>
+                                </div>
+                                <div class="option-price" data-usd-price="589">$589</div>
+                            </div>
+                            <div class="component-option" data-id="cpu4" data-usd-price="399" data-wattage="120" data-socket="AM5" data-specs="8 Cores, 16 Threads, 5.0 GHz Boost, 3D V-Cache">
+                                <div class="option-info">
+                                    <h4>AMD Ryzen 7 7800X3D</h4>
+                                    <p class="option-specs">8 Cores, 16 Threads, 5.0 GHz Boost, 3D V-Cache</p>
+                                </div>
+                                <div class="option-price" data-usd-price="399">$399</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Motherboard -->
+                    <div class="component-card" data-component="motherboard">
+                        <div class="component-header">
+                            <div class="component-title">
+                                <div class="component-icon"><i class="fas fa-sitemap"></i></div>
+                                <span>Motherboard</span>
+                            </div>
+                            <span class="component-status required">Required</span>
+                        </div>
+                        <div class="component-options">
+                            <div class="component-option" data-id="mb1" data-usd-price="189" data-wattage="40" data-socket="LGA1700" data-ram-type="DDR5" data-case-size="ATX" data-specs="LGA1700, DDR5, PCIe 5.0, ATX">
+                                <div class="option-info">
+                                    <h4>ASUS TUF Z790-PLUS WIFI</h4>
+                                    <p class="option-specs">LGA1700, DDR5, PCIe 5.0, ATX</p>
+                                </div>
+                                <div class="option-price" data-usd-price="189">$189</div>
+                            </div>
+                            <div class="component-option" data-id="mb2" data-usd-price="159" data-wattage="35" data-socket="LGA1700" data-ram-type="DDR5" data-case-size="mATX" data-specs="LGA1700, DDR5, PCIe 4.0, mATX">
+                                <div class="option-info">
+                                    <h4>MSI PRO B760M-A WIFI</h4>
+                                    <p class="option-specs">LGA1700, DDR5, PCIe 4.0, mATX</p>
+                                </div>
+                                <div class="option-price" data-usd-price="159">$159</div>
+                            </div>
+                            <div class="component-option" data-id="mb3" data-usd-price="219" data-wattage="45" data-socket="AM5" data-ram-type="DDR5" data-case-size="ATX" data-specs="AM5, DDR5, PCIe 5.0, ATX">
+                                <div class="option-info">
+                                    <h4>Gigabyte B650 AORUS ELITE AX</h4>
+                                    <p class="option-specs">AM5, DDR5, PCIe 5.0, ATX</p>
+                                </div>
+                                <div class="option-price" data-usd-price="219">$219</div>
+                            </div>
+                            <div class="component-option" data-id="mb4" data-usd-price="199" data-wattage="40" data-socket="AM5" data-ram-type="DDR5" data-case-size="mATX" data-specs="AM5, DDR5, PCIe 4.0, mATX">
+                                <div class="option-info">
+                                    <h4>ASRock B650M Pro RS</h4>
+                                    <p class="option-specs">AM5, DDR5, PCIe 4.0, mATX</p>
+                                </div>
+                                <div class="option-price" data-usd-price="199">$199</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GPU -->
+                    <div class="component-card" data-component="gpu">
+                        <div class="component-header">
+                            <div class="component-title">
+                                <div class="component-icon"><i class="fas fa-tv"></i></div>
+                                <span>Graphics Card (GPU)</span>
+                            </div>
+                            <span class="component-status required">Required</span>
+                        </div>
+                        <div class="component-options">
+                            <div class="component-option" data-id="gpu1" data-usd-price="599" data-wattage="220" data-specs="12GB GDDR6X, Ray Tracing, DLSS 3.5">
+                                <div class="option-info">
+                                    <h4>NVIDIA RTX 4070 SUPER</h4>
+                                    <p class="option-specs">12GB GDDR6X, Ray Tracing, DLSS 3.5</p>
+                                </div>
+                                <div class="option-price" data-usd-price="599">$599</div>
+                            </div>
+                            <div class="component-option" data-id="gpu2" data-usd-price="799" data-wattage="285" data-specs="16GB GDDR6X, Enhanced RT Cores">
+                                <div class="option-info">
+                                    <h4>NVIDIA RTX 4070 Ti SUPER</h4>
+                                    <p class="option-specs">16GB GDDR6X, Enhanced RT Cores</p>
+                                </div>
+                                <div class="option-price" data-usd-price="799">$799</div>
+                            </div>
+                            <div class="component-option" data-id="gpu3" data-usd-price="999" data-wattage="320" data-specs="16GB GDDR6X, Creator & 4K Gaming">
+                                <div class="option-info">
+                                    <h4>NVIDIA RTX 4080 SUPER</h4>
+                                    <p class="option-specs">16GB GDDR6X, Creator & 4K Gaming</p>
+                                </div>
+                                <div class="option-price" data-usd-price="999">$999</div>
+                            </div>
+                            <div class="component-option" data-id="gpu4" data-usd-price="699" data-wattage="300" data-specs="20GB GDDR6, FSR 3.0, DisplayPort 2.1">
+                                <div class="option-info">
+                                    <h4>AMD Radeon RX 7900 XT</h4>
+                                    <p class="option-specs">20GB GDDR6, FSR 3.0, DisplayPort 2.1</p>
+                                </div>
+                                <div class="option-price" data-usd-price="699">$699</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RAM -->
+                    <div class="component-card" data-component="ram">
+                        <div class="component-header">
+                            <div class="component-title">
+                                <div class="component-icon"><i class="fas fa-memory"></i></div>
+                                <span>Memory (RAM)</span>
+                            </div>
+                            <span class="component-status required">Required</span>
+                        </div>
+                        <div class="component-options">
+                            <div class="component-option" data-id="ram1" data-usd-price="89" data-wattage="10" data-ram-type="DDR5" data-specs="16GB (2x8GB) DDR5-5600, CL36">
+                                <div class="option-info">
+                                    <h4>16GB DDR5 5600MHz (2x8GB)</h4>
+                                    <p class="option-specs">CL36, Aluminum Heat Spreader</p>
+                                </div>
+                                <div class="option-price" data-usd-price="89">$89</div>
+                            </div>
+                            <div class="component-option" data-id="ram2" data-usd-price="159" data-wattage="15" data-ram-type="DDR5" data-specs="32GB (2x16GB) DDR5-6000, CL30">
+                                <div class="option-info">
+                                    <h4>32GB DDR5 6000MHz (2x16GB)</h4>
+                                    <p class="option-specs">CL30, Low-Latency EXPO/XMP</p>
+                                </div>
+                                <div class="option-price" data-usd-price="159">$159</div>
+                            </div>
+                            <div class="component-option" data-id="ram3" data-usd-price="299" data-wattage="20" data-ram-type="DDR5" data-specs="64GB (2x32GB) DDR5-6400, CL32">
+                                <div class="option-info">
+                                    <h4>64GB DDR5 6400MHz (2x32GB)</h4>
+                                    <p class="option-specs">CL32, Creator & Workstation</p>
+                                </div>
+                                <div class="option-price" data-usd-price="299">$299</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Storage -->
+                    <div class="component-card" data-component="storage">
+                        <div class="component-header">
+                            <div class="component-title">
+                                <div class="component-icon"><i class="fas fa-hdd"></i></div>
+                                <span>Storage (SSD)</span>
+                            </div>
+                            <span class="component-status required">Required</span>
+                        </div>
+                        <div class="component-options">
+                            <div class="component-option" data-id="storage1" data-usd-price="89" data-wattage="5" data-specs="1TB NVMe SSD, PCIe 4.0, 7000MB/s">
+                                <div class="option-info">
+                                    <h4>1TB NVMe SSD</h4>
+                                    <p class="option-specs">PCIe 4.0, 7000MB/s Read</p>
+                                </div>
+                                <div class="option-price" data-usd-price="89">$89</div>
+                            </div>
+                            <div class="component-option" data-id="storage2" data-usd-price="159" data-wattage="7" data-specs="2TB NVMe SSD, PCIe 4.0, 7400MB/s">
+                                <div class="option-info">
+                                    <h4>2TB NVMe SSD</h4>
+                                    <p class="option-specs">PCIe 4.0, 7400MB/s Read</p>
+                                </div>
+                                <div class="option-price" data-usd-price="159">$159</div>
+                            </div>
+                            <div class="component-option" data-id="storage3" data-usd-price="289" data-wattage="10" data-specs="4TB NVMe SSD, PCIe 4.0, 7400MB/s">
+                                <div class="option-info">
+                                    <h4>4TB NVMe SSD</h4>
+                                    <p class="option-specs">PCIe 4.0, 7400MB/s Read</p>
+                                </div>
+                                <div class="option-price" data-usd-price="289">$289</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PSU -->
+                    <div class="component-card" data-component="psu">
+                        <div class="component-header">
+                            <div class="component-title">
+                                <div class="component-icon"><i class="fas fa-plug"></i></div>
+                                <span>Power Supply (PSU)</span>
+                            </div>
+                            <span class="component-status required">Required</span>
+                        </div>
+                        <div class="component-options">
+                            <div class="component-option" data-id="psu1" data-usd-price="119" data-wattage="0" data-psu-wattage="750" data-specs="750W 80+ Gold, ATX 3.0">
+                                <div class="option-info">
+                                    <h4>750W 80+ Gold</h4>
+                                    <p class="option-specs">Fully Modular, ATX 3.0 Ready</p>
+                                </div>
+                                <div class="option-price" data-usd-price="119">$119</div>
+                            </div>
+                            <div class="component-option" data-id="psu2" data-usd-price="169" data-wattage="0" data-psu-wattage="850" data-specs="850W 80+ Gold, PCIe 5.0">
+                                <div class="option-info">
+                                    <h4>850W 80+ Gold</h4>
+                                    <p class="option-specs">Fully Modular, PCIe 5.0 12VHPWR</p>
+                                </div>
+                                <div class="option-price" data-usd-price="169">$169</div>
+                            </div>
+                            <div class="component-option" data-id="psu3" data-usd-price="239" data-wattage="0" data-psu-wattage="1000" data-specs="1000W 80+ Platinum, Fully Modular">
+                                <div class="option-info">
+                                    <h4>1000W 80+ Platinum</h4>
+                                    <p class="option-specs">Fully Modular, Ultra Quiet</p>
+                                </div>
+                                <div class="option-price" data-usd-price="239">$239</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Case -->
+                    <div class="component-card" data-component="case">
+                        <div class="component-header">
+                            <div class="component-title">
+                                <div class="component-icon"><i class="fas fa-box"></i></div>
+                                <span>PC Case</span>
+                            </div>
+                            <span class="component-status required">Required</span>
+                        </div>
+                        <div class="component-options">
+                            <div class="component-option" data-id="case1" data-usd-price="109" data-wattage="0" data-case-size="ATX" data-specs="ATX Mid Tower, Airflow Mesh, 3 Fans">
+                                <div class="option-info">
+                                    <h4>Fractal Pop Air - Black</h4>
+                                    <p class="option-specs">ATX Mid Tower, Airflow Mesh, 3 Fans</p>
+                                </div>
+                                <div class="option-price" data-usd-price="109">$109</div>
+                            </div>
+                            <div class="component-option" data-id="case2" data-usd-price="139" data-wattage="0" data-case-size="ATX" data-specs="ATX Mid Tower, Dual-Chamber, 3 Fans">
+                                <div class="option-info">
+                                    <h4>NZXT H6 Flow - White</h4>
+                                    <p class="option-specs">Dual-Chamber, Panoramic Glass, 3 Fans</p>
+                                </div>
+                                <div class="option-price" data-usd-price="139">$139</div>
+                            </div>
+                            <div class="component-option" data-id="case3" data-usd-price="169" data-wattage="0" data-case-size="ATX" data-specs="Full Tower, Tempered Glass, Premium Build">
+                                <div class="option-info">
+                                    <h4>Lian Li O11 Dynamic EVO</h4>
+                                    <p class="option-specs">Full Tower, Tempered Glass, Premium Build</p>
+                                </div>
+                                <div class="option-price" data-usd-price="169">$169</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cooling -->
+                    <div class="component-card" data-component="cooling">
+                        <div class="component-header">
+                            <div class="component-title">
+                                <div class="component-icon"><i class="fas fa-fan"></i></div>
+                                <span>CPU Cooling</span>
+                            </div>
+                            <span class="component-status required">Required</span>
+                        </div>
+                        <div class="component-options">
+                            <div class="component-option" data-id="cooling1" data-usd-price="59" data-wattage="5" data-specs="Air Cooler, Quiet 120mm Fan">
+                                <div class="option-info">
+                                    <h4>Noctua NH-U12S redux</h4>
+                                    <p class="option-specs">Air Cooler, Quiet 120mm Fan</p>
+                                </div>
+                                <div class="option-price" data-usd-price="59">$59</div>
+                            </div>
+                            <div class="component-option" data-id="cooling2" data-usd-price="129" data-wattage="10" data-specs="240mm AIO, RGB Pump & Fans">
+                                <div class="option-info">
+                                    <h4>240mm AIO Liquid Cooler</h4>
+                                    <p class="option-specs">RGB Pump & Fans, 250W TDP</p>
+                                </div>
+                                <div class="option-price" data-usd-price="129">$129</div>
+                            </div>
+                            <div class="component-option" data-id="cooling3" data-usd-price="189" data-wattage="15" data-specs="360mm AIO, Premium RGB">
+                                <div class="option-info">
+                                    <h4>360mm AIO Liquid Cooler</h4>
+                                    <p class="option-specs">Premium RGB, 350W TDP</p>
+                                </div>
+                                <div class="option-price" data-usd-price="189">$189</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Build Summary -->
+                <div class="summary-card">
+                    <div class="summary-header">
+                        <i class="fas fa-clipboard-list"></i> Build Summary
+                    </div>
+
+                    <div id="summary-items">
+                        <div class="summary-item empty" data-component="cpu">
+                            <span class="summary-item-name">CPU</span>
+                            <span class="summary-item-value">Not Selected</span>
+                        </div>
+                        <div class="summary-item empty" data-component="motherboard">
+                            <span class="summary-item-name">Motherboard</span>
+                            <span class="summary-item-value">Not Selected</span>
+                        </div>
+                        <div class="summary-item empty" data-component="gpu">
+                            <span class="summary-item-name">GPU</span>
+                            <span class="summary-item-value">Not Selected</span>
+                        </div>
+                        <div class="summary-item empty" data-component="ram">
+                            <span class="summary-item-name">RAM</span>
+                            <span class="summary-item-value">Not Selected</span>
+                        </div>
+                        <div class="summary-item empty" data-component="storage">
+                            <span class="summary-item-name">Storage</span>
+                            <span class="summary-item-value">Not Selected</span>
+                        </div>
+                        <div class="summary-item empty" data-component="psu">
+                            <span class="summary-item-name">PSU</span>
+                            <span class="summary-item-value">Not Selected</span>
+                        </div>
+                        <div class="summary-item empty" data-component="case">
+                            <span class="summary-item-name">Case</span>
+                            <span class="summary-item-value">Not Selected</span>
+                        </div>
+                        <div class="summary-item empty" data-component="cooling">
+                            <span class="summary-item-name">Cooling</span>
+                            <span class="summary-item-value">Not Selected</span>
+                        </div>
+                    </div>
+
+                    <div id="wattage-indicator"></div>
+                    <div id="compatibility-messages" style="margin-top: 12px;"></div>
+
+                    <div class="summary-total">
+                        <div class="total-row">
+                            <span class="total-label">Total Price</span>
+                            <span class="total-price" id="total-price">$0</span>
+                        </div>
+                        <div class="compatibility-badge compatible" id="compatibility-status">
+                            <i class="fas fa-check-circle"></i> Ready to Build
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="add-to-cart-btn" id="add-to-cart-btn" disabled>
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                        <button class="save-build-btn" id="save-build-btn" disabled>
+                            <i class="fas fa-save"></i> Save Build
+                        </button>
+                        <button class="reset-btn" id="reset-btn">
+                            <i class="fas fa-redo"></i> Reset Configuration
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">
+                        <i class="fas fa-desktop"></i> NEXUS
+                    </div>
+                    <p>Building tomorrow's technology with cutting-edge hardware and unparalleled service.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Products</h4>
+                    <a href="#">Gaming PCs</a>
+                    <a href="#">Workstations</a>
+                    <a href="#">Laptops</a>
+                    <a href="#">Components</a>
+                    <a href="#">Peripherals</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <a href="#">Custom Builds</a>
+                    <a href="#">PC Repair</a>
+                    <a href="#">Performance Tuning</a>
+                    <a href="#">Data Recovery</a>
+                    <a href="#">Consultation</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="#">About Us</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Partners</a>
+                    <a href="#">Support Center</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 NEXUS Computing. All rights reserved.</p>
+                <p>Designed with <i class="fas fa-heart"></i> for PC enthusiasts</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/search.js"></script>
+    <script src="js/currency.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        const buildConfig = {
+            cpu: null,
+            motherboard: null,
+            gpu: null,
+            ram: null,
+            storage: null,
+            psu: null,
+            case: null,
+            cooling: null
+        };
+
+        function formatMoney(usd) {
+            return window.nexusCurrency && window.nexusCurrency.format
+                ? window.nexusCurrency.format(usd)
+                : `$${usd.toFixed(2)}`;
+        }
+
+        function updateSummary() {
+            const summaryItems = document.getElementById('summary-items');
+            let total = 0;
+            let totalWattage = 0;
+            let allSelected = true;
+
+            Object.keys(buildConfig).forEach(component => {
+                const summaryItem = summaryItems.querySelector(`.summary-item[data-component="${component}"]`);
+                if (buildConfig[component]) {
+                    const item = buildConfig[component];
+                    total += item.priceUSD;
+                    totalWattage += item.wattage;
+                    if (summaryItem) {
+                        summaryItem.classList.remove('empty');
+                        summaryItem.querySelector('.summary-item-value').textContent = `${item.name} — ${item.specs} • ${formatMoney(item.priceUSD)}`;
+                    }
+                } else {
+                    allSelected = false;
+                    if (summaryItem) {
+                        summaryItem.classList.add('empty');
+                        summaryItem.querySelector('.summary-item-value').textContent = 'Not Selected';
+                    }
+                }
+            });
+
+            document.getElementById('total-price').textContent = formatMoney(total);
+            updateWattageIndicator(totalWattage);
+            updateCompatibilityMessages(totalWattage);
+
+            const compatibilityStatus = document.getElementById('compatibility-status');
+            const addToCartBtn = document.getElementById('add-to-cart-btn');
+            const saveBuildBtn = document.getElementById('save-build-btn');
+            if (allSelected) {
+                compatibilityStatus.innerHTML = '<i class="fas fa-check-circle"></i> Build Complete';
+                compatibilityStatus.classList.add('compatible');
+                addToCartBtn.disabled = false;
+                saveBuildBtn.disabled = false;
+            } else {
+                compatibilityStatus.innerHTML = '<i class="fas fa-exclamation-circle"></i> Select All Components';
+                compatibilityStatus.classList.remove('compatible');
+                addToCartBtn.disabled = true;
+                saveBuildBtn.disabled = true;
+            }
+        }
+
+        function updateWattageIndicator(totalWattage) {
+            const wattageIndicator = document.getElementById('wattage-indicator');
+            if (!buildConfig.psu) {
+                wattageIndicator.innerHTML = '';
+                return;
+            }
+            const psuWattage = buildConfig.psu.psuWattage;
+            const requiredWattage = totalWattage + 100;
+            let wattageClass = 'good';
+            let wattageText = `Power: ${totalWattage}W / ${psuWattage}W - Excellent headroom`;
+            if (requiredWattage > psuWattage) {
+                wattageClass = 'warning';
+                wattageText = `⚠ Warning: System needs ${totalWattage}W, PSU provides ${psuWattage}W`;
+            } else if (psuWattage - totalWattage < 150) {
+                wattageClass = '';
+                wattageText = `Power: ${totalWattage}W / ${psuWattage}W - Adequate`;
+            }
+            wattageIndicator.innerHTML = `<div class="wattage-info ${wattageClass}"><i class="fas fa-bolt"></i> ${wattageText}</div>`;
+        }
+
+        function updateCompatibilityMessages(totalWattage) {
+            const messagesEl = document.getElementById('compatibility-messages');
+            if (!messagesEl) return;
+
+            const warnings = [];
+            const suggestions = [];
+
+            const cpu = buildConfig.cpu;
+            const motherboard = buildConfig.motherboard;
+            const ram = buildConfig.ram;
+            const psu = buildConfig.psu;
+            const pcCase = buildConfig.case;
+
+            if (cpu && motherboard && cpu.socket && motherboard.socket && cpu.socket !== motherboard.socket) {
+                warnings.push(`CPU socket (${cpu.socket}) is incompatible with motherboard socket (${motherboard.socket}).`);
+                const suggestedBoards = Array.from(document.querySelectorAll('[data-component="motherboard"] .component-option'))
+                    .filter(opt => opt.dataset.socket === cpu.socket)
+                    .map(opt => opt.querySelector('h4').textContent);
+                if (suggestedBoards.length) {
+                    suggestions.push(`Suggested motherboard(s): ${suggestedBoards.join(', ')}`);
+                }
+            }
+
+            if (ram && motherboard && ram.ramType && motherboard.ramType && ram.ramType !== motherboard.ramType) {
+                warnings.push(`RAM type (${ram.ramType}) does not match motherboard (${motherboard.ramType}).`);
+                const suggestedRam = Array.from(document.querySelectorAll('[data-component="ram"] .component-option'))
+                    .filter(opt => opt.dataset.ramType === motherboard.ramType)
+                    .map(opt => opt.querySelector('h4').textContent);
+                if (suggestedRam.length) {
+                    suggestions.push(`Suggested RAM: ${suggestedRam.join(', ')}`);
+                }
+            }
+
+            if (pcCase && motherboard && pcCase.caseSize && motherboard.caseSize && pcCase.caseSize !== motherboard.caseSize) {
+                warnings.push(`Case size (${pcCase.caseSize}) may not fit motherboard (${motherboard.caseSize}).`);
+                const suggestedCases = Array.from(document.querySelectorAll('[data-component="case"] .component-option'))
+                    .filter(opt => opt.dataset.caseSize === motherboard.caseSize)
+                    .map(opt => opt.querySelector('h4').textContent);
+                if (suggestedCases.length) {
+                    suggestions.push(`Suggested case(s): ${suggestedCases.join(', ')}`);
+                }
+            }
+
+            if (psu && psu.psuWattage) {
+                const requiredWattage = totalWattage + 100;
+                if (requiredWattage > psu.psuWattage) {
+                    warnings.push(`PSU wattage (${psu.psuWattage}W) is below recommended ${requiredWattage}W.`);
+                    const suggestedPsu = Array.from(document.querySelectorAll('[data-component="psu"] .component-option'))
+                        .filter(opt => parseFloat(opt.dataset.psuWattage || '0') >= requiredWattage)
+                        .map(opt => opt.querySelector('h4').textContent);
+                    if (suggestedPsu.length) {
+                        suggestions.push(`Suggested PSU(s): ${suggestedPsu.join(', ')}`);
+                    }
+                }
+            }
+
+            if (!warnings.length && !suggestions.length) {
+                messagesEl.innerHTML = '<div class="compatibility-badge compatible"><i class="fas fa-check-circle"></i> All selected parts are compatible so far.</div>';
+                return;
+            }
+
+            const warningHtml = warnings.map(msg => `
+                <div class="wattage-info warning" style="margin-bottom: 8px;">
+                    <i class="fas fa-exclamation-triangle"></i> ${msg}
+                </div>
+            `).join('');
+
+            const suggestionHtml = suggestions.length ? `
+                <div class="wattage-info good">
+                    <i class="fas fa-lightbulb"></i> ${suggestions.join(' | ')}
+                </div>
+            ` : '';
+
+            messagesEl.innerHTML = warningHtml + suggestionHtml;
+        }
+
+        function handleOptionClick(option) {
+            const componentCard = option.closest('.component-card');
+            const componentType = componentCard.dataset.component;
+
+            componentCard.querySelectorAll('.component-option').forEach(opt => opt.classList.remove('selected'));
+            option.classList.add('selected');
+
+            buildConfig[componentType] = {
+                id: option.dataset.id,
+                name: option.querySelector('h4').textContent,
+                specs: option.dataset.specs || option.querySelector('.option-specs')?.textContent || '',
+                priceUSD: parseFloat(option.dataset.usdPrice || 0),
+                wattage: parseFloat(option.dataset.wattage || 0),
+                psuWattage: parseFloat(option.dataset.psuWattage || 0),
+                socket: option.dataset.socket || null,
+                ramType: option.dataset.ramType || null,
+                caseSize: option.dataset.caseSize || null,
+                category: componentType
+            };
+
+            const statusBadge = componentCard.querySelector('.component-status');
+            statusBadge.textContent = 'Selected';
+            statusBadge.classList.remove('required');
+            statusBadge.classList.add('selected');
+
+            updateSummary();
+        }
+
+        document.querySelectorAll('.component-option').forEach(option => {
+            option.addEventListener('click', () => handleOptionClick(option));
+        });
+
+        document.getElementById('add-to-cart-btn').addEventListener('click', function() {
+            const buildName = `Custom PC Build - ${new Date().toLocaleDateString()}`;
+            let buildSpecs = [];
+            let totalPrice = 0;
+            Object.keys(buildConfig).forEach(component => {
+                if (buildConfig[component]) {
+                    buildSpecs.push(`${buildConfig[component].name} (${buildConfig[component].specs})`);
+                    totalPrice += buildConfig[component].priceUSD;
+                }
+            });
+
+            const customBuild = {
+                id: 'custom-' + Date.now(),
+                name: buildName,
+                specs: buildSpecs.join(', '),
+                price: totalPrice,
+                image: 'https://via.placeholder.com/400x300?text=Custom+PC+Build'
+            };
+
+            cart.addItem(customBuild);
+            showNotification(`Custom PC Build added to cart! Total: ${formatMoney(totalPrice)}`);
+        });
+
+        document.getElementById('save-build-btn').addEventListener('click', function() {
+            if (!auth.isLoggedIn()) {
+                if (confirm('You need to login to save builds. Would you like to login now?')) {
+                    window.location.href = 'login.html';
+                }
+                return;
+            }
+
+            const buildName = prompt('Enter a name for your build:', 'My Custom PC Build');
+            if (!buildName) return;
+
+            let totalPrice = 0;
+            const components = {};
+            Object.keys(buildConfig).forEach(component => {
+                if (buildConfig[component]) {
+                    components[component] = buildConfig[component];
+                    totalPrice += buildConfig[component].priceUSD;
+                }
+            });
+
+            const result = auth.saveBuild({
+                name: buildName,
+                components: components,
+                totalPrice: totalPrice,
+                currency: currencyConverter.currentCurrency
+            });
+
+            if (result.success) {
+                showNotification(`Build "${buildName}" saved successfully!`);
+            } else {
+                alert(result.message);
+            }
+        });
+
+        document.getElementById('reset-btn').addEventListener('click', function() {
+            if (confirm('Are you sure you want to reset your configuration?')) {
+                document.querySelectorAll('.component-option').forEach(option => option.classList.remove('selected'));
+                Object.keys(buildConfig).forEach(key => { buildConfig[key] = null; });
+                document.querySelectorAll('.component-status').forEach(badge => {
+                    badge.textContent = 'Required';
+                    badge.classList.remove('selected');
+                    badge.classList.add('required');
+                });
+                updateSummary();
+            }
+        });
+
+        // Load build if coming from dashboard
+        window.addEventListener('DOMContentLoaded', function() {
+            const loadBuild = localStorage.getItem('load_build');
+            if (loadBuild) {
+                localStorage.removeItem('load_build');
+                const build = JSON.parse(loadBuild);
+                
+                // Load components
+                Object.keys(build.components).forEach(componentType => {
+                    const component = build.components[componentType];
+                    const option = document.querySelector(`[data-component="${componentType}"][data-name="${component.name}"]`);
+                    if (option) {
+                        handleOptionClick(option);
+                    }
+                });
+
+                showNotification(`Build "${build.name}" loaded successfully!`);
+            }
+        });
+
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+            document.body.appendChild(notification);
+            setTimeout(() => notification.remove(), 3000);
+        }
+
+        document.addEventListener('DOMContentLoaded', updateSummary);
+        document.addEventListener('nexusCurrencyChanged', updateSummary);
+    </script>
+</body>
+</html>

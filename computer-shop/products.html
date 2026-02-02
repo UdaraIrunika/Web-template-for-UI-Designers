@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products | NEXUS | Next-Gen Computing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-microchip logo-icon"></i>
+                NEXUS
+            </a>
+
+            <nav class="nav-links">
+                <a href="products.html">Products</a>
+                <a href="features.html">Services</a>
+                <a href="custom.html">Custom Builds</a>
+                <a href="support.html">Support</a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+                <div class="auth-buttons"></div>
+                <div class="cart-wrapper">
+                    <a href="cart.html" class="cart-btn" style="text-decoration: none; display: flex; align-items: center;"><i class="fas fa-shopping-bag"></i></a>
+                    <span class="cart-count">0</span>
+                </div>
+                <a href="build-your-pc.html" class="cta-btn" style="text-decoration: none; display: inline-block;">Build Your PC</a>
+                <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" style="padding: 140px 0 80px;">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div style="max-width: 800px;">
+                <h1 style="font-size: 3rem;">Our <span>Products</span></h1>
+                <p style="font-size: 1.2rem; color: var(--gray); margin-top: 20px;">Explore our complete range of gaming PCs, workstations, laptops, and premium components. Each product is carefully selected and tested for exceptional performance.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Grid Section -->
+    <section class="products">
+        <div class="container">
+            <div class="products-filter">
+                <button class="filter-btn active">All Products</button>
+                <button class="filter-btn">Gaming PCs</button>
+                <button class="filter-btn">Workstations</button>
+                <button class="filter-btn">Laptops</button>
+                <button class="filter-btn">Components</button>
+            </div>
+            
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-badge">BEST SELLER</div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Apex Gaming PC">
+                    </div>
+                    <div class="product-content">
+                        <div class="product-category">Gaming</div>
+                        <h3 class="product-title">Apex RTX 4090</h3>
+                        <p class="product-description">Ultimate gaming performance with liquid cooling, 32GB DDR5, and 2TB NVMe storage.</p>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="old-price" data-usd-price="3499">$3,499</span>
+                                <span class="current-price" data-usd-price="2999">$2,999</span>
+                            </div>
+                            <button class="add-to-cart">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-badge">NEW</div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Creator Pro Laptop">
+                    </div>
+                    <div class="product-content">
+                        <div class="product-category">Laptop</div>
+                        <h3 class="product-title">Creator Pro X</h3>
+                        <p class="product-description">16" OLED, RTX 4080, 64GB RAM - perfect for content creators and developers.</p>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="old-price" data-usd-price="3199">$3,199</span>
+                                <span class="current-price" data-usd-price="2799">$2,799</span>
+                            </div>
+                            <button class="add-to-cart">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Silent Workstation">
+                    </div>
+                    <div class="product-content">
+                        <div class="product-category">Workstation</div>
+                        <h3 class="product-title">Silent Pro</h3>
+                        <p class="product-description">Whisper-quiet workstation with Threadripper PRO, ideal for 3D rendering and simulations.</p>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="current-price" data-usd-price="4299">$4,299</span>
+                            </div>
+                            <button class="add-to-cart">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1587829191301-7b3e3e37e9e0?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Budget Gaming">
+                    </div>
+                    <div class="product-content">
+                        <div class="product-category">Gaming</div>
+                        <h3 class="product-title">Nexus Value</h3>
+                        <p class="product-description">Excellent entry-level gaming system with RTX 4070, 16GB RAM, and solid-state drive.</p>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="current-price" data-usd-price="1299">$1,299</span>
+                            </div>
+                            <button class="add-to-cart">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Ultra Gaming">
+                    </div>
+                    <div class="product-content">
+                        <div class="product-category">Gaming</div>
+                        <h3 class="product-title">Ultra Beast</h3>
+                        <p class="product-description">Top-tier gaming beast with dual RTX 4090s, 128GB DDR5 RAM, and custom loop cooling.</p>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="current-price" data-usd-price="5999">$5,999</span>
+                            </div>
+                            <button class="add-to-cart">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1517694712644-4961a21c6c39?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Professional Workstation">
+                    </div>
+                    <div class="product-content">
+                        <div class="product-category">Workstation</div>
+                        <h3 class="product-title">Professional Edge</h3>
+                        <p class="product-description">Enterprise-grade workstation with NVIDIA RTX A6000 and dual XEON processors for demanding workflows.</p>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="current-price" data-usd-price="6499">$6,499</span>
+                            </div>
+                            <button class="add-to-cart">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <a href="index.html" class="logo" style="font-size: 1.8rem; margin-bottom: 20px; display: inline-block;">NEXUS</a>
+                    <p style="color: var(--gray); margin-bottom: 24px;">Redefining computing excellence with cutting-edge technology and unparalleled service.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Products</h3>
+                    <ul class="footer-links">
+                        <li><a href="products.html">Gaming PCs</a></li>
+                        <li><a href="products.html">Workstations</a></li>
+                        <li><a href="products.html">Laptops</a></li>
+                        <li><a href="products.html">Components</a></li>
+                        <li><a href="products.html">Peripherals</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="custom.html">Custom Builds</a></li>
+                        <li><a href="features.html">PC Repair</a></li>
+                        <li><a href="features.html">Performance Tuning</a></li>
+                        <li><a href="features.html">Data Recovery</a></li>
+                        <li><a href="features.html">Consultation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="support.html">Support Center</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 NEXUS Computing. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/search.js"></script>
+    <script src="/js/currency.js"></script>
+    <script src="/js/cart.js"></script>
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Product filter
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                console.log(`Filtering by: ${this.textContent}`);
+            });
+        });
+
+        // Add to cart functionality
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        const cartCount = document.querySelector('.cart-count');
+        let cartItems = 3;
+        
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const productCard = this.closest('.product-card');
+                const productTitle = productCard.querySelector('.product-title').textContent;
+                const productPrice = productCard.querySelector('.product-price').textContent;
+                
+                this.style.background = 'linear-gradient(90deg, var(--primary), var(--secondary))';
+                this.style.borderColor = 'transparent';
+                
+                setTimeout(() => {
+                    this.style.background = '';
+                    this.style.borderColor = '';
+                }, 300);
+                
+                cartItems++;
+                cartCount.textContent = cartItems;
+                cartCount.style.animation = 'none';
+                setTimeout(() => {
+                    cartCount.style.animation = 'float 0.5s ease';
+                }, 10);
+                
+                console.log(`Added ${productTitle} to cart - ${productPrice}`);
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.width = '100%';
+                navLinks.style.backgroundColor = 'rgba(15, 23, 42, 0.98)';
+                navLinks.style.backdropFilter = 'blur(10px)';
+                navLinks.style.padding = '30px';
+                navLinks.style.gap = '20px';
+                navLinks.style.borderTop = '1px solid rgba(255, 255, 255, 0.05)';
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    
+                    if (window.innerWidth <= 768) {
+                        navLinks.style.display = 'none';
+                    }
+                }
+            });
+        });
+    </script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

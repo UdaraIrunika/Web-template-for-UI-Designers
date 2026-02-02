@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | NEXUS | Next-Gen Computing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .checkout-container {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .checkout-form {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+        }
+
+        .form-section {
+            margin-bottom: 40px;
+        }
+
+        .form-section h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .form-section h3 i {
+            color: var(--primary);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-row.full {
+            grid-template-columns: 1fr;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--light);
+        }
+
+        .form-group input,
+        .form-group select {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: white;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .form-group input::placeholder {
+            color: var(--gray);
+        }
+
+        .payment-methods {
+            display: grid;
+            gap: 16px;
+        }
+
+        .payment-option {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .payment-option input[type="radio"] {
+            display: none;
+        }
+
+        .payment-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.2s;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .payment-option input[type="radio"]:checked + .payment-card {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.15);
+        }
+
+        .payment-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        .payment-info {
+            flex: 1;
+        }
+
+        .payment-name {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .payment-description {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .bank-details {
+            display: none;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            font-size: 0.95rem;
+        }
+
+        .bank-details.active {
+            display: block;
+        }
+
+        .bank-details h4 {
+            margin-bottom: 12px;
+            color: var(--primary);
+        }
+
+        .bank-detail-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .bank-detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .order-summary {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 24px;
+            height: fit-content;
+            position: sticky;
+            top: 120px;
+        }
+
+        .summary-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            color: var(--gray);
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .summary-row.total {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 16px;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .place-order-btn {
+            width: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 14px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            margin-top: 24px;
+            transition: all 0.3s;
+        }
+
+        .place-order-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .place-order-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 768px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .order-summary {
+                position: static;
+            }
+
+            .checkout-form {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-microchip logo-icon"></i>
+                NEXUS
+            </a>
+
+            <nav class="nav-links">
+                <a href="products.html">Products</a>
+                <a href="features.html">Services</a>
+                <a href="custom.html">Custom Builds</a>
+                <a href="support.html">Support</a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+                <div class="auth-buttons"></div>
+                <div class="cart-wrapper">
+                    <a href="cart.html" class="cart-btn" style="text-decoration: none; display: flex; align-items: center;"><i class="fas fa-shopping-bag"></i></a>
+                    <span class="cart-count">0</span>
+                </div>
+                <a href="build-your-pc.html" class="cta-btn" style="text-decoration: none; display: inline-block;">Build Your PC</a>
+                <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" style="padding: 140px 0 80px;">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div style="max-width: 800px;">
+                <h1 style="font-size: 3rem;">Secure <span>Checkout</span></h1>
+                <p style="font-size: 1.2rem; color: var(--gray); margin-top: 20px;">Complete your purchase with our safe and secure payment options.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Checkout Section -->
+    <section style="padding: 60px 0 100px;">
+        <div class="container">
+            <form id="checkout-form" class="checkout-container" onsubmit="handleCheckout(event)">
+                <div>
+                    <!-- Billing Information -->
+                    <div class="checkout-form">
+                        <div class="form-section">
+                            <h3><i class="fas fa-user"></i> Billing Information</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="firstName">First Name</label>
+                                    <input type="text" id="firstName" name="firstName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName">Last Name</label>
+                                    <input type="text" id="lastName" name="lastName" required>
+                                </div>
+                            </div>
+                            <div class="form-row full">
+                                <div class="form-group">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                            </div>
+                            <div class="form-row full">
+                                <div class="form-group">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="tel" id="phone" name="phone" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Address -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-map-marker-alt"></i> Shipping Address</h3>
+                            <div class="form-row full">
+                                <div class="form-group">
+                                    <label for="address">Street Address</label>
+                                    <input type="text" id="address" name="address" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="city">City</label>
+                                    <input type="text" id="city" name="city" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="state">State</label>
+                                    <input type="text" id="state" name="state" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="zip">ZIP Code</label>
+                                    <input type="text" id="zip" name="zip" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="country">Country</label>
+                                    <input type="text" id="country" name="country" value="United States" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Payment Method -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-credit-card"></i> Payment Method</h3>
+                            
+                            <div class="payment-methods">
+                                <!-- Bank Transfer Option -->
+                                <label class="payment-option">
+                                    <input type="radio" name="payment_method" value="bank_transfer" checked onchange="togglePaymentDetails()">
+                                    <div class="payment-card">
+                                        <div class="payment-icon">
+                                            <i class="fas fa-university"></i>
+                                        </div>
+                                        <div class="payment-info">
+                                            <div class="payment-name">Bank Transfer</div>
+                                            <div class="payment-description">Transfer funds directly from your bank account</div>
+                                        </div>
+                                    </div>
+                                </label>
+
+                                <!-- Card Payment Option -->
+                                <label class="payment-option">
+                                    <input type="radio" name="payment_method" value="card_payment" onchange="togglePaymentDetails()">
+                                    <div class="payment-card">
+                                        <div class="payment-icon">
+                                            <i class="fas fa-credit-card"></i>
+                                        </div>
+                                        <div class="payment-info">
+                                            <div class="payment-name">Credit/Debit Card</div>
+                                            <div class="payment-description">Pay securely with your credit or debit card</div>
+                                        </div>
+                                    </div>
+                                </label>
+
+                                <!-- Cash Payment Option -->
+                                <label class="payment-option">
+                                    <input type="radio" name="payment_method" value="cash_payment" onchange="togglePaymentDetails()">
+                                    <div class="payment-card">
+                                        <div class="payment-icon">
+                                            <i class="fas fa-money-bill-wave"></i>
+                                        </div>
+                                        <div class="payment-info">
+                                            <div class="payment-name">Cash on Delivery</div>
+                                            <div class="payment-description">Pay with cash when your order arrives</div>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <!-- Bank Transfer Details -->
+                            <div id="bank-details" class="bank-details active">
+                                <h4><i class="fas fa-info-circle"></i> Bank Account Details</h4>
+                                <div class="bank-detail-item">
+                                    <span>Bank Name:</span>
+                                    <strong>NEXUS Financial Bank</strong>
+                                </div>
+                                <div class="bank-detail-item">
+                                    <span>Account Holder:</span>
+                                    <strong>NEXUS Computing Inc.</strong>
+                                </div>
+                                <div class="bank-detail-item">
+                                    <span>Account Number:</span>
+                                    <strong>9876543210</strong>
+                                </div>
+                                <div class="bank-detail-item">
+                                    <span>Routing Number:</span>
+                                    <strong>021000021</strong>
+                                </div>
+                                <div class="bank-detail-item">
+                                    <span>SWIFT Code:</span>
+                                    <strong>NXSCUS33</strong>
+                                </div>
+                                <p style="margin-top: 16px; color: var(--gray); font-size: 0.85rem;">
+                                    <strong>Important:</strong> Please include your order number as the reference when making the transfer. Your order will be processed within 2-4 business hours after payment confirmation.
+                                </p>
+                            </div>
+
+                            <!-- Cash Payment Details -->
+                            <div id="cash-details" class="bank-details">
+                                <h4><i class="fas fa-info-circle"></i> Delivery Instructions</h4>
+                                <p style="margin-bottom: 12px; color: var(--light);">
+                                    You can pay with cash when your order is delivered. Our delivery partners accept cash payments for orders up to $10,000.
+                                </p>
+                                <div class="bank-detail-item">
+                                    <span>Estimated Delivery:</span>
+                                    <strong>5-7 Business Days</strong>
+                                </div>
+                                <div class="bank-detail-item">
+                                    <span>Delivery Hours:</span>
+                                    <strong>9 AM - 6 PM</strong>
+                                </div>
+                                <p style="margin-top: 16px; color: var(--gray); font-size: 0.85rem;">
+                                    <strong>Note:</strong> Our delivery partner will contact you 24 hours before delivery to confirm the time window.
+                                </p>
+                            </div>
+
+                            <!-- Card Payment Details -->
+                            <div id="card-details" class="bank-details">
+                                <h4><i class="fas fa-credit-card"></i> Card Information</h4>
+                                <div class="form-row full">
+                                    <div class="form-group">
+                                        <label for="cardName">Cardholder Name</label>
+                                        <input type="text" id="cardName" name="cardName" placeholder="Name on card">
+                                    </div>
+                                </div>
+                                <div class="form-row full">
+                                    <div class="form-group">
+                                        <label for="cardNumber">Card Number</label>
+                                        <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" pattern="[0-9\s]+" inputmode="numeric">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="cardExpiry">Expiry Date</label>
+                                        <input type="text" id="cardExpiry" name="cardExpiry" placeholder="MM/YY" maxlength="5" pattern="[0-9/]+">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cardCVV">CVV</label>
+                                        <input type="text" id="cardCVV" name="cardCVV" placeholder="123" maxlength="4" pattern="[0-9]+" inputmode="numeric">
+                                    </div>
+                                </div>
+                                <p style="margin-top: 16px; color: var(--gray); font-size: 0.85rem;">
+                                    <strong>Security:</strong> Your card information is encrypted and secure. We never store your full card details.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Terms -->
+                        <div class="form-section">
+                            <div class="form-group">
+                                <label style="display: flex; align-items: center; gap: 12px; cursor: pointer; font-weight: 400;">
+                                    <input type="checkbox" id="terms" name="terms" required style="width: 20px; height: 20px; cursor: pointer;">
+                                    <span>I agree to the Terms and Conditions and Privacy Policy</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <div class="summary-title">Order Summary</div>
+                    <div id="order-items">
+                        <!-- Items will be populated here -->
+                    </div>
+                    <div class="summary-row" style="border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 16px;">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">$0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping:</span>
+                        <span>Free</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Tax (10%):</span>
+                        <span id="tax">$0.00</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total:</span>
+                        <span id="total">$0.00</span>
+                    </div>
+                    <button type="submit" class="place-order-btn">Place Order</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <a href="index.html" class="logo" style="font-size: 1.8rem; margin-bottom: 20px; display: inline-block;">NEXUS</a>
+                    <p style="color: var(--gray); margin-bottom: 24px;">Redefining computing excellence with cutting-edge technology and unparalleled service.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Products</h3>
+                    <ul class="footer-links">
+                        <li><a href="products.html">Gaming PCs</a></li>
+                        <li><a href="products.html">Workstations</a></li>
+                        <li><a href="products.html">Laptops</a></li>
+                        <li><a href="products.html">Components</a></li>
+                        <li><a href="products.html">Peripherals</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="custom.html">Custom Builds</a></li>
+                        <li><a href="features.html">PC Repair</a></li>
+                        <li><a href="features.html">Performance Tuning</a></li>
+                        <li><a href="features.html">Data Recovery</a></li>
+                        <li><a href="features.html">Consultation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="support.html">Support Center</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 NEXUS Computing. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/search.js"></script>
+    <script src="/js/currency.js"></script>
+    <script src="/js/cart.js"></script>
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.width = '100%';
+                navLinks.style.backgroundColor = 'rgba(15, 23, 42, 0.98)';
+                navLinks.style.backdropFilter = 'blur(10px)';
+                navLinks.style.padding = '30px';
+                navLinks.style.gap = '20px';
+                navLinks.style.borderTop = '1px solid rgba(255, 255, 255, 0.05)';
+            }
+        });
+
+        // Render order summary
+        function renderOrderSummary() {
+            const items = cart.getItems();
+            const total = cart.getTotal();
+            const tax = total * 0.1;
+            const grandTotal = total + tax;
+            const formatMoney = window.nexusCurrency && window.nexusCurrency.format
+                ? window.nexusCurrency.format
+                : (usd) => `$${usd.toFixed(2)}`;
+
+            let itemsHTML = '';
+            items.forEach(item => {
+                itemsHTML += `
+                    <div class="summary-item">
+                        <span>${item.name} x${item.quantity}</span>
+                        <span>${formatMoney(item.price * item.quantity)}</span>
+                    </div>
+                `;
+            });
+
+            document.getElementById('order-items').innerHTML = itemsHTML;
+            document.getElementById('subtotal').textContent = formatMoney(total);
+            document.getElementById('tax').textContent = formatMoney(tax);
+            document.getElementById('total').textContent = formatMoney(grandTotal);
+        }
+
+        // Toggle payment method details
+        function togglePaymentDetails() {
+            const method = document.querySelector('input[name="payment_method"]:checked').value;
+            const bankDetails = document.getElementById('bank-details');
+            const cashDetails = document.getElementById('cash-details');
+            const cardDetails = document.getElementById('card-details');
+
+            // Hide all details
+            bankDetails.classList.remove('active');
+            cashDetails.classList.remove('active');
+            cardDetails.classList.remove('active');
+
+            // Show relevant details based on selected method
+            if (method === 'bank_transfer') {
+                bankDetails.classList.add('active');
+            } else if (method === 'card_payment') {
+                cardDetails.classList.add('active');
+            } else if (method === 'cash_payment') {
+                cashDetails.classList.add('active');
+            }
+        }
+
+        // Handle checkout
+        function handleCheckout(event) {
+            event.preventDefault();
+
+            if (cart.getItems().length === 0) {
+                alert('Your cart is empty. Please add items before checkout.');
+                return;
+            }
+
+            const paymentMethod = document.querySelector('input[name="payment_method"]:checked').value;
+
+            // Validate card payment fields if card is selected
+            if (paymentMethod === 'card_payment') {
+                const cardName = document.getElementById('cardName').value.trim();
+                const cardNumber = document.getElementById('cardNumber').value.trim();
+                const cardExpiry = document.getElementById('cardExpiry').value.trim();
+                const cardCVV = document.getElementById('cardCVV').value.trim();
+
+                if (!cardName) {
+                    alert('Please enter the cardholder name.');
+                    return;
+                }
+
+                if (!cardNumber || cardNumber.replace(/\s/g, '').length < 13) {
+                    alert('Please enter a valid card number (13-19 digits).');
+                    return;
+                }
+
+                if (!cardExpiry || !/^\d{2}\/\d{2}$/.test(cardExpiry)) {
+                    alert('Please enter expiry date in MM/YY format.');
+                    return;
+                }
+
+                if (!cardCVV || cardCVV.length < 3) {
+                    alert('Please enter a valid CVV (3-4 digits).');
+                    return;
+                }
+            }
+
+            // Collect form data
+            const formData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                address: document.getElementById('address').value,
+                city: document.getElementById('city').value,
+                state: document.getElementById('state').value,
+                zip: document.getElementById('zip').value,
+                country: document.getElementById('country').value,
+                paymentMethod: paymentMethod,
+                items: cart.getItems(),
+                subtotal: cart.getTotal(),
+                tax: cart.getTotal() * 0.1,
+                total: cart.getTotal() * 1.1,
+                orderDate: new Date().toISOString(),
+                orderNumber: 'ORD-' + Date.now()
+            };
+
+            // Add card details if payment method is card
+            if (paymentMethod === 'card_payment') {
+                const cardNumber = document.getElementById('cardNumber').value.trim();
+                // Mask card number - only show last 4 digits
+                const maskedCardNumber = '**** **** **** ' + cardNumber.slice(-4);
+                
+                formData.cardDetails = {
+                    name: document.getElementById('cardName').value,
+                    number: maskedCardNumber,
+                    expiry: document.getElementById('cardExpiry').value,
+                    lastFourDigits: cardNumber.slice(-4)
+                };
+            }
+
+            // Save order to localStorage
+            localStorage.setItem('nexus_last_order', JSON.stringify(formData));
+
+            // If user is logged in, save order to their account
+            if (auth && auth.isLoggedIn()) {
+                const orderData = {
+                    id: formData.orderNumber,
+                    date: formData.orderDate,
+                    itemCount: formData.items.length,
+                    total: formData.total,
+                    status: 'pending',
+                    currency: currencyConverter.currentCurrency,
+                    items: formData.items,
+                    shippingAddress: {
+                        name: formData.firstName + ' ' + formData.lastName,
+                        address: formData.address,
+                        city: formData.city,
+                        state: formData.state,
+                        zip: formData.zip,
+                        country: formData.country
+                    }
+                };
+                auth.addOrder(orderData);
+            }
+
+            // Clear cart
+            cart.clearCart();
+
+            // Clear card fields for security
+            if (paymentMethod === 'card_payment') {
+                document.getElementById('cardName').value = '';
+                document.getElementById('cardNumber').value = '';
+                document.getElementById('cardExpiry').value = '';
+                document.getElementById('cardCVV').value = '';
+            }
+
+            // Redirect to confirmation
+            window.location.href = 'order-confirmation.html';
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            renderOrderSummary();
+            
+            if (cart.getItems().length === 0) {
+                alert('Your cart is empty. Redirecting to products...');
+                window.location.href = 'products.html';
+            }
+        });
+
+        document.addEventListener('nexusCurrencyChanged', renderOrderSummary);
+    </script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Nexus Computer Shop</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-microchip logo-icon"></i>
+                NEXUS
+            </a>
+
+            <nav class="nav-links">
+                <a href="products.html">Products</a>
+                <a href="features.html">Services</a>
+                <a href="custom.html">Custom Builds</a>
+                <a href="support.html">Support</a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+                <div class="auth-buttons"></div>
+                <div class="cart-wrapper">
+                    <a href="cart.html" class="cart-btn" style="text-decoration: none; display: flex; align-items: center;"><i class="fas fa-shopping-bag"></i></a>
+                    <span class="cart-count">0</span>
+                </div>
+                <a href="build-your-pc.html" class="cta-btn" style="text-decoration: none; display: inline-block;">Build Your PC</a>
+                <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Login Section -->
+    <section class="login-section">
+        <div class="container">
+            <div class="login-container">
+                <div class="login-tabs">
+                    <button class="tab-btn active" data-tab="login">Login</button>
+                    <button class="tab-btn" data-tab="register">Register</button>
+                </div>
+
+                <!-- Login Form -->
+                <div class="tab-content active" id="login-tab">
+                    <h2>Welcome Back</h2>
+                    <p class="tab-subtitle">Login to access your account</p>
+                    <form id="login-form" class="auth-form">
+                        <div class="form-group">
+                            <label for="login-email">
+                                <i class="fas fa-envelope"></i> Email
+                            </label>
+                            <input type="email" id="login-email" required placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">
+                                <i class="fas fa-lock"></i> Password
+                            </label>
+                            <input type="password" id="login-password" required placeholder="Enter your password">
+                        </div>
+                        <div class="form-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="remember-me">
+                                <span>Remember me</span>
+                            </label>
+                            <a href="forgot-password.html" class="forgot-password">Forgot password?</a>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </button>
+                        <div class="form-message" id="login-message"></div>
+                    </form>
+                </div>
+
+                <!-- Register Form -->
+                <div class="tab-content" id="register-tab">
+                    <h2>Create Account</h2>
+                    <p class="tab-subtitle">Join Nexus Computer Shop today</p>
+                    <form id="register-form" class="auth-form">
+                        <div class="form-group">
+                            <label for="register-name">
+                                <i class="fas fa-user"></i> Full Name
+                            </label>
+                            <input type="text" id="register-name" required placeholder="Enter your full name">
+                        </div>
+                        <div class="form-group">
+                            <label for="register-email">
+                                <i class="fas fa-envelope"></i> Email
+                            </label>
+                            <input type="email" id="register-email" required placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label for="register-password">
+                                <i class="fas fa-lock"></i> Password
+                            </label>
+                            <input type="password" id="register-password" required placeholder="Create a password (min 6 characters)">
+                        </div>
+                        <div class="form-group">
+                            <label for="register-confirm">
+                                <i class="fas fa-lock"></i> Confirm Password
+                            </label>
+                            <input type="password" id="register-confirm" required placeholder="Confirm your password">
+                        </div>
+                        <div class="form-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="terms-agree" required>
+                                <span>I agree to the <a href="#">Terms & Conditions</a></span>
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-user-plus"></i> Create Account
+                        </button>
+                        <div class="form-message" id="register-message"></div>
+                    </form>
+                </div>
+
+                <div class="auth-footer">
+                    <p>Demo users: Use any email/password combination to login (data stored locally)</p>
+                    <div style="margin-top: 15px; padding: 15px; background: rgba(99, 102, 241, 0.1); border-radius: 8px; text-align: left;">
+                        <strong style="color: var(--primary); display: block; margin-bottom: 8px;">
+                            <i class="fas fa-info-circle"></i> Demo Accounts:
+                        </strong>
+                        <div style="font-size: 13px; color: var(--gray); line-height: 1.8;">
+                            <div><strong>Email:</strong> demo@nexuspc.com | <strong>Password:</strong> demo123</div>
+                            <div><strong>Email:</strong> john.doe@example.com | <strong>Password:</strong> password123</div>
+                            <div><strong>Email:</strong> sarah.tech@example.com | <strong>Password:</strong> tech2026</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Nexus</h3>
+                    <p>Your trusted partner for high-performance computer systems and components.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="build-your-pc.html">Build PC</a></li>
+                        <li><a href="custom.html">Custom Build</a></li>
+                        <li><a href="support.html">Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Warranty</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> support@nexuspc.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Tech Street, Silicon Valley</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Nexus Computer Shop. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/search.js"></script>
+    <script src="js/currency.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        // Tab switching
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabName = btn.dataset.tab;
+                
+                // Remove active class from all
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                // Add active class to selected
+                btn.classList.add('active');
+                document.getElementById(tabName + '-tab').classList.add('active');
+            });
+        });
+
+        // Login form submission
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            const messageEl = document.getElementById('login-message');
+
+            const result = auth.login(email, password);
+            
+            if (result.success) {
+                messageEl.className = 'form-message success';
+                messageEl.textContent = result.message + '. Redirecting...';
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 1000);
+            } else {
+                messageEl.className = 'form-message error';
+                messageEl.textContent = result.message;
+            }
+        });
+
+        // Register form submission
+        document.getElementById('register-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('register-name').value;
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            const confirm = document.getElementById('register-confirm').value;
+            const messageEl = document.getElementById('register-message');
+
+            if (password !== confirm) {
+                messageEl.className = 'form-message error';
+                messageEl.textContent = 'Passwords do not match';
+                return;
+            }
+
+            const result = auth.register(email, password, name);
+            
+            if (result.success) {
+                messageEl.className = 'form-message success';
+                messageEl.textContent = result.message + '. You can now login.';
+                
+                // Switch to login tab after successful registration
+                setTimeout(() => {
+                    document.querySelector('[data-tab="login"]').click();
+                    document.getElementById('login-email').value = email;
+                    document.getElementById('register-form').reset();
+                }, 1500);
+            } else {
+                messageEl.className = 'form-message error';
+                messageEl.textContent = result.message;
+            }
+        });
+
+        // Redirect if already logged in
+        if (auth.isLoggedIn()) {
+            window.location.href = 'dashboard.html';
+        }
+    </script>
+</body>
+</html>

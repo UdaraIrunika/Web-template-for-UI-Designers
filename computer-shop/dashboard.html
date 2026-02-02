@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Nexus Computer Shop</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-microchip logo-icon"></i>
+                NEXUS
+            </a>
+
+            <nav class="nav-links">
+                <a href="products.html">Products</a>
+                <a href="features.html">Services</a>
+                <a href="custom.html">Custom Builds</a>
+                <a href="support.html">Support</a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+                <div class="auth-buttons"></div>
+                <div class="cart-wrapper">
+                    <a href="cart.html" class="cart-btn" style="text-decoration: none; display: flex; align-items: center;"><i class="fas fa-shopping-bag"></i></a>
+                    <span class="cart-count">0</span>
+                </div>
+                <a href="build-your-pc.html" class="cta-btn" style="text-decoration: none; display: inline-block;">Build Your PC</a>
+                <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dashboard Section -->
+    <section class="dashboard-section">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1><i class="fas fa-user-circle"></i> My Dashboard</h1>
+                <p>Welcome back, <span id="user-name"></span>!</p>
+            </div>
+
+            <div class="dashboard-grid">
+                <!-- Profile Card -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-user"></i> Profile Information</h3>
+                        <button class="btn-edit" onclick="toggleEditProfile()">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                    </div>
+                    <div class="card-content">
+                        <div id="profile-view">
+                            <div class="info-row">
+                                <span class="label">Full Name:</span>
+                                <span class="value" id="display-name"></span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Email:</span>
+                                <span class="value" id="display-email"></span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Member Since:</span>
+                                <span class="value" id="display-since"></span>
+                            </div>
+                        </div>
+                        <div id="profile-edit" style="display: none;">
+                            <form id="profile-form">
+                                <div class="form-group">
+                                    <label>Full Name</label>
+                                    <input type="text" id="edit-name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="email" id="edit-email" required>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                    <button type="button" class="btn btn-secondary" onclick="toggleEditProfile()">Cancel</button>
+                                </div>
+                                <div class="form-message" id="profile-message"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-chart-line"></i> Quick Stats</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="stat-grid">
+                            <div class="stat-item">
+                                <div class="stat-icon"><i class="fas fa-shopping-bag"></i></div>
+                                <div class="stat-info">
+                                    <div class="stat-value" id="total-orders">0</div>
+                                    <div class="stat-label">Total Orders</div>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-icon"><i class="fas fa-computer"></i></div>
+                                <div class="stat-info">
+                                    <div class="stat-value" id="total-builds">0</div>
+                                    <div class="stat-label">Saved Builds</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Saved Builds -->
+            <div class="dashboard-card full-width">
+                <div class="card-header">
+                    <h3><i class="fas fa-save"></i> Saved PC Builds</h3>
+                    <a href="build-your-pc.html" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> New Build
+                    </a>
+                </div>
+                <div class="card-content">
+                    <div id="saved-builds-container">
+                        <p class="empty-state">No saved builds yet. <a href="build-your-pc.html">Create your first build!</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order History -->
+            <div class="dashboard-card full-width">
+                <div class="card-header">
+                    <h3><i class="fas fa-history"></i> Order History</h3>
+                </div>
+                <div class="card-content">
+                    <div id="order-history-container">
+                        <p class="empty-state">No orders yet. <a href="products.html">Start shopping!</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Nexus</h3>
+                    <p>Your trusted partner for high-performance computer systems and components.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="build-your-pc.html">Build PC</a></li>
+                        <li><a href="custom.html">Custom Build</a></li>
+                        <li><a href="support.html">Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Warranty</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> support@nexuspc.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Tech Street, Silicon Valley</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Nexus Computer Shop. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/search.js"></script>
+    <script src="js/currency.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        // Redirect if not logged in
+        if (!auth.isLoggedIn()) {
+            window.location.href = 'login.html';
+        }
+
+        const user = auth.getCurrentUser();
+
+        // Display user information
+        function displayUserInfo() {
+            document.getElementById('user-name').textContent = user.fullName || user.email;
+            document.getElementById('display-name').textContent = user.fullName || 'N/A';
+            document.getElementById('display-email').textContent = user.email;
+            
+            const createdDate = new Date(user.createdAt);
+            document.getElementById('display-since').textContent = createdDate.toLocaleDateString();
+
+            // Update stats
+            document.getElementById('total-orders').textContent = user.orders?.length || 0;
+            document.getElementById('total-builds').textContent = user.savedBuilds?.length || 0;
+        }
+
+        // Toggle profile edit mode
+        function toggleEditProfile() {
+            const viewMode = document.getElementById('profile-view');
+            const editMode = document.getElementById('profile-edit');
+            
+            if (editMode.style.display === 'none') {
+                // Show edit mode
+                document.getElementById('edit-name').value = user.fullName || '';
+                document.getElementById('edit-email').value = user.email;
+                viewMode.style.display = 'none';
+                editMode.style.display = 'block';
+            } else {
+                // Show view mode
+                viewMode.style.display = 'block';
+                editMode.style.display = 'none';
+            }
+        }
+
+        // Handle profile update
+        document.getElementById('profile-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('edit-name').value;
+            const email = document.getElementById('edit-email').value;
+            const messageEl = document.getElementById('profile-message');
+
+            const result = auth.updateProfile({ fullName: name, email: email });
+            
+            if (result.success) {
+                messageEl.className = 'form-message success';
+                messageEl.textContent = result.message;
+                setTimeout(() => {
+                    toggleEditProfile();
+                    displayUserInfo();
+                    auth.updateNavigationUI();
+                }, 1000);
+            } else {
+                messageEl.className = 'form-message error';
+                messageEl.textContent = result.message;
+            }
+        });
+
+        // Display saved builds
+        function displaySavedBuilds() {
+            const container = document.getElementById('saved-builds-container');
+            const builds = user.savedBuilds || [];
+
+            if (builds.length === 0) {
+                container.innerHTML = '<p class="empty-state">No saved builds yet. <a href="build-your-pc.html">Create your first build!</a></p>';
+                return;
+            }
+
+            container.innerHTML = builds.map(build => {
+                const date = new Date(build.createdAt).toLocaleDateString();
+                const componentCount = Object.keys(build.components || {}).length;
+                
+                return `
+                    <div class="build-card">
+                        <div class="build-header">
+                            <h4><i class="fas fa-computer"></i> ${build.name}</h4>
+                            <div class="build-actions">
+                                <button class="btn-icon" onclick="loadBuild('${build.id}')" title="Load Build">
+                                    <i class="fas fa-folder-open"></i>
+                                </button>
+                                <button class="btn-icon" onclick="deleteBuild('${build.id}')" title="Delete Build">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="build-info">
+                            <span><i class="fas fa-microchip"></i> ${componentCount} Components</span>
+                            <span><i class="fas fa-calendar"></i> ${date}</span>
+                            <span class="build-price" data-usd-price="${build.totalPrice}">${currencyConverter.formatMoney(build.totalPrice)}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Update currency display
+            setTimeout(() => currencyConverter.updateRate(), 100);
+        }
+
+        // Load build
+        function loadBuild(buildId) {
+            const build = user.savedBuilds.find(b => b.id === buildId);
+            if (build) {
+                localStorage.setItem('load_build', JSON.stringify(build));
+                window.location.href = 'build-your-pc.html';
+            }
+        }
+
+        // Delete build
+        function deleteBuild(buildId) {
+            if (confirm('Are you sure you want to delete this build?')) {
+                const result = auth.deleteBuild(buildId);
+                if (result.success) {
+                    displaySavedBuilds();
+                    displayUserInfo(); // Update stats
+                }
+            }
+        }
+
+        // Display order history
+        function displayOrderHistory() {
+            const container = document.getElementById('order-history-container');
+            const orders = user.orders || [];
+
+            if (orders.length === 0) {
+                container.innerHTML = '<p class="empty-state">No orders yet. <a href="products.html">Start shopping!</a></p>';
+                return;
+            }
+
+            container.innerHTML = `
+                <div class="order-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Date</th>
+                                <th>Items</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${orders.map(order => {
+                                const date = new Date(order.date).toLocaleDateString();
+                                return `
+                                    <tr>
+                                        <td><strong>${order.id}</strong></td>
+                                        <td>${date}</td>
+                                        <td>${order.itemCount} items</td>
+                                        <td class="price-cell" data-usd-price="${order.total}">${currencyConverter.formatMoney(order.total)}</td>
+                                        <td><span class="status-badge ${order.status}">${order.status}</span></td>
+                                    </tr>
+                                `;
+                            }).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+
+            // Update currency display
+            setTimeout(() => currencyConverter.updateRate(), 100);
+        }
+
+        // Initialize dashboard
+        displayUserInfo();
+        displaySavedBuilds();
+        displayOrderHistory();
+    </script>
+</body>
+</html>

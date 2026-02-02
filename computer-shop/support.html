@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support | NEXUS | Next-Gen Computing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .faq-item {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active {
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .faq-question {
+            padding: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .faq-question:hover {
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .faq-question h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer-content {
+            padding: 0 24px 24px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-microchip logo-icon"></i>
+                NEXUS
+            </a>
+
+            <nav class="nav-links">
+                <a href="products.html">Products</a>
+                <a href="features.html">Services</a>
+                <a href="custom.html">Custom Builds</a>
+                <a href="support.html">Support</a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+                <div class="auth-buttons"></div>
+                <div class="cart-wrapper">
+                    <a href="cart.html" class="cart-btn" style="text-decoration: none; display: flex; align-items: center;"><i class="fas fa-shopping-bag"></i></a>
+                    <span class="cart-count">0</span>
+                </div>
+                <a href="build-your-pc.html" class="cta-btn" style="text-decoration: none; display: inline-block;">Build Your PC</a>
+                <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" style="padding: 140px 0 80px;">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div style="max-width: 800px;">
+                <h1 style="font-size: 3rem;">We're Here to <span>Help</span></h1>
+                <p style="font-size: 1.2rem; color: var(--gray); margin-top: 20px;">Get support 24/7 from our expert team. We're committed to resolving your issues quickly and keeping your system running smoothly.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Options Section -->
+    <section style="padding: 100px 0;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get Support</h2>
+                <p>Multiple ways to reach us for quick assistance</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 60px;">
+                <div style="background: var(--glass); backdrop-filter: blur(10px); border: 1px solid var(--glass-border); border-radius: 20px; padding: 40px 30px; text-align: center; transition: all 0.3s ease;" class="support-card">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 2rem;">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 16px;">Live Chat Support</h3>
+                    <p style="color: var(--gray); margin-bottom: 24px;">Chat with our support team in real-time. Average response time: 2 minutes.</p>
+                    <button class="cta-btn" style="width: 100%;">Start Chat</button>
+                </div>
+
+                <div style="background: var(--glass); backdrop-filter: blur(10px); border: 1px solid var(--glass-border); border-radius: 20px; padding: 40px 30px; text-align: center; transition: all 0.3s ease;" class="support-card">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 2rem;">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 16px;">Email Support</h3>
+                    <p style="color: var(--gray); margin-bottom: 24px;">Send us an email at support@nexuscomputing.com. We'll respond within 4 hours.</p>
+                    <button class="cta-btn" style="width: 100%;">Send Email</button>
+                </div>
+
+                <div style="background: var(--glass); backdrop-filter: blur(10px); border: 1px solid var(--glass-border); border-radius: 20px; padding: 40px 30px; text-align: center; transition: all 0.3s ease;" class="support-card">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 2rem;">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 16px;">Phone Support</h3>
+                    <p style="color: var(--gray); margin-bottom: 24px;">Call us at 1-800-NEXUS-PC. Available Monday-Friday, 9 AM - 9 PM EST.</p>
+                    <button class="cta-btn" style="width: 100%;">Call Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section style="padding: 100px 0; background: rgba(99, 102, 241, 0.05);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Find answers to common questions about our products and services</p>
+            </div>
+
+            <div style="max-width: 900px; margin: 60px auto 0;">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What is your warranty coverage?</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            All NEXUS-built systems come with a comprehensive 3-year warranty covering all components and labor. We also offer optional extended warranties up to 5 years. The warranty covers hardware defects, manufacturing issues, and component failures. Custom builds using your own components may have different coverage terms.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How long does a custom build take?</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Standard custom builds typically take 5-7 business days from order placement to shipping. This includes component sourcing, assembly, testing, and quality assurance. Rush builds (3-day turnaround) are available for an additional fee. Express shipping options are also available.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do you offer financing options?</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes! We offer flexible financing through multiple partners including 0% APR for 12 months on purchases over $1,500. We also accept major credit cards and offer monthly payment plans. Some restrictions may apply based on creditworthiness.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What operating system comes with my build?</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            All custom builds come pre-installed with Windows 11 Pro or your choice of Linux. The OS is pre-activated and ready to use right out of the box. You can request a different OS during configuration, and we'll install your preferred system at no additional cost.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Can I upgrade my system after purchase?</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Absolutely! We recommend upgrades based on your usage. Common upgrades include adding more RAM, upgrading storage, or swapping GPU/CPU. For warranty purposes, upgrades performed by our team are recommended, though you can upgrade yourself. Warranty coverage applies to components we install.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What's your return/refund policy?</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We offer a 30-day money-back guarantee on all custom builds if you're not completely satisfied. If there are any defects or issues, we'll either repair or replace your system at no cost. Return shipping is free within the continental US. Custom components may have different return terms based on manufacturer policies.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do you offer setup and installation services?</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes! We offer both in-home and remote setup services. Remote setup is complimentary with every purchase and includes driver installation, Windows configuration, and optimization. In-home setup services are available for an additional fee and include full installation, network setup, and personalized training.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section style="padding: 100px 0;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Still Have Questions?</h2>
+                <p>Reach out to our team and we'll be happy to help</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 60px; max-width: 1000px; margin-left: auto; margin-right: auto;">
+                <div>
+                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 30px;">Contact Information</h3>
+                    
+                    <div style="margin-bottom: 30px;">
+                        <h4 style="color: var(--primary); font-size: 1.1rem; margin-bottom: 8px;">Phone</h4>
+                        <p style="color: var(--light); font-size: 1.1rem;">1-800-NEXUS-PC (1-800-639-8772)</p>
+                        <p style="color: var(--gray); font-size: 0.95rem;">Monday-Friday: 9 AM - 9 PM EST</p>
+                    </div>
+
+                    <div style="margin-bottom: 30px;">
+                        <h4 style="color: var(--primary); font-size: 1.1rem; margin-bottom: 8px;">Email</h4>
+                        <p style="color: var(--light); font-size: 1.1rem;">support@nexuscomputing.com</p>
+                        <p style="color: var(--gray); font-size: 0.95rem;">Response time: 4 hours or less</p>
+                    </div>
+
+                    <div style="margin-bottom: 30px;">
+                        <h4 style="color: var(--primary); font-size: 1.1rem; margin-bottom: 8px;">Office Hours</h4>
+                        <p style="color: var(--light);">Monday - Friday: 9 AM - 6 PM EST</p>
+                        <p style="color: var(--light);">Saturday: 10 AM - 4 PM EST</p>
+                        <p style="color: var(--light);">Sunday: Closed</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 30px;">Send us a Message</h3>
+                    
+                    <form style="display: flex; flex-direction: column; gap: 16px;">
+                        <input type="text" placeholder="Your Name" style="background: var(--glass); backdrop-filter: blur(10px); border: 1px solid var(--glass-border); border-radius: 50px; padding: 16px 24px; color: white; font-size: 1rem; outline: none;" required>
+                        
+                        <input type="email" placeholder="Your Email" style="background: var(--glass); backdrop-filter: blur(10px); border: 1px solid var(--glass-border); border-radius: 50px; padding: 16px 24px; color: white; font-size: 1rem; outline: none;" required>
+                        
+                        <textarea placeholder="Your Message" rows="5" style="background: var(--glass); backdrop-filter: blur(10px); border: 1px solid var(--glass-border); border-radius: 16px; padding: 16px 24px; color: white; font-size: 1rem; outline: none; resize: none; font-family: inherit;" required></textarea>
+                        
+                        <button class="cta-btn" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <a href="index.html" class="logo" style="font-size: 1.8rem; margin-bottom: 20px; display: inline-block;">NEXUS</a>
+                    <p style="color: var(--gray); margin-bottom: 24px;">Redefining computing excellence with cutting-edge technology and unparalleled service.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Products</h3>
+                    <ul class="footer-links">
+                        <li><a href="products.html">Gaming PCs</a></li>
+                        <li><a href="products.html">Workstations</a></li>
+                        <li><a href="products.html">Laptops</a></li>
+                        <li><a href="products.html">Components</a></li>
+                        <li><a href="products.html">Peripherals</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="custom.html">Custom Builds</a></li>
+                        <li><a href="features.html">PC Repair</a></li>
+                        <li><a href="features.html">Performance Tuning</a></li>
+                        <li><a href="features.html">Data Recovery</a></li>
+                        <li><a href="features.html">Consultation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="support.html">Support Center</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 NEXUS Computing. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/search.js"></script>
+    <script src="/js/currency.js"></script>
+    <script src="/js/cart.js"></script>
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // FAQ Toggle
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', function() {
+                // Close other items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                
+                // Toggle current item
+                item.classList.toggle('active');
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.width = '100%';
+                navLinks.style.backgroundColor = 'rgba(15, 23, 42, 0.98)';
+                navLinks.style.backdropFilter = 'blur(10px)';
+                navLinks.style.padding = '30px';
+                navLinks.style.gap = '20px';
+                navLinks.style.borderTop = '1px solid rgba(255, 255, 255, 0.05)';
+            }
+        });
+
+        // Contact form submission
+        const contactForm = document.querySelector('form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const nameInput = contactForm.querySelector('input[type="text"]');
+                const emailInput = contactForm.querySelector('input[type="email"]');
+                
+                if (nameInput.value && emailInput.value) {
+                    alert(`Thank you ${nameInput.value}! We've received your message and will contact you at ${emailInput.value} soon.`);
+                    contactForm.reset();
+                }
+            });
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    
+                    if (window.innerWidth <= 768) {
+                        navLinks.style.display = 'none';
+                    }
+                }
+            });
+        });
+    </script>
+    <script src="js/auth.js"></script>
+</body>
+</html>
