@@ -312,9 +312,21 @@ Created as a comprehensive e-commerce demonstration project.
 ## 📞 Support
 
 For questions or support, visit the **Support** page or contact:
+
+### 🛒 Screen shots
+<img width="1906" height="955" alt="Screenshot 2026-02-02 145552" src="https://github.com/user-attachments/assets/1d271160-7bcb-4c55-a34a-85b769a2c544" />
+<img width="1902" height="959" alt="Screenshot 2026-02-02 145602" src="https://github.com/user-attachments/assets/9c5a8092-d963-4ea6-bfe8-0b2da7a76c76" />
+<img width="1900" height="959" alt="Screenshot 2026-02-02 145608" src="https://github.com/user-attachments/assets/cebda58d-939f-4a49-a077-c3c4d2ddadcc" />
+<img width="1901" height="960" alt="Screenshot 2026-02-02 145616" src="https://github.com/user-attachments/assets/1f73e797-1a35-4397-90ea-b351559904a6" />
+<img width="1901" height="963" alt="Screenshot 2026-02-02 145623" src="https://github.com/user-attachments/assets/802110ee-9df4-4f18-be12-e570a3569024" />
+<img width="1906" height="958" alt="Screenshot 2026-02-02 145630" src="https://github.com/user-attachments/assets/90aa425c-bd40-467f-bfd8-021002556371" />
+<img width="1905" height="960" alt="Screenshot 2026-02-02 145641" src="https://github.com/user-attachments/assets/6b3a6796-a8ef-41ab-b7b8-b1345c07d67d" />
+<img width="1903" height="961" alt="Screenshot 2026-02-02 145659" src="https://github.com/user-attachments/assets/c68d9d97-9c0e-445f-91e9-5f778ff86882" />
+
 - Email: support@nexuspc.com (demo)
 - Phone: +1 (555) 123-4567 (demo)
 
 ---
 
 Made with ❤️ for PC enthusiasts
+
